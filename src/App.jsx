@@ -1,15 +1,14 @@
 import { RouterProvider } from 'react-router-dom';
-import Header from './layout/Header';
-import LayOut from './layout/LayOut';
 import router from './routes/Route';
 import GlobalStyles from './styles/GlobalStyle';
-
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/ThemeStyle';
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <RouterProvider router={router} />
-    </>
+    </ThemeProvider>
   );
 }
 
