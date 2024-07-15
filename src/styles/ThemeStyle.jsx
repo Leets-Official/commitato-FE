@@ -26,8 +26,8 @@ const FONT_FAMILY = {
 
 const FONT_SIZE = {
   small: '16px',
-  medium: '48px',
-  large: '72px',
+  medium: '24px',
+  large: '36px',
 };
 const theme = {
   COLORS,
