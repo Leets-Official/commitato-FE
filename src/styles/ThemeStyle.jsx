@@ -1,6 +1,7 @@
 const COLORS = {
   black: '#000000',
   gray: '#808080',
+  orange: '#f7c760',
 };
 
 const FONT_FAMILY = {
