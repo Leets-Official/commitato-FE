@@ -1,7 +1,7 @@
 const COLORS = {
   black: '#000000',
   gray: '#808080',
-  orange: '#f7c760',
+  orange: '#ffcf55',
 };
 
 const FONT_FAMILY = {
@@ -11,9 +11,9 @@ const FONT_FAMILY = {
 };
 
 const FONT_SIZE = {
-  small: '12px',
-  medium: '24px',
-  large: '36px',
+  small: '16px',
+  medium: '48px',
+  large: '72px',
 };
 const theme = {
   COLORS,

@@ -1,10 +1,14 @@
 import styled from 'styled-components';
+import MainPage1 from './MainPage1';
 
 const MainPage = () => {
   return (
-    <StyledContainer>
-      <MainDiv>COMMITATO</MainDiv>
-    </StyledContainer>
+    <>
+      <StyledContainer>
+        <MainDiv>COMMITATO</MainDiv>
+        <MainPage1 />
+      </StyledContainer>
+    </>
   );
 };
 
