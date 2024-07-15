@@ -10,7 +10,7 @@ const FONT_FAMILY = {
 };
 
 const FONT_SIZE = {
-  small: '12px',
+  small: '16px',
   medium: '24px',
   large: '36px',
 };
