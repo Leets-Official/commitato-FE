@@ -7,6 +7,9 @@ const Header = () => {
   const home = async () => {
     nav('/home');
   };
+  const myPage = async () => {
+    nav('/my');
+  };
   const ranking = async () => {
     nav('/ranking');
   };
@@ -15,6 +18,7 @@ const Header = () => {
     <StyledHeader>
       <LogoDiv>COMMITATO</LogoDiv>
       <StyledButton onClick={home}>HOME</StyledButton>
+      <StyledButton onClick={myPage}>MY PAGE</StyledButton>
       <StyledButton onClick={ranking}>RANKING</StyledButton>
     </StyledHeader>
   );
@@ -28,7 +32,7 @@ const StyledHeader = styled.header`
   padding: 15px;
   z-index: 1;
   width: 1920px;
-  height: 15px;
+  height: 38px;
   background: #ffffff;
 `;
 
