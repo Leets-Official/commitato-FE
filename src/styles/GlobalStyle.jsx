@@ -13,9 +13,19 @@ const GlobalStyles = createGlobalStyle`
         src: url("/fonts/Pretendard-ExtraBold.woff") format("woff");
     }
     @font-face {
-        font-family:"Pretendard-R" ;
+        font-family:"Pretendard-Regular" ;
         src: url("/fonts/Pretendard-Regular.woff") format("woff");
     }
+    @font-face {
+        font-family:"Pretendard-SemiBold" ;
+        src: url("/fonts/Pretendard-SemiBold.woff") format("woff");
+    }
+    @font-face {
+        font-family:"Pretendard-Bold" ;
+        src: url("/fonts/Pretendard-Bold.woff") format("woff");
+    }
+   
+  
 `;
 
 export default GlobalStyles;
