@@ -27,23 +27,24 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.header`
-  position: sticky;
+  position: fixed;
   display: flex;
-  padding: 15px;
+  padding: 20px;
   z-index: 1;
-  width: 1920px;
+  width: 100%;
   height: 38px;
   background: #ffffff;
+  top: 0px;
 `;
 
 const LogoDiv = styled.div`
-  font-family: ${({ theme }) => theme.FONT_FAMILY.logo};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   color: ${({ theme }) => theme.COLORS.black};
   font-size: ${({ theme }) => theme.FONT_SIZE.large};
 `;
 
 const StyledButton = styled.h1`
-  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
   font-size: ${({ theme }) => theme.FONT_SIZE.small};
   color: ${({ theme }) => theme.COLORS.gray};
   margin-left: 15px;
