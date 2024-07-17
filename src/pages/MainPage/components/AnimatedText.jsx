@@ -3,31 +3,44 @@ import styled from 'styled-components';
 import comment2 from '../../../assets/comment2.png';
 const textVariants = {
   offscreen: {
-    y: 400,
+    y: 500,
   },
   onscreen: {
     y: 200,
-    rotate: -5,
+    rotate: 0,
     transition: {
       type: 'spring',
       bounce: 0.5,
-      duration: 0.8,
+      duration: 0.9,
     },
   },
 };
 
 const AnimatedText = () => {
   return (
-    <motion.div
-      initial="offscreen"
-      whileInView="onscreen"
-      variants={textVariants}
-      viewport={{ once: true, amount: 0.8 }}
-    >
-      <HowDiv1>HOW?</HowDiv1>
-      <HowDiv2>HOW?</HowDiv2>
-      <HowDiv3>HOW?</HowDiv3>
-    </motion.div>
+    <>
+      <motion.div
+        initial="offscreen"
+        whileInView="onscreen"
+        variants={textVariants}
+      >
+        <HowDiv1>HOW?</HowDiv1>
+      </motion.div>
+      <motion.div
+        initial="offscreen"
+        whileInView="onscreen"
+        variants={textVariants}
+      >
+        <HowDiv2>HOW?</HowDiv2>
+      </motion.div>
+      <motion.div
+        initial="offscreen"
+        whileInView="onscreen"
+        variants={textVariants}
+      >
+        <HowDiv3>HOW?</HowDiv3>
+      </motion.div>
+    </>
   );
 };
 

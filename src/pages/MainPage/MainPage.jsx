@@ -45,10 +45,10 @@ const MainPage = () => {
         <AnimatedText />
       </section>
 
-      <img src={stupid_potato} alt="stupid_potato" />
+      {/* <img src={stupid_potato} alt="stupid_potato" />
       <img src={talking_potato} alt="talking_potato" />
       <img src={developer_potato} alt="developer_potato" />
-      <img src={ceo_potato} alt="ceo_potato" />
+      <img src={ceo_potato} alt="ceo_potato" /> */}
     </StyledContainer>
   );
 };
