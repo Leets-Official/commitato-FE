@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 const StyledBase = styled.div`
   width: 981px;
   height: 45px;
-  margin-top: 3%;
+  margin-top: 2.5%;
   margin-left: 5%;
   border: 1px solid;
   border-radius: 13px;
