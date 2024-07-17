@@ -28,6 +28,7 @@ const FONT_SIZE = {
   small: '16px',
   medium: '24px',
   large: '36px',
+  larger: '64px',
 };
 const theme = {
   COLORS,

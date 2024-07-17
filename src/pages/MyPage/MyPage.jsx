@@ -1,13 +1,13 @@
 import GitHubCalendar from 'react-github-calendar';
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
-import first from '../../img/first.png';
-import second from '../../img/second.png';
-import third from '../../img/third.png';
-import fourth from '../../img/fourth.png';
-import line from '../../img/line.png';
-import circle from '../../img/circle.png';
-import githubChar from '../../img/githubChar.png';
+import stupid_potato from '../../assets/stupid_potato.png';
+import talking_potato from '../../assets/talking_potato.png';
+import developer_potato from '../../assets/developer_potato.png';
+import ceo_potato from '../../assets/ceo_potato.png';
+import line from '../../assets/line.png';
+import circle from '../../assets/circle.png';
+import githubChar from '../../assets/githubChar.png';
 import XpBar from '../../components/XpBar';
 
 function GitHubChart({ githubId }) {
@@ -22,7 +22,7 @@ function GitHubChart({ githubId }) {
       {isMounted && (
         <GitHubCalendar
           username={githubId}
-          color="#FFCF55"
+          gackground-color="#FFCF55"
           showWeekdayLabels
           blockSize={18}
           style={{
@@ -47,22 +47,22 @@ const MyPage = ({
     {
       id: 0,
       title: '바보 감자',
-      img: first,
+      img: stupid_potato,
     },
     {
       id: 1,
       title: '말하는 감자',
-      img: second,
+      img: talking_potato,
     },
     {
       id: 2,
       title: '개발자 감자',
-      img: third,
+      img: developer_potato,
     },
     {
       id: 3,
       title: 'CEO 감자',
-      img: fourth,
+      img: ceo_potato,
     },
   ];
 
