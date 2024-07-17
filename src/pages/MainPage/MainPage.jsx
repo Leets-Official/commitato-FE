@@ -3,6 +3,10 @@ import { ScrollAnimationContainer } from '../../components/ScrollAnimationContai
 import { motion } from 'framer-motion';
 import comment1 from '../../assets/comment1.png';
 import comment2 from '../../assets/comment2.png';
+import stupid_potato from '../../assets/stupid_potato.png';
+import talking_potato from '../../assets/talking_potato.png';
+import developer_potato from '../../assets/developer_potato.png';
+import ceo_potato from '../../assets/ceo_potato.png';
 const MainPage = () => {
   return (
     <StyledContainer>
@@ -30,6 +34,22 @@ const MainPage = () => {
 
       <ScrollAnimationContainer>
         <img src={comment2} width="720px" />
+      </ScrollAnimationContainer>
+
+      <ScrollAnimationContainer>
+        <ImgWrapper src={stupid_potato} width="240px" />
+      </ScrollAnimationContainer>
+
+      <ScrollAnimationContainer>
+        <ImgWrapper src={talking_potato} width="240px" />
+      </ScrollAnimationContainer>
+
+      <ScrollAnimationContainer>
+        <ImgWrapper src={developer_potato} width="240px" />
+      </ScrollAnimationContainer>
+
+      <ScrollAnimationContainer>
+        <ImgWrapper src={ceo_potato} width="240px" />
       </ScrollAnimationContainer>
     </StyledContainer>
   );
@@ -86,4 +106,10 @@ const SDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  background-color: ${({ theme }) => theme.COLORS.yellow[100]};
+`;
+
+const ImgWrapper = styled.img`
+  position: relative;
+  left: 0;
 `;

@@ -4,6 +4,9 @@ import reset from 'styled-reset';
 const GlobalStyles = createGlobalStyle`
     ${reset}
 
+    body {
+        background-color: ${({ theme }) => theme.COLORS.yellow[100]};
+    }
     @font-face {
         font-family:"Staatliches-Regular" ;
         src: url("fonts/Staatliches-Regular.woff") format("woff");
