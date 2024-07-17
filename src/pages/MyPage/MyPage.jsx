@@ -1,4 +1,5 @@
 import GitHubCalendar from 'react-github-calendar';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import stupid_potato from '../../assets/stupid_potato.png';
 import talking_potato from '../../assets/talking_potato.png';
@@ -8,7 +9,6 @@ import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
 import XpBar from '../../components/XpBar';
-import React, { useState, useEffect } from 'react';
 
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,7 +22,7 @@ function GitHubChart({ githubId }) {
       {isMounted && (
         <GitHubCalendar
           username={githubId}
-          color="#FFCF55"
+          gackground-color="#FFCF55"
           showWeekdayLabels
           blockSize={18}
           style={{
@@ -219,8 +219,8 @@ const StyledCommit = styled.div`
 
 const StyledThree = styled.div`
   display: flex;
-  margin-left: 15%;
-  margin-top: 7%;
+  margin-left: 5%;
+  margin-top: 3%;
   width: 372px;
   height: 22px;
   object-fit: cover;
@@ -230,7 +230,8 @@ const StyledThree = styled.div`
 const StyledName = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[400]};
   font-size: ${({ theme }) => theme.FONT_SIZE.large};
-  margin-left: 15%;
+  margin-left: 5%;
+  // margin-top: 5%;
 `;
 
 const StyledRanking = styled.div``;
