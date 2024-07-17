@@ -1,4 +1,5 @@
 import GitHubCalendar from 'react-github-calendar';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import first from '../../img/first.png';
 import second from '../../img/second.png';
@@ -8,7 +9,6 @@ import line from '../../img/line.png';
 import circle from '../../img/circle.png';
 import githubChar from '../../img/githubChar.png';
 import XpBar from '../../components/XpBar';
-import React, { useState, useEffect } from 'react';
 
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -219,8 +219,8 @@ const StyledCommit = styled.div`
 
 const StyledThree = styled.div`
   display: flex;
-  margin-left: 15%;
-  margin-top: 7%;
+  margin-left: 5%;
+  margin-top: 3%;
   width: 372px;
   height: 22px;
   object-fit: cover;
@@ -230,7 +230,8 @@ const StyledThree = styled.div`
 const StyledName = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[400]};
   font-size: ${({ theme }) => theme.FONT_SIZE.large};
-  margin-left: 15%;
+  margin-left: 5%;
+  // margin-top: 5%;
 `;
 
 const StyledRanking = styled.div``;
