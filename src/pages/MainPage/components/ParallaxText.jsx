@@ -10,7 +10,6 @@ import {
 } from 'framer-motion';
 import { wrap } from '@motionone/utils';
 import styled from 'styled-components';
-
 export const ParallaxText = ({ children, baseVelocity = 100 }) => {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -43,11 +42,15 @@ export const ParallaxText = ({ children, baseVelocity = 100 }) => {
   return (
     <ParallaxContainer>
       <Scroller style={{ x }}>
-        <Span> ABOUT COMMITATO </Span>
-        <Span>ABOUT COMMITATO</Span>
-        <Span> ABOUT COMMITATO</Span>
-        <Span> ABOUT COMMITATO</Span>
-        <Span> ABOUT COMMITATO</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
+        <Span>{children}</Span>
       </Scroller>
     </ParallaxContainer>
   );
