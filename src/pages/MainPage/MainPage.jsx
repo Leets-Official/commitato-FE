@@ -1,40 +1,14 @@
 import styled, { keyframes } from 'styled-components';
 // import { ScrollAnimationContainer } from '../../components/ScrollAnimationContainer';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import comment1 from '../../assets/comment1.png';
 import comment2 from '../../assets/comment2.png';
 import stupid_potato from '../../assets/stupid_potato.png';
 import talking_potato from '../../assets/talking_potato.png';
 import developer_potato from '../../assets/developer_potato.png';
 import ceo_potato from '../../assets/ceo_potato.png';
-import { useEffect } from 'react';
 import { ParallaxText } from './components/ParallaxText';
+import AnimatedText from './components/AnimatedText';
 
-const imgVariants = {
-  visible: { opacity: 1, scale: 4, transition: { duration: 1 } },
-  hidden: { opacity: 0, scale: 0 },
-};
-
-const AnimatedImg = () => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
-  return (
-    <motion.div
-      ref={ref}
-      animate={controls}
-      initial="hidden"
-      variants={imgVariants}
-      className="animatedImg"
-    ></motion.div>
-  );
-};
 const MainPage = () => {
   return (
     <StyledContainer>
@@ -65,6 +39,16 @@ const MainPage = () => {
         </svg>
         &nbsp; &nbsp;ABOUT &nbsp; &nbsp; COMMITATO
       </ParallaxText>
+
+      <section>
+        <img src={comment1} alt="comment1" />
+        <AnimatedText />
+      </section>
+
+      <img src={stupid_potato} alt="stupid_potato" />
+      <img src={talking_potato} alt="talking_potato" />
+      <img src={developer_potato} alt="developer_potato" />
+      <img src={ceo_potato} alt="ceo_potato" />
     </StyledContainer>
   );
 };
@@ -126,4 +110,24 @@ const SDiv = styled.div`
 const ImgWrapper = styled.img`
   position: relative;
   left: 0;
+`;
+
+const HowDiv1 = styled.div`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
+  font-size: 148px;
+  color: ${({ theme }) => theme.COLORS.black};
+  position: relative;
+  top: 50px;
+  left: 500px;
+`;
+
+const HowDiv2 = styled(HowDiv1)`
+  color: ${({ theme }) => theme.COLORS.brown[200]};
+  top: 250px;
+  left: 900px;
+`;
+const HowDiv3 = styled(HowDiv1)`
+  color: ${({ theme }) => theme.COLORS.yellow[200]};
+  top: 400px;
+  left: 1400px;
 `;
