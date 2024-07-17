@@ -66,11 +66,11 @@ const StyledContainer = styled.div`
 const MainDiv = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   color: ${({ theme }) => theme.COLORS.black};
-  font-size: 148px;
+  font-size: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 80px;
+  padding-top: 320px;
 `;
 
 const frameInAnimation = keyframes`
