@@ -46,7 +46,7 @@ const LogoDiv = styled.div`
 const StyledButton = styled.h1`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
   font-size: ${({ theme }) => theme.FONT_SIZE.small};
-  color: ${({ theme }) => theme.COLORS.gray};
+  color: ${({ theme }) => theme.COLORS.gray[200]};
   margin-left: 15px;
   margin-top: 15px;
 `;
