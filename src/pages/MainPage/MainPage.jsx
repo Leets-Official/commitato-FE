@@ -1,56 +1,47 @@
 import styled, { keyframes } from 'styled-components';
-import { ScrollAnimationContainer } from '../../components/ScrollAnimationContainer';
-import { motion } from 'framer-motion';
+// import { ScrollAnimationContainer } from '../../components/ScrollAnimationContainer';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import comment1 from '../../assets/comment1.png';
 import comment2 from '../../assets/comment2.png';
 import stupid_potato from '../../assets/stupid_potato.png';
 import talking_potato from '../../assets/talking_potato.png';
 import developer_potato from '../../assets/developer_potato.png';
 import ceo_potato from '../../assets/ceo_potato.png';
+import { useEffect } from 'react';
+import { ParallaxText } from './components/ParallaxText';
+
+const imgVariants = {
+  visible: { opacity: 1, scale: 4, transition: { duration: 1 } },
+  hidden: { opacity: 0, scale: 0 },
+};
+
+const AnimatedImg = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+  return (
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={imgVariants}
+      className="animatedImg"
+    ></motion.div>
+  );
+};
 const MainPage = () => {
   return (
     <StyledContainer>
       <MainDiv>COMMITATO</MainDiv>
 
-      <Box>
-        <SDiv>
-          <img
-            src="src\assets\about_commitato.png"
-            alt="animated_bar"
-            width="120px"
-          />
-          <div>ABOUT COMMITATO</div>
-          <img
-            src="src\assets\about_commitato.png"
-            alt="animated_bar"
-            width="120px"
-          />
-        </SDiv>
-      </Box>
-
-      <ScrollAnimationContainer>
-        <img src={comment1} width="720px" />
-      </ScrollAnimationContainer>
-
-      <ScrollAnimationContainer>
-        <img src={comment2} width="720px" />
-      </ScrollAnimationContainer>
-
-      <ScrollAnimationContainer>
-        <ImgWrapper src={stupid_potato} width="240px" />
-      </ScrollAnimationContainer>
-
-      <ScrollAnimationContainer>
-        <ImgWrapper src={talking_potato} width="240px" />
-      </ScrollAnimationContainer>
-
-      <ScrollAnimationContainer>
-        <ImgWrapper src={developer_potato} width="240px" />
-      </ScrollAnimationContainer>
-
-      <ScrollAnimationContainer>
-        <ImgWrapper src={ceo_potato} width="240px" />
-      </ScrollAnimationContainer>
+      <ParallaxText baseVelocity={-10} />
+      {/* <ParallaxText baseVelocity={10} /> */}
     </StyledContainer>
   );
 };
