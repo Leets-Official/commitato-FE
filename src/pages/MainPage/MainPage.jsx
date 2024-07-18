@@ -86,42 +86,6 @@ const MainDiv = styled.div`
   padding-top: 320px;
 `;
 
-const frameInAnimation = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0%);
-  }
-`;
-
-export const Box = styled.div`
-  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
-  font-size: ${({ theme }) => theme.FONT_SIZE.larger};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  &.frame-in {
-    animation: ${frameInAnimation}2s forwards;
-  }
-`;
-
-const SDiv = styled.div`
-  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
-  font-size: ${({ theme }) => theme.FONT_SIZE.larger};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.COLORS.yellow[100]};
-`;
-
 const CommentImg = styled.img`
   position: relative;
   left: 840px;
