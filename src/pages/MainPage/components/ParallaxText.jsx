@@ -60,7 +60,7 @@ const ParallaxContainer = styled.div`
   overflow: hidden;
   letter-spacing: -2px;
   line-height: 0.8;
-  margin-top: 480px;
+  margin-top: 330px;
   margin-bottom: 120px;
   white-space: nowrap;
   display: flex;
