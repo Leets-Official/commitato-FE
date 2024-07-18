@@ -40,15 +40,22 @@ const MainPage = () => {
         &nbsp; &nbsp;ABOUT &nbsp; &nbsp; COMMITATO
       </ParallaxText>
 
-      <section>
+      <div>
         <img src={comment1} alt="comment1" />
         <AnimatedText />
-      </section>
+      </div>
 
-      {/* <img src={stupid_potato} alt="stupid_potato" />
-      <img src={talking_potato} alt="talking_potato" />
-      <img src={developer_potato} alt="developer_potato" />
-      <img src={ceo_potato} alt="ceo_potato" /> */}
+      <CommentImg src={comment2} alt="comment2" />
+
+      <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
+      <PotatoDiv2 src={talking_potato} alt="talking_potato" />
+      <PotatoDiv3 src={developer_potato} alt="developer_potato" />
+      <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+
+      <TextDiv>
+        <p>COMMITATO와 함께하는 1일 1커밋,</p>
+        <p>지금 시작하세요.</p>
+      </TextDiv>
     </StyledContainer>
   );
 };
@@ -56,9 +63,10 @@ const MainPage = () => {
 export default MainPage;
 
 const StyledContainer = styled.div`
-  background-color: ${({ theme }) => theme.COLORS.yellow[100]};
+  /* background-color: ${({ theme }) => theme.COLORS.yellow[100]}; */
   width: 100%;
   height: 100vh;
+  background: linear-gradient(deg, #ffcf55 0%, #625928 51%, #000000 85%);
 `;
 
 const MainDiv = styled.div`
@@ -107,27 +115,43 @@ const SDiv = styled.div`
   background-color: ${({ theme }) => theme.COLORS.yellow[100]};
 `;
 
-const ImgWrapper = styled.img`
+const CommentImg = styled.img`
   position: relative;
-  left: 0;
+  left: 840px;
+  top: 1000px;
 `;
 
-const HowDiv1 = styled.div`
-  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
-  font-size: 148px;
-  color: ${({ theme }) => theme.COLORS.black};
-  position: relative;
-  top: 50px;
-  left: 500px;
+const PotatoDiv1 = styled.img`
+  position: absolute;
+  left: 200px;
+  top: 3500px;
 `;
 
-const HowDiv2 = styled(HowDiv1)`
-  color: ${({ theme }) => theme.COLORS.brown[200]};
-  top: 250px;
-  left: 900px;
+const PotatoDiv2 = styled.img`
+  position: relative;
+  top: 2200px;
+  left: 480px;
 `;
-const HowDiv3 = styled(HowDiv1)`
-  color: ${({ theme }) => theme.COLORS.yellow[200]};
-  top: 400px;
-  left: 1400px;
+const PotatoDiv3 = styled.img`
+  position: relative;
+  top: 3200px;
+  right: 1250px;
+`;
+const PotatoDiv4 = styled.img`
+  position: relative;
+  top: 4000px;
+  right: 30px;
+`;
+
+const TextDiv = styled.div`
+  color: ${({ theme }) => theme.COLORS.white};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
+  font-size: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+  top: 5000px;
 `;
