@@ -12,6 +12,7 @@ const COLORS = {
     100: '#7f6625',
     200: '#4d3e1a',
   },
+  white: '#ffffff',
 };
 
 const FONT_FAMILY = {
