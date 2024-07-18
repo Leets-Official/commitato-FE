@@ -1,4 +1,5 @@
 import GitHubCalendar from 'react-github-calendar';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import stupid_potato from '../../assets/stupid_potato.png';
 import talking_potato from '../../assets/talking_potato.png';
@@ -8,7 +9,6 @@ import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
 import XpBar from '../../components/XpBar';
-import React, { useState, useEffect } from 'react';
 
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,13 +22,13 @@ function GitHubChart({ githubId }) {
       {isMounted && (
         <GitHubCalendar
           username={githubId}
-          color="#FFCF55"
+          stroke="#FFCF55"
           showWeekdayLabels
           blockSize={18}
           style={{
             height: '15rem',
             width: '50rem',
-            marginLeft: '2.5rem',
+            marginLeft: '3.5rem',
           }}
         />
       )}
@@ -92,6 +92,10 @@ const MyPage = ({
                 <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
               </StyledThree>
               <XpBar />
+              <StyledTwo>
+                <StyledNum>0점</StyledNum>
+                <StyledNum>50점</StyledNum>
+              </StyledTwo>
             </div>
           </Wrapper>
           <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
@@ -128,7 +132,7 @@ const StyledBlack = styled.div`
   display: flex;
   padding-top: 38px;
   width: 100%;
-  height: 1080px;
+  height: 100vh;
   background: #000000;
 `;
 
@@ -215,12 +219,13 @@ const StyledDiv = styled.div`
 
 const StyledCommit = styled.div`
   margin-top: 2%;
+  margin-left: 4%;
 `;
 
 const StyledThree = styled.div`
   display: flex;
-  margin-left: 15%;
-  margin-top: 7%;
+  margin-left: 5%;
+  margin-top: 1.5%;
   width: 372px;
   height: 22px;
   object-fit: cover;
@@ -230,7 +235,8 @@ const StyledThree = styled.div`
 const StyledName = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[400]};
   font-size: ${({ theme }) => theme.FONT_SIZE.large};
-  margin-left: 15%;
+  margin-left: 5%;
+  // margin-top: 5%;
 `;
 
 const StyledRanking = styled.div``;
@@ -255,4 +261,17 @@ const StyledArr4 = styled.div`
   margin-top: 4%;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
   font-size: 18px;
+`;
+
+const StyledTwo = styled.div`
+  margin-top: 0.5%;
+  margin-left: 5.4%;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
+  font-family: ${({ theme }) => theme.COLORS.gray[100]};
+  display: flex;
+`;
+
+const StyledNum = styled.div`
+  width: 981px;
+  justifycontent: space-between;
 `;

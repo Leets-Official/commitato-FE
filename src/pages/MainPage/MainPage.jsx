@@ -8,11 +8,19 @@ import developer_potato from '../../assets/developer_potato.png';
 import ceo_potato from '../../assets/ceo_potato.png';
 import { ParallaxText } from './components/ParallaxText';
 import AnimatedText from './components/AnimatedText';
+import Button from '../../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+  const onCLickToGithub = () => {
+    window.open('https://github.com/login');
+  };
   return (
     <StyledContainer>
-      <MainDiv>COMMITATO</MainDiv>
+      <CenterDiv>
+        <MainDiv>COMMITATO</MainDiv>
+        <Button onClick={onCLickToGithub} label="Login with Github" />
+      </CenterDiv>
 
       <ParallaxText baseVelocity={-10}>
         <svg
@@ -63,10 +71,9 @@ const MainPage = () => {
 export default MainPage;
 
 const StyledContainer = styled.div`
-  /* background-color: ${({ theme }) => theme.COLORS.yellow[100]}; */
+  background-color: ${({ theme }) => theme.COLORS.yellow[100]};
   width: 100%;
   height: 100vh;
-  background: linear-gradient(deg, #ffcf55 0%, #625928 51%, #000000 85%);
 `;
 
 const MainDiv = styled.div`
@@ -154,4 +161,12 @@ const TextDiv = styled.div`
   gap: 30px;
   position: relative;
   top: 5000px;
+`;
+
+const CenterDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
 `;

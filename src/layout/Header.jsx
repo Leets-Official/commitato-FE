@@ -49,4 +49,8 @@ const StyledButton = styled.h1`
   color: ${({ theme }) => theme.COLORS.gray[200]};
   margin-left: 15px;
   margin-top: 15px;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.COLORS.black};
+  }
 `;
