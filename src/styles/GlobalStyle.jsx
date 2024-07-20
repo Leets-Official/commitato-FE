@@ -27,8 +27,11 @@ const GlobalStyles = createGlobalStyle`
         font-family:"Pretendard-Bold" ;
         src: url("/fonts/Pretendard-Bold.woff") format("woff");
     }
-   
-  
-`;
+
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+  `;
 
 export default GlobalStyles;
