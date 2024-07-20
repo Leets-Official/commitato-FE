@@ -12,64 +12,68 @@ import ceo_potato from '../../assets/ceo_potato.png';
 import { ParallaxText } from './components/ParallaxText';
 import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const MainPage = () => {
   const onCLickToGithub = () => {
     window.open('https://github.com/login');
   };
   return (
-    <StyledContainer>
-      <CenterDiv>
-        <MainDiv>COMMITATO</MainDiv>
-        <Button onClick={onCLickToGithub} label="Login with Github" />
-      </CenterDiv>
+    <>
+      <StyledContainer>
+        <CenterDiv>
+          <MainDiv>COMMITATO</MainDiv>
+          <Button onClick={onCLickToGithub} label="Login with Github" />
+        </CenterDiv>
 
-      <ParallaxText baseVelocity={-10}>
-        <svg
-          width="150"
-          height="48"
-          viewBox="0 0 178 52"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M5 26L173 26"
-            stroke="#333333"
-            strokeWidth="10"
-            strokeLinecap="round"
-          />
-          <circle
-            cx="89"
-            cy="26"
-            r="21"
-            fill="white"
-            stroke="black"
-            strokeWidth="10"
-          />
-        </svg>
-        &nbsp; &nbsp;ABOUT &nbsp; &nbsp; COMMITATO
-      </ParallaxText>
+        <ParallaxText baseVelocity={-7}>
+          <svg
+            width="150"
+            height="48"
+            viewBox="0 0 178 52"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 26L173 26"
+              stroke="#333333"
+              strokeWidth="10"
+              strokeLinecap="round"
+            />
+            <circle
+              cx="89"
+              cy="26"
+              r="21"
+              fill="white"
+              stroke="black"
+              strokeWidth="10"
+            />
+          </svg>
+          &nbsp; &nbsp;ABOUT &nbsp; &nbsp; COMMITATO
+        </ParallaxText>
 
-      <div>
-        <img src={comment1} alt="comment1" />
-        <AnimatedText />
-      </div>
+        <div>
+          <img src={comment1} alt="comment1" />
+          <AnimatedText />
+        </div>
 
-      <CommentImg src={comment2} alt="comment2" />
+        <CommentImg src={comment2} alt="comment2" />
 
-      <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
-      <PotatoDiv2 src={talking_potato} alt="talking_potato" />
-      <PotatoDiv3 src={developer_potato} alt="developer_potato" />
-      <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+        <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
+        <PotatoDiv2 src={talking_potato} alt="talking_potato" />
+        <PotatoDiv3 src={developer_potato} alt="developer_potato" />
+        <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
 
-      <TextDiv>
-        <p>COMMITATO와 함께하는 1일 1커밋,</p>
-        <p>지금 시작하세요.</p>
-      </TextDiv>
+        <TextDiv>
+          <p>COMMITATO와 함께하는 1일 1커밋,</p>
+          <p>지금 시작하세요.</p>
+        </TextDiv>
 
-      <Comment3Img src={comment3} alt="comment3" />
-      <Comment4Img src={comment4} alt="comment4" />
-    </StyledContainer>
+        <Comment3Img src={comment3} alt="comment3" />
+        <Comment4Img src={comment4} alt="comment4" />
+      </StyledContainer>
+    </>
   );
 };
 
