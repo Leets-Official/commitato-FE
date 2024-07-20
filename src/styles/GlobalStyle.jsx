@@ -4,9 +4,11 @@ import reset from 'styled-reset';
 const GlobalStyles = createGlobalStyle`
     ${reset}
 
-    /* body {
+    body {
         background-color: ${({ theme }) => theme.COLORS.yellow[100]};
-    } */
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
     @font-face {
         font-family:"Staatliches-Regular" ;
         src: url("fonts/Staatliches-Regular.woff") format("woff");
@@ -28,10 +30,7 @@ const GlobalStyles = createGlobalStyle`
         src: url("/fonts/Pretendard-Bold.woff") format("woff");
     }
 
-    body {
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+    
   `;
 
 export default GlobalStyles;
