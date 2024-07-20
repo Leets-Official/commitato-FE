@@ -14,17 +14,17 @@ import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
 
 const MainPage = () => {
-  const onCLickToGithub = () => {
+  const onClickToGithub = () => {
     window.open('https://github.com/login');
   };
   return (
     <StyledContainer>
       <CenterDiv>
         <MainDiv>COMMITATO</MainDiv>
-        <Button onClick={onCLickToGithub} label="Login with Github" />
+        <Button onClick={onClickToGithub} label="Login with Github" />
       </CenterDiv>
 
-      <ParallaxText baseVelocity={-10}>
+      <ParallaxText baseVelocity={-7}>
         <svg
           width="150"
           height="48"
