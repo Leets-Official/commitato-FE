@@ -1,4 +1,4 @@
-import { motion, transform } from 'framer-motion';
+import { motion, transform, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import comment2 from '../../../assets/comment2.png';
 const textVariants = {
@@ -18,11 +18,12 @@ const textVariants = {
 
 const AnimatedText = () => {
   return (
-    <>
+    <AnimatePresence>
       <motion.div
         initial="offscreen"
         whileInView="onscreen"
         variants={textVariants}
+        exit={{ opacity: 0 }}
       >
         <HowDiv1>HOW?</HowDiv1>
       </motion.div>
@@ -30,6 +31,7 @@ const AnimatedText = () => {
         initial="offscreen"
         whileInView="onscreen"
         variants={textVariants}
+        exit={{ opacity: 0 }}
       >
         <HowDiv2>HOW?</HowDiv2>
       </motion.div>
@@ -37,10 +39,11 @@ const AnimatedText = () => {
         initial="offscreen"
         whileInView="onscreen"
         variants={textVariants}
+        exit={{ opacity: 0 }}
       >
         <HowDiv3>HOW?</HowDiv3>
       </motion.div>
-    </>
+    </AnimatePresence>
   );
 };
 

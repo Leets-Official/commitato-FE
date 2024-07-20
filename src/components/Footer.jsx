@@ -31,8 +31,7 @@ export default Footer;
 const StyledDiv = styled.div`
   width: 100%;
   height: 300px;
-  background: #000000;
-  margin-bottom: 2%;
+  background-color: ${({ theme }) => theme.COLORS.black};
 `;
 
 const StyleMargin = styled.div`
