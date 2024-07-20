@@ -12,19 +12,28 @@ import ceo_potato from '../../assets/ceo_potato.png';
 import { ParallaxText } from './components/ParallaxText';
 import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
-
+import { motion, useScroll, useTransform } from 'framer-motion';
 const MainPage = () => {
-  const onCLickToGithub = () => {
+  const onClickToGithub = () => {
     window.open('https://github.com/login');
   };
+  const { scrollY } = useScroll();
+  const bg = useTransform(
+    scrollY,
+    [0, 80],
+    [
+      `${({ theme }) => theme.COLORS.yellow[100]}`,
+      `${({ theme }) => theme.COLORS.black}`,
+    ],
+  );
   return (
-    <StyledContainer>
+    <StyledContainer style={{ bg }}>
       <CenterDiv>
         <MainDiv>COMMITATO</MainDiv>
-        <Button onClick={onCLickToGithub} label="Login with Github" />
+        <Button onClick={onClickToGithub} label="Login with Github" />
       </CenterDiv>
 
-      <ParallaxText baseVelocity={-10}>
+      <ParallaxText baseVelocity={-7}>
         <svg
           width="150"
           height="48"
@@ -75,7 +84,7 @@ const MainPage = () => {
 
 export default MainPage;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled(motion.div)`
   background-color: ${({ theme }) => theme.COLORS.yellow[100]};
   width: 100%;
   height: 100vh;

@@ -5,7 +5,7 @@ const Header = () => {
   const nav = useNavigate();
 
   const home = async () => {
-    nav('/home');
+    nav('/');
   };
   const myPage = async () => {
     nav('/my');

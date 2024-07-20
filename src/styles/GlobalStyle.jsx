@@ -6,6 +6,8 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         background-color: ${({ theme }) => theme.COLORS.yellow[100]};
+        overflow-x: hidden;
+        overflow-y: auto;
     }
     @font-face {
         font-family:"Staatliches-Regular" ;
@@ -27,8 +29,8 @@ const GlobalStyles = createGlobalStyle`
         font-family:"Pretendard-Bold" ;
         src: url("/fonts/Pretendard-Bold.woff") format("woff");
     }
-   
-  
-`;
+
+    
+  `;
 
 export default GlobalStyles;
