@@ -28,6 +28,7 @@ const GlobalStyles = createGlobalStyle`
         src: url("/fonts/Pretendard-Bold.woff") format("woff");
     }
    
+   
   
 `;
 

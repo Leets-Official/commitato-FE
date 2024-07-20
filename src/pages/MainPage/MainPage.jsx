@@ -24,7 +24,7 @@ const MainPage = () => {
         <Button onClick={onCLickToGithub} label="Login with Github" />
       </CenterDiv>
 
-      <ParallaxText baseVelocity={-10}>
+      <ParallaxText baseVelocity={-7}>
         <svg
           width="150"
           height="48"
