@@ -12,6 +12,7 @@ const COLORS = {
     100: '#7f6625',
     200: '#4d3e1a',
   },
+  white: '#ffffff',
 };
 
 const FONT_FAMILY = {
@@ -28,6 +29,7 @@ const FONT_SIZE = {
   small: '16px',
   medium: '24px',
   large: '36px',
+  larger: '64px',
 };
 const theme = {
   COLORS,

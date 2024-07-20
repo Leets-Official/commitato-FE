@@ -10,12 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@motionone/utils": "^10.18.0",
+    "framer-motion": "^11.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-github-calendar": "^4.1.6",
+    "react-intersection-observer": "^9.13.0",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.1",
     "styled-component": "^2.8.0",
     "styled-components": "^6.1.11",
-    "styled-reset": "^4.5.2"
+    "styled-reset": "^4.5.2",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
@@ -27,6 +33,7 @@
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "file-loader": "^6.2.0",
     "prettier": "3.3.2",
     "vite": "^5.3.1"
   }

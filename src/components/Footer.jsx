@@ -1,12 +1,69 @@
 import styled from 'styled-components';
+import footer from '../assets/footer.png';
 
 const Footer = () => {
   return (
-    <>
-      <h2>Commitato</h2>
-      <h3>Leets</h3>
-    </>
+    <StyledDiv>
+      <StyleMargin>
+        <StyledHeader>
+          <LogoDiv>COMMITATO</LogoDiv>
+          <StyleImg src={footer} />
+        </StyledHeader>
+        <StyledHeader2>
+          <StyledPre>대표 | 가천대학교 Leets 동아리 내 commitato 팀</StyledPre>
+          <StyledPre>사이트명 | Commitato</StyledPre>
+        </StyledHeader2>
+        <StyledPre>
+          주소 | 가천대학교 글로벌캠퍼스 : (13120) 경기도 성남시 수정구 성남대로
+          1342
+        </StyledPre>
+        <StyledPre>
+          본 사이트에 게재된 개인 정보 및 작업물의 무단 도용을 금합니다.
+        </StyledPre>
+        <StyledPre>Copyright 2024. Commitato all rights reserved.</StyledPre>
+      </StyleMargin>
+    </StyledDiv>
   );
 };
 
 export default Footer;
+
+const StyledDiv = styled.div`
+  width: 100%;
+  height: 300px;
+  background: #000000;
+  margin-bottom: 2%;
+`;
+
+const StyleMargin = styled.div`
+  margin-left: 15%;
+`;
+
+const StyledHeader = styled.div`
+  display: flex;
+`;
+
+const StyledHeader2 = styled.div`
+  display: flex;
+  margin-top: 2%;
+`;
+
+const LogoDiv = styled.div`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
+  color: ${({ theme }) => theme.COLORS.white};
+  font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+  margin-top: 0.5%;
+`;
+
+const StyleImg = styled.img`
+  width: 33px;
+  height: 33px;
+  margin-left: 1%;
+`;
+
+const StyledPre = styled.div`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
+  color: ${({ theme }) => theme.COLORS.gray[200]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  margin-bottom: 1.5%;
+`;
