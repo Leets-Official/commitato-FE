@@ -9,6 +9,7 @@ import {
 import line from '../../assets/line.png';
 import styled from 'styled-components';
 import Search from '../../assets/Search.png';
+import RankingList from './components/RankingList';
 const RankingPage = () => {
   const onChange = () => {};
   return (
@@ -22,6 +23,7 @@ const RankingPage = () => {
             <Input type="text" onChange={onChange} placeholder="Search Here" />
             <InputImg src={Search} alt="Search" />
           </InputDiv>
+          <RankingList />
         </RankingContainer>
       </StyledBlack>
       <Footer />
