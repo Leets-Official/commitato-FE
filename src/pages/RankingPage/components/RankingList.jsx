@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import RankingItem from './RankingItem';
-
+import { StyledImg } from '../../MyPage/MyPage';
+import line from '../../../assets/line.png';
 const rankingItems = [
   {
     id: 1,
@@ -59,6 +60,7 @@ const RankingList = () => {
           return <RankingItem key={item.id} {...item} />;
         })}
       </div>
+      <StyledImg src={line} />
       <RankingItem />
     </>
   );
