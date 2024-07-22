@@ -10,8 +10,12 @@ import line from '../../assets/line.png';
 import styled from 'styled-components';
 import Search from '../../assets/Search.png';
 import RankingList from './components/RankingList';
+import { useState } from 'react';
 const RankingPage = () => {
-  const onChange = () => {};
+  const [content, setContent] = useState('');
+  const onChangeContent = e => {
+    setContent(e.target.value);
+  };
   return (
     <>
       <Header />
@@ -20,7 +24,11 @@ const RankingPage = () => {
           <StyledTitle>Ranking</StyledTitle>
           <StyledImg src={line} />
           <InputDiv>
-            <Input type="text" onChange={onChange} placeholder="Search Here" />
+            <Input
+              type="text"
+              onChange={onChangeContent}
+              placeholder="Search Here"
+            />
             <InputImg src={Search} alt="Search" />
           </InputDiv>
           <RankingList />
