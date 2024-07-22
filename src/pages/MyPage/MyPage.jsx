@@ -1,6 +1,8 @@
 import GitHubCalendar from 'react-github-calendar';
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import stupid_potato from '../../assets/stupid_potato.png';
 import talking_potato from '../../assets/talking_potato.png';
 import developer_potato from '../../assets/developer_potato.png';
@@ -14,6 +16,11 @@ import { StyledButton } from '../../components/Button';
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
 
+  const explicitTheme = {
+    light: ['#000000', '#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55'],
+    dark: ['#000000', '#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55'],
+  };
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -23,9 +30,9 @@ function GitHubChart({ githubId }) {
       {isMounted && (
         <GitHubCalendar
           username={githubId}
-          stroke="#FFCF55"
           showWeekdayLabels
           blockSize={18}
+          theme={explicitTheme}
           style={{
             height: '15rem',
             width: '50rem',
@@ -74,59 +81,63 @@ const MyPage = ({
   );
 
   return (
-    <StyledBlack>
-      <StyledWhite>
-        <div>
-          <StyledTitle>MY PAGE</StyledTitle>
-          <StyledImg src={line} />
-          <Wrapper>
-            {selectedCharacter && (
-              <div key={selectedCharacter.id}>
-                <Styledimg src={selectedCharacter.img} />
+    <>
+      <Header />
+      <StyledBlack>
+        <StyledWhite>
+          <div>
+            <StyledTitle>MY PAGE</StyledTitle>
+            <StyledImg src={line} />
+            <Wrapper>
+              {selectedCharacter && (
+                <div key={selectedCharacter.id}>
+                  <Styledimg src={selectedCharacter.img} />
+                </div>
+              )}
+              <div>
+                <StyledUpdate>
+                  <StyledName>MyGitHubID{githubId}</StyledName>
+                  <StyledUpdateButton>UPDATE</StyledUpdateButton>
+                </StyledUpdate>
+                <StyledThree>
+                  <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
+                  <StyledLevel>level {selectedCharacter.title} </StyledLevel>
+                  <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
+                </StyledThree>
+                <XpBar />
+                <StyledTwo>
+                  <StyledNum>0점</StyledNum>
+                  <StyledNum>50점</StyledNum>
+                </StyledTwo>
               </div>
-            )}
-            <div>
-              <StyledUpdate>
-                <StyledName>MyGitHubID{githubId}</StyledName>
-                <StyledUpdateButton>UPDATE</StyledUpdateButton>
-              </StyledUpdate>
-              <StyledThree>
-                <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
-                <StyledLevel>level {selectedCharacter.title} </StyledLevel>
-                <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
-              </StyledThree>
-              <XpBar />
-              <StyledTwo>
-                <StyledNum>0점</StyledNum>
-                <StyledNum>50점</StyledNum>
-              </StyledTwo>
-            </div>
-          </Wrapper>
-          <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
-          <StyledImg2 src={line} />
-          <StyledDiv>
-            <GitHubChart githubId={githubId} />
-            <StyledCommit>
-              <StyledConnect>
-                <StyledArr>TODAY COMMIT</StyledArr>
-                <StyledArr3>{todayCommit}5</StyledArr3>
-              </StyledConnect>
-              <StyledImg3 src={circle} />
-              <StyledConnect>
-                <StyledArr>TOTAL COMMIT</StyledArr>
-                <StyledArr3>{totalCommit}5</StyledArr3>
-              </StyledConnect>
-              <StyledImg3 src={circle} />
-              <StyledGit>
-                <StyledImg4 src={githubChar} />
-                <StyledArr2>GITHUB</StyledArr2>
-                <StyledArr4>{githubId}MyGitHubID</StyledArr4>
-              </StyledGit>
-            </StyledCommit>
-          </StyledDiv>
-        </div>
-      </StyledWhite>
-    </StyledBlack>
+            </Wrapper>
+            <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
+            <StyledImg2 src={line} />
+            <StyledDiv>
+              <GitHubChart githubId={githubId} />
+              <StyledCommit>
+                <StyledConnect>
+                  <StyledArr>TODAY COMMIT</StyledArr>
+                  <StyledArr3>{todayCommit}5</StyledArr3>
+                </StyledConnect>
+                <StyledImg3 src={circle} />
+                <StyledConnect>
+                  <StyledArr>TOTAL COMMIT</StyledArr>
+                  <StyledArr3>{totalCommit}5</StyledArr3>
+                </StyledConnect>
+                <StyledImg3 src={circle} />
+                <StyledGit>
+                  <StyledImg4 src={githubChar} />
+                  <StyledArr2>GITHUB</StyledArr2>
+                  <StyledArr4>{githubId}MyGitHubID</StyledArr4>
+                </StyledGit>
+              </StyledCommit>
+            </StyledDiv>
+          </div>
+        </StyledWhite>
+      </StyledBlack>
+      <Footer />
+    </>
   );
 };
 
@@ -154,7 +165,7 @@ const StyledUpdateButton = styled.button`
   }
 `;
 
-const StyledBlack = styled.div`
+export const StyledBlack = styled.div`
   display: flex;
   padding-top: 38px;
   width: 100%;
