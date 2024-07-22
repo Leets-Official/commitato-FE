@@ -43,7 +43,6 @@ const CongratsModal = ({ githubId }) => {
 
   return (
     <>
-      <StyledButton onClick={() => setModalOpen(true)}>모달열기</StyledButton>
       <div>
         <StyledDiv>
           {modalOpen && (
