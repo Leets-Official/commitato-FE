@@ -9,6 +9,7 @@ import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
 import XpBar from '../../components/XpBar';
+import { StyledButton } from '../../components/Button';
 
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -85,7 +86,10 @@ const MyPage = ({
               </div>
             )}
             <div>
-              <StyledName>MyGitHubID{githubId}</StyledName>
+              <StyledUpdate>
+                <StyledName>MyGitHubID{githubId}</StyledName>
+                <StyledUpdateButton>UPDATE</StyledUpdateButton>
+              </StyledUpdate>
               <StyledThree>
                 <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
                 <StyledLevel>level {selectedCharacter.title} </StyledLevel>
@@ -127,6 +131,28 @@ const MyPage = ({
 };
 
 export default MyPage;
+
+const StyledUpdate = styled.div`
+  display: flex;
+  width: 981px;
+  justify-content: space-between;
+  margin-left: 2.5%;
+`;
+
+const StyledUpdateButton = styled.button`
+  width: 135px;
+  height: 45px;
+  background-color: ${({ theme }) => theme.COLORS.black};
+  border-radius: 10px 10px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
+  font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+  color: ${({ theme }) => theme.COLORS.white};
+  margin-right: 2%;
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.gray[100]};
+    border: ${({ theme }) => theme.COLORS.gray[100]};
+  }
+`;
 
 const StyledBlack = styled.div`
   display: flex;
