@@ -9,6 +9,7 @@ import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
 import XpBar from '../../components/XpBar';
+import CongratsModal from './components/CongratsModal';
 
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -121,6 +122,7 @@ const MyPage = ({
             </StyledCommit>
           </StyledDiv>
         </div>
+        <CongratsModal />
       </StyledWhite>
     </StyledBlack>
   );
