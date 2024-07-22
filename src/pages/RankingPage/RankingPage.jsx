@@ -10,24 +10,14 @@ import line from '../../assets/line.png';
 import styled from 'styled-components';
 import Search from '../../assets/Search.png';
 import RankingList from './components/RankingList';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 const RankingPage = () => {
-  const [content, setContent] = useState('');
-  const onChangeContent = e => {
-    setContent(e.target.value);
+  const [search, setSearch] = useState('');
+
+  const onChangeSearch = e => {
+    setSearch(e.target.value);
   };
 
-  const onKeyDown = e => {
-    if (e.keyCode === 13) {
-      onsubmit();
-    }
-
-    const onSubmit = () => {
-      if (content === '') {
-        content;
-      }
-    };
-  };
   return (
     <>
       <Header />
@@ -37,9 +27,8 @@ const RankingPage = () => {
           <StyledImg src={line} />
           <InputDiv>
             <Input
-              type="text"
-              onKeyDown={onKeyDown}
-              onChange={onChangeContent}
+              value={search}
+              onChange={onChangeSearch}
               placeholder="Search Here"
             />
             <InputImg src={Search} alt="Search" />
