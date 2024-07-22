@@ -1,17 +1,15 @@
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { StyledBlack, StyledWhite } from '../MyPage/MyPage';
-import line from '../../assets/line.png';
 import styled from 'styled-components';
-
 import RankingList from './components/RankingList';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 const rankingItems = [
   {
     id: 1,
     rank: 1,
-    user: 'githubID1',
+    user: 'githubID_1',
     tier: 'CEO 감자',
     commitDay: '7일',
     exp: 120,
@@ -19,7 +17,7 @@ const rankingItems = [
   {
     id: 2,
     rank: 2,
-    user: 'githubID2',
+    user: 'githubID_2',
     tier: 'CEO 감자',
     commitDay: '5일',
     exp: 110,
@@ -27,7 +25,7 @@ const rankingItems = [
   {
     id: 3,
     rank: 3,
-    user: 'githubID3',
+    user: 'githubID_3',
     tier: 'CEO 감자',
     commitDay: '4일',
     exp: 100,
@@ -35,7 +33,7 @@ const rankingItems = [
   {
     id: 4,
     rank: 4,
-    user: 'githubID4',
+    user: 'githubID_4',
     tier: '개발자 감자',
     commitDay: '4일',
     exp: 90,
@@ -43,10 +41,50 @@ const rankingItems = [
   {
     id: 5,
     rank: 5,
-    user: 'githubID5',
+    user: 'githubID_5',
     tier: '개발자 감자',
     commitDay: '4일',
     exp: 80,
+  },
+  {
+    id: 6,
+    rank: 6,
+    user: 'githubID_6',
+    tier: '말하는 감자',
+    commitDay: '4일',
+    exp: 70,
+  },
+  {
+    id: 7,
+    rank: 7,
+    user: 'githubID_7',
+    tier: '말하는 감자',
+    commitDay: '4일',
+    exp: 60,
+  },
+  {
+    id: 8,
+    rank: 8,
+    user: 'githubID_8',
+    tier: '바보 감자',
+    commitDay: '2일',
+    exp: 50,
+  },
+  {
+    id: 9,
+    rank: 9,
+    user: 'githubID_9',
+    tier: '바보 감자',
+    commitDay: '3일',
+    exp: 20,
+  },
+  {
+    id: 10,
+    rank: 10,
+    user: 'githubID_10',
+    tier: '바보 감자',
+    commitDay: '1일',
+    exp: 20,
   },
 ];
 const RankingPage = () => {
@@ -73,32 +111,3 @@ const RankingContainer = styled(StyledWhite)`
   background: ${({ theme }) => theme.COLORS.white};
   margin: auto auto;
 `;
-
-// const InputDiv = styled.div`
-//   position: relative;
-//   width: 1100px;
-// `;
-
-// const Input = styled.input`
-//   &::placeholder {
-//     font-family: ${({ theme }) => theme.FONT_FAMILY.main};
-//     font-size: ${({ theme }) => theme.FONT_SIZE.medium};
-//     color: ${({ theme }) => theme.COLORS.gray[100]};
-//   }
-
-//   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
-//   font-size: ${({ theme }) => theme.FONT_SIZE.medium};
-
-//   border: 4px solid ${({ theme }) => theme.COLORS.yellow[100]};
-//   border-radius: 49px;
-//   width: 100%;
-//   padding: 20px 15px 15px 30px;
-//   margin: 30px 70px;
-// `;
-
-// const InputImg = styled.img`
-//   position: absolute;
-//   width: 40px;
-//   top: 48px;
-//   left: 1150px;
-// `;
