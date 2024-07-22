@@ -167,7 +167,7 @@ const StyledBlack = styled.div`
   background: #000000;
 `;
 
-const StyledWhite = styled.div`
+export const StyledWhite = styled.div`
   border-radius: 30px;
   width: 1316px;
   height: 735px;
@@ -175,14 +175,14 @@ const StyledWhite = styled.div`
   margin: auto auto;
 `;
 
-const StyledTitle = styled.div`
+export const StyledTitle = styled.div`
   margin-left: 4.5%;
   margin-top: 3.5%;
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   font-size: 48px;
 `;
 
-const StyledImg = styled.img`
+export const StyledImg = styled.img`
   margin-left: 4%;
   width: 90%;
 `;
