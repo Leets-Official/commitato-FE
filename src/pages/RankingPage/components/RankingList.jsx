@@ -1,53 +1,38 @@
 import styled from 'styled-components';
 import RankingItem from './RankingItem';
-import { StyledImg } from '../../MyPage/MyPage';
+import { StyledImg, StyledTitle } from '../../MyPage/MyPage';
 import line from '../../../assets/line.png';
-const rankingItems = [
-  {
-    id: 1,
-    rank: 1,
-    user: 'githubID1',
-    tier: 'CEO 감자',
-    commitDay: '7일',
-    exp: 120,
-  },
-  {
-    id: 2,
-    rank: 2,
-    user: 'githubID2',
-    tier: 'CEO 감자',
-    commitDay: '5일',
-    exp: 110,
-  },
-  {
-    id: 3,
-    rank: 3,
-    user: 'githubID3',
-    tier: 'CEO 감자',
-    commitDay: '4일',
-    exp: 100,
-  },
-  {
-    id: 4,
-    rank: 4,
-    user: 'githubID4',
-    tier: '개발자 감자',
-    commitDay: '4일',
-    exp: 90,
-  },
-  {
-    id: 5,
-    rank: 5,
-    user: 'githubID5',
-    tier: '개발자 감자',
-    commitDay: '4일',
-    exp: 80,
-  },
-];
+import Search from '../../../assets/Search.png';
+import { useState } from 'react';
 
-const RankingList = () => {
+const RankingList = ({ datas }) => {
+  const [search, setSearch] = useState('');
+
+  const onChangeSearch = e => {
+    setSearch(e.target.value);
+  };
+
+  const getFilteredData = () => {
+    if (search === '') return datas;
+    return datas.filter(data =>
+      data.user.toLowerCase().includes(search.toLowerCase()),
+    );
+  };
+
+  const filteredDatas = getFilteredData();
   return (
     <>
+      <StyledTitle>Ranking</StyledTitle>
+      <StyledImg src={line} />
+      <InputDiv>
+        <Input
+          value={search}
+          onChange={onChangeSearch}
+          placeholder="Search Here"
+        />
+        <InputImg src={Search} alt="Search" />
+      </InputDiv>
+
       <ListContainer>
         <div>Rank</div>
         <div>User</div>
@@ -56,7 +41,7 @@ const RankingList = () => {
         <div>경험치</div>
       </ListContainer>
       <div>
-        {rankingItems.map(item => {
+        {filteredDatas.map(item => {
           return <RankingItem key={item.id} {...item} />;
         })}
       </div>
@@ -67,6 +52,35 @@ const RankingList = () => {
 };
 
 export default RankingList;
+
+const InputDiv = styled.div`
+  position: relative;
+  width: 1100px;
+`;
+
+const Input = styled.input`
+  &::placeholder {
+    font-family: ${({ theme }) => theme.FONT_FAMILY.main};
+    font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+    color: ${({ theme }) => theme.COLORS.gray[100]};
+  }
+
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+
+  border: 4px solid ${({ theme }) => theme.COLORS.yellow[100]};
+  border-radius: 49px;
+  width: 100%;
+  padding: 20px 15px 15px 30px;
+  margin: 30px 70px;
+`;
+
+const InputImg = styled.img`
+  position: absolute;
+  width: 40px;
+  top: 48px;
+  left: 1150px;
+`;
 
 const ListContainer = styled.div`
   display: flex;

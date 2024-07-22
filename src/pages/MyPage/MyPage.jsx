@@ -154,7 +154,7 @@ const StyledUpdateButton = styled.button`
   }
 `;
 
-const StyledBlack = styled.div`
+export const StyledBlack = styled.div`
   display: flex;
   padding-top: 38px;
   width: 100%;
