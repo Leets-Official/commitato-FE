@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 const RankingList = ({ datas }) => {
   const [search, setSearch] = useState('');
-
   const onChangeSearch = e => {
     setSearch(e.target.value);
   };
