@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 const StyledBase = styled.div`
-  width: 981px;
+  width: 980px;
   height: 45px;
   margin-top: 2.5%;
   margin-left: 5%;
