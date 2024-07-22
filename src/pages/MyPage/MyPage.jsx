@@ -14,6 +14,11 @@ import { StyledButton } from '../../components/Button';
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
 
+  const explicitTheme = {
+    light: ['#000000', '#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55'],
+    dark: ['#000000', '#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55'],
+  };
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -23,9 +28,9 @@ function GitHubChart({ githubId }) {
       {isMounted && (
         <GitHubCalendar
           username={githubId}
-          stroke="#FFCF55"
           showWeekdayLabels
           blockSize={18}
+          theme={explicitTheme}
           style={{
             height: '15rem',
             width: '50rem',
