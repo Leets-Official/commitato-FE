@@ -27,7 +27,7 @@ const FONT_FAMILY = {
 
 const FONT_SIZE = {
   small: '16px',
-  medium: '24px',
+  medium: '28px',
   large: '36px',
   larger: '64px',
 };

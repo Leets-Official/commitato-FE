@@ -16,6 +16,18 @@ const RankingPage = () => {
   const onChangeContent = e => {
     setContent(e.target.value);
   };
+
+  const onKeyDown = e => {
+    if (e.keyCode === 13) {
+      onsubmit();
+    }
+
+    const onSubmit = () => {
+      if (content === '') {
+        content;
+      }
+    };
+  };
   return (
     <>
       <Header />
@@ -26,6 +38,7 @@ const RankingPage = () => {
           <InputDiv>
             <Input
               type="text"
+              onKeyDown={onKeyDown}
               onChange={onChangeContent}
               placeholder="Search Here"
             />
@@ -61,16 +74,19 @@ const Input = styled.input`
     color: ${({ theme }) => theme.COLORS.gray[100]};
   }
 
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+
   border: 4px solid ${({ theme }) => theme.COLORS.yellow[100]};
   border-radius: 49px;
   width: 100%;
-  padding: 30px 20px 20px 40px;
+  padding: 20px 15px 15px 30px;
   margin: 30px 70px;
 `;
 
 const InputImg = styled.img`
   position: absolute;
   width: 40px;
-  top: 45px;
-  left: 1170px;
+  top: 48px;
+  left: 1150px;
 `;
