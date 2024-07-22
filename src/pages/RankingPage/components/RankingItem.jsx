@@ -18,7 +18,7 @@ const ItemDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 30px 80px;
+  padding: 15px 80px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
-  font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+  font-size: ${({ theme }) => theme.FONT_SIZE.small};
 `;
