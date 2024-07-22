@@ -9,7 +9,6 @@ import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
 import XpBar from '../../components/XpBar';
-
 import CongratsModal from './components/CongratsModal';
 
 function GitHubChart({ githubId }) {
@@ -74,11 +73,6 @@ const MyPage = ({
     char => char.id === selectedCharacterId,
   );
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const showModal = () => {
-    setModalOpen(true);
-  };
-
   return (
     <StyledBlack>
       <StyledWhite>
@@ -126,11 +120,9 @@ const MyPage = ({
                 <StyledArr4>{githubId}MyGitHubID</StyledArr4>
               </StyledGit>
             </StyledCommit>
-            <CongratsModal />
-            {/* <button onClick={showModal}>Open Modal</button>
-            {modalOpen && <CongratsModal setModalOpen={setModalOpen} />} */}
           </StyledDiv>
         </div>
+        <CongratsModal />
       </StyledWhite>
     </StyledBlack>
   );

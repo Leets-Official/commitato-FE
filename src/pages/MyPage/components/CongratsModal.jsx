@@ -1,56 +1,74 @@
 import Modal from 'react-modal';
 import styled from 'styled-components';
 import close from '../../../assets/close.png';
+import Button from '../../../components/Button';
 import { useEffect, useRef, useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const CongratsModal = ({ githubId }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();
 
+  const nav = useNavigate();
+
+  const onClickToMyPage = async () => {
+    nav('/my');
+  };
+
   return (
-    <div>
-      <StyledButton onClick={() => setModalOpen(true)}>모달열기</StyledButton>
-      <StyledDiv>
-        {modalOpen && (
-          <StyledModal
-            ref={modalBackground}
-            onClick={e => {
-              if (e.target === modalBackground.current) {
-                setModalOpen(false);
-              }
-            }}
-          >
-            <StyledContent>
-              <StyledClose onClick={() => setModalOpen(false)} src={close} />
-              <StyledComment>
+    <>
+      <div>
+        <StyledDiv>
+          {modalOpen && (
+            <StyledModal
+              ref={modalBackground}
+              onClick={e => {
+                if (e.target === modalBackground.current) {
+                  setModalOpen(false);
+                }
+              }}
+            >
+              <StyledContent>
+                <StyledClose onClick={() => setModalOpen(false)} src={close} />
+                <StyledComment>
+                  <br />
+                  {githubId}githubId님, Commitato에 오신 걸 환영해요! <br />
+                  <br />
+                  앞으로 Commitato와 함께 1일 1커밋을 실천하며 꾸준히
+                  성장해봐요!
+                  <br />
+                  <br />
+                  <br />
+                </StyledComment>
+                <Button onClick={onClickToMyPage} label="마이페이지 바로가기" />
                 <br />
                 <br />
                 <br />
-                <br />
-                {githubId}githubId님, Commitato에 오신 걸 환영해요! <br />
-                <br />
-                앞으로 Commitato와 함께 1일 1커밋을 실천하며 꾸준히 성장해봐요!
-                <br />
-              </StyledComment>
-            </StyledContent>
-          </StyledModal>
-        )}
-      </StyledDiv>
-    </div>
+              </StyledContent>
+            </StyledModal>
+          )}
+        </StyledDiv>
+      </div>
+    </>
   );
 };
 
 export default CongratsModal;
 
-const StyledDiv = styled.div``;
+const StyledDiv = styled.div`
+  width: 100%;
+`;
 
 const StyledButton = styled.button``;
 
 const StyledModal = styled.div`
   position: fixed;
-  display: flex;
-  width: 704px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;
   height: 263px;
+  display: flex;
   text-align: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.COLORS.white};
@@ -65,7 +83,8 @@ const StyledComment = styled.div`
 `;
 
 const StyledClose = styled.img`
-  justify-content: flex-end;
+  margin-top: 7%;
+  margin-left: 110%;
   width: 34px;
   height: 34px;
 `;
