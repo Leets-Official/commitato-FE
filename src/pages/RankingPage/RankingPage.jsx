@@ -52,17 +52,17 @@ const Input = styled.input`
     font-size: ${({ theme }) => theme.FONT_SIZE.medium};
     color: ${({ theme }) => theme.COLORS.gray[100]};
   }
+
   border: 4px solid ${({ theme }) => theme.COLORS.yellow[100]};
   border-radius: 49px;
   width: 100%;
-  padding: 20px;
+  padding: 30px 20px 20px 40px;
   margin: 30px 70px;
 `;
 
 const InputImg = styled.img`
   position: absolute;
   width: 40px;
-  top: 40px;
-  left: 1150px;
-  margin: 0;
+  top: 45px;
+  left: 1170px;
 `;

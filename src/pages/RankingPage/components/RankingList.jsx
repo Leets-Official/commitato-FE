@@ -48,31 +48,32 @@ const rankingItems = [
 const RankingList = () => {
   return (
     <>
-      <ListDiv>
-        <p>Rank</p>
-        <p>User</p>
-        <p>Tier</p>
-        <p>연속 커밋 횟수</p>
-        <p>경험치</p>
-      </ListDiv>
+      <ListContainer>
+        <div>Rank</div>
+        <div>User</div>
+        <div>Tier</div>
+        <div>연속 커밋 횟수</div>
+        <div>경험치</div>
+      </ListContainer>
       <div>
         {rankingItems.map(item => {
           return <RankingItem key={item.id} {...item} />;
         })}
       </div>
+
       <StyledImg src={line} />
-      <RankingItem />
     </>
   );
 };
 
 export default RankingList;
 
-const ListDiv = styled.div`
+const ListContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   gap: 100px;
+
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   font-size: ${({ theme }) => theme.FONT_SIZE.medium};
   color: ${({ theme }) => theme.COLORS.gray[200]};
