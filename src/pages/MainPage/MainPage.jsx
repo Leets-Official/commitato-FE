@@ -14,23 +14,61 @@ import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import React, { useEffect, useRef } from 'react';
+const TranslateAnimation = keyframes`
+    0%{
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  
+    100% {
+      opacity: 1;
+      transform:translateX(0%)
+    }
+  `;
 const MainPage = () => {
   const onClickToGithub = () => {
     window.open('https://github.com/login');
   };
-  const { scrollY } = useScroll();
-  const bg = useTransform(
-    scrollY,
-    [0, 80],
-    [
-      `${({ theme }) => theme.COLORS.yellow[100]}`,
-      `${({ theme }) => theme.COLORS.black}`,
-    ],
-  );
+
+  const divRefs = useRef([
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+  ]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        } else {
+          entry.target.classList.remove('animate');
+        }
+      });
+    });
+
+    divRefs.current.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      divRefs.current.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, []);
+
   return (
     <>
       <Header />
-      <StyledContainer style={{ bg }}>
+      <StyledContainer>
         <CenterDiv>
           <MainDiv>COMMITATO</MainDiv>
           <Button onClick={onClickToGithub} label="Login with Github" />
@@ -62,25 +100,56 @@ const MainPage = () => {
           &nbsp; &nbsp;ABOUT &nbsp; &nbsp; COMMITATO
         </ParallaxText>
 
-        <div>
-          <img src={comment1} alt="comment1" />
-          <AnimatedText />
-        </div>
+        <FlexContainer>
+          <AnimatedDiv ref={divRefs.current[0]}>
+            <Comment1Img src={comment1} alt="comment1" />
+            <AnimatedText />
+          </AnimatedDiv>
 
-        <CommentImg src={comment2} alt="comment2" />
+          <Comment2ImgWrapper>
+            <AnimatedDiv ref={divRefs.current[1]}>
+              <Comment2Img src={comment2} alt="comment2" />
+            </AnimatedDiv>
+          </Comment2ImgWrapper>
 
-        <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
-        <PotatoDiv2 src={talking_potato} alt="talking_potato" />
-        <PotatoDiv3 src={developer_potato} alt="developer_potato" />
-        <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+          {/*bg: black*/}
+          <BgDiv>
+            <div>
+              <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
+            </div>
+
+            <div>
+              <PotatoDiv2 src={talking_potato} alt="talking_potato" />
+            </div>
+
+            <div>
+              <PotatoDiv3 src={developer_potato} alt="developer_potato" />
+            </div>
+
+            <div>
+              <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+            </div>
+          </BgDiv>
+          {/*bg: black 에서 yellow로 그라데이션 */}
+
+          <Comment3ImgWrapper>
+            <AnimatedDiv ref={divRefs.current[2]}>
+              <Comment3Img src={comment3} alt="comment3" />
+            </AnimatedDiv>
+          </Comment3ImgWrapper>
+
+          {/*bg: yellow */}
+          <AnimatedDiv ref={divRefs.current[3]}>
+            <Comment4Img src={comment4} alt="comment4" />
+          </AnimatedDiv>
+        </FlexContainer>
 
         <TextDiv>
           <p>COMMITATO와 함께하는 1일 1커밋,</p>
           <p>지금 시작하세요.</p>
-        </TextDiv>
 
-        <Comment3Img src={comment3} alt="comment3" />
-        <Comment4Img src={comment4} alt="comment4" />
+          <Footer />
+        </TextDiv>
       </StyledContainer>
     </>
   );
@@ -104,45 +173,85 @@ const MainDiv = styled.div`
   padding-top: 320px;
 `;
 
-const CommentImg = styled.img`
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+`;
+const Comment1Img = styled.img`
+  padding-left: 50px;
+`;
+const Comment2Img = styled.img`
   position: relative;
-  left: 840px;
+  left: 830px;
   top: 1000px;
+  /* padding-bottom: 100px; */
+`;
+
+const Comment2ImgWrapper = styled.div`
+  background-image: linear-gradient(
+    ${({ theme }) => theme.COLORS.yellow[100]},
+    ${({ theme }) => theme.COLORS.black}
+  );
+  height: 100vh;
+`;
+const Comment3ImgWrapper = styled.div`
+  background-image: linear-gradient(
+    ${({ theme }) => theme.COLORS.black},
+    ${({ theme }) => theme.COLORS.yellow[100]}
+  );
+  height: 100vh;
 `;
 const Comment3Img = styled.img`
   position: relative;
   left: 100px;
-  top: 4000px;
+  top: 1300px;
 `;
 const Comment4Img = styled.img`
   position: relative;
   left: 840px;
-  top: 4500px;
+  top: 2000px;
 `;
 
-const PotatoDiv1 = styled.img`
-  position: absolute;
-  left: 200px;
-  top: 3500px;
+const AnimatedDiv = styled.div`
+  opacity: 0;
+  transform: translateX(-100%);
+  will-change: transform, opacity;
+  &.animate {
+    animation: ${TranslateAnimation} 2s forwards;
+  }
+
+  /* margin: 50px 0; */
 `;
+
+const BgDiv = styled.div`
+  background-color: #000000;
+  position: relative;
+`;
+const PotatoDiv1 = styled.img``;
 
 const PotatoDiv2 = styled.img`
-  position: relative;
+  /* position: relative;
   top: 2200px;
-  left: 480px;
+  left: 480px; */
 `;
 const PotatoDiv3 = styled.img`
-  position: relative;
+  /* position: relative;
   top: 3200px;
-  right: 1250px;
+  right: 1250px; */
 `;
 const PotatoDiv4 = styled.img`
-  position: relative;
+  /* position: relative;
   top: 4000px;
-  right: 30px;
+  right: 30px; */
 `;
 
 const TextDiv = styled.div`
+  background-image: linear-gradient(
+    ${({ theme }) => theme.COLORS.yellow[100]},
+    ${({ theme }) => theme.COLORS.black} 80%
+  );
+  height: 100vh;
   color: ${({ theme }) => theme.COLORS.white};
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   font-size: 48px;
