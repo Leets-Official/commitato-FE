@@ -14,23 +14,16 @@ import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 const MainPage = () => {
   const onClickToGithub = () => {
     window.open('https://github.com/login');
   };
-  const { scrollY } = useScroll();
-  const bg = useTransform(
-    scrollY,
-    [0, 80],
-    [
-      `${({ theme }) => theme.COLORS.yellow[100]}`,
-      `${({ theme }) => theme.COLORS.black}`,
-    ],
-  );
+
   return (
     <>
       <Header />
-      <StyledContainer style={{ bg }}>
+      <StyledContainer>
         <CenterDiv>
           <MainDiv>COMMITATO</MainDiv>
           <Button onClick={onClickToGithub} label="Login with Github" />
@@ -67,10 +60,17 @@ const MainPage = () => {
           <AnimatedText />
         </div>
 
-        <CommentImg src={comment2} alt="comment2" />
+        <div>
+          <CommentImg src={comment2} alt="comment2" />
+        </div>
 
-        <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
-        <PotatoDiv2 src={talking_potato} alt="talking_potato" />
+        <div>
+          <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
+        </div>
+
+        <div>
+          <PotatoDiv2 src={talking_potato} alt="talking_potato" />
+        </div>
         <PotatoDiv3 src={developer_potato} alt="developer_potato" />
         <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
 
@@ -109,6 +109,7 @@ const CommentImg = styled.img`
   left: 840px;
   top: 1000px;
 `;
+
 const Comment3Img = styled.img`
   position: relative;
   left: 100px;
