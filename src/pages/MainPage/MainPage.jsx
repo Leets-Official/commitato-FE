@@ -15,10 +15,59 @@ import Button from '../../components/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import React, { useEffect, useRef } from 'react';
+const TranslateAnimation = keyframes`
+    0%{
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  
+    100% {
+      opacity: 1;
+      transform:translateX(0%)
+    }
+  `;
 const MainPage = () => {
   const onClickToGithub = () => {
     window.open('https://github.com/login');
   };
+
+  const divRefs = useRef([
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+    React.createRef(),
+  ]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        } else {
+          entry.target.classList.remove('animate');
+        }
+      });
+    });
+
+    divRefs.current.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      divRefs.current.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, []);
 
   return (
     <>
@@ -55,32 +104,45 @@ const MainPage = () => {
           &nbsp; &nbsp;ABOUT &nbsp; &nbsp; COMMITATO
         </ParallaxText>
 
-        <div>
+        <AnimatedDiv ref={divRefs.current[0]}>
           <img src={comment1} alt="comment1" />
           <AnimatedText />
-        </div>
+        </AnimatedDiv>
 
-        <div>
+        <AnimatedDiv ref={divRefs.current[1]}>
           <CommentImg src={comment2} alt="comment2" />
-        </div>
+        </AnimatedDiv>
 
-        <div>
+        {/*bg: black*/}
+        <AnimatedDiv ref={divRefs.current[2]}>
           <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
-        </div>
+        </AnimatedDiv>
 
-        <div>
+        <AnimatedDiv ref={divRefs.current[3]}>
           <PotatoDiv2 src={talking_potato} alt="talking_potato" />
-        </div>
-        <PotatoDiv3 src={developer_potato} alt="developer_potato" />
-        <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+        </AnimatedDiv>
+
+        <AnimatedDiv ref={divRefs.current[4]}>
+          <PotatoDiv3 src={developer_potato} alt="developer_potato" />
+        </AnimatedDiv>
+
+        <AnimatedDiv ref={divRefs.current[5]}>
+          <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+        </AnimatedDiv>
+
+        {/*bg: black 에서 yellow로 그라데이션 */}
+
+        <AnimatedDiv ref={divRefs.current[6]}>
+          <Comment3Img src={comment3} alt="comment3" />
+        </AnimatedDiv>
+
+        {/*bg: yellow */}
+        <Comment4Img src={comment4} alt="comment4" />
 
         <TextDiv>
           <p>COMMITATO와 함께하는 1일 1커밋,</p>
           <p>지금 시작하세요.</p>
         </TextDiv>
-
-        <Comment3Img src={comment3} alt="comment3" />
-        <Comment4Img src={comment4} alt="comment4" />
       </StyledContainer>
     </>
   );
@@ -105,42 +167,53 @@ const MainDiv = styled.div`
 `;
 
 const CommentImg = styled.img`
-  position: relative;
+  /* position: relative;
   left: 840px;
-  top: 1000px;
+  top: 1500px; */
 `;
 
 const Comment3Img = styled.img`
-  position: relative;
+  /* position: relative;
   left: 100px;
-  top: 4000px;
+  top: 4000px; */
 `;
 const Comment4Img = styled.img`
-  position: relative;
+  /* position: relative;
   left: 840px;
-  top: 4500px;
+  top: 4500px; */
+`;
+
+const AnimatedDiv = styled.div`
+  opacity: 0;
+  transform: translateX(-100%);
+  will-change: transform, opacity;
+  &.animate {
+    animation: ${TranslateAnimation} 2s forwards;
+  }
+
+  margin: 50px 0;
 `;
 
 const PotatoDiv1 = styled.img`
-  position: absolute;
+  /* position: absolute;
   left: 200px;
-  top: 3500px;
+  top: 3500px; */
 `;
 
 const PotatoDiv2 = styled.img`
-  position: relative;
+  /* position: relative;
   top: 2200px;
-  left: 480px;
+  left: 480px; */
 `;
 const PotatoDiv3 = styled.img`
-  position: relative;
+  /* position: relative;
   top: 3200px;
-  right: 1250px;
+  right: 1250px; */
 `;
 const PotatoDiv4 = styled.img`
-  position: relative;
+  /* position: relative;
   top: 4000px;
-  right: 30px;
+  right: 30px; */
 `;
 
 const TextDiv = styled.div`

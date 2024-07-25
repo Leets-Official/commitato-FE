@@ -18,7 +18,7 @@ const textVariants = {
 
 const AnimatedText = () => {
   return (
-    <AnimatePresence>
+    <>
       <motion.div
         initial="offscreen"
         whileInView="onscreen"
@@ -43,7 +43,7 @@ const AnimatedText = () => {
       >
         <HowDiv3>HOW?</HowDiv3>
       </motion.div>
-    </AnimatePresence>
+    </>
   );
 };
 
