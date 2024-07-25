@@ -17,8 +17,8 @@ function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
 
   const explicitTheme = {
-    light: ['#000000', '#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55'],
-    dark: ['#000000', '#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55'],
+    light: ['#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55', '#FFBA07'],
+    dark: ['#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55', '#FFBA07'],
   };
 
   useEffect(() => {
@@ -30,11 +30,12 @@ function GitHubChart({ githubId }) {
       {isMounted && (
         <GitHubCalendar
           username={githubId}
-          showWeekdayLabels
-          blockSize={18}
+          blockSize={20}
+          blockMargin={10}
+          blockRadius={5}
           theme={explicitTheme}
           style={{
-            height: '15rem',
+            height: '17rem',
             width: '50rem',
             marginLeft: '3.5rem',
           }}
@@ -176,7 +177,7 @@ export const StyledBlack = styled.div`
 export const StyledWhite = styled.div`
   border-radius: 30px;
   width: 1316px;
-  height: 735px;
+  height: 752px;
   background: #ffffff;
   margin: auto auto;
 `;
