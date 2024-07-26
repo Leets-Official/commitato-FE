@@ -6,12 +6,17 @@ const useLogInSuccess = () => {
   const { setUserData, setError, setAllUserData } = useContext(UserContext);
 
   useEffect(() => {
-    const accessToken = import.meta.env.REACT_APP_ACCESS_TOKEN;
-    console.log('Environment variable - REACT_APP_ACCESS_TOKEN:', accessToken);
+    const accessToken = import.meta.env.VITE_REACT_APP_ACCESS_TOKEN;
+    console.log(
+      'Environment variable - VITE_REACT_APP_ACCESS_TOKEN:',
+      accessToken,
+    );
     if (!accessToken) {
       setError('Access token is missing');
       return;
     }
+
+    localStorage.setItem('accessToken', accessToken);
 
     const headers = {
       Authorization: `Bearer ${accessToken}`,

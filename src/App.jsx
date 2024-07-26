@@ -3,11 +3,17 @@ import router from './routes/Route';
 import GlobalStyles from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/ThemeStyle';
+import Login from './apis/auth/Login';
+import { UserProvider } from './apis/UserContext';
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <RouterProvider router={router} />
+      <UserProvider>
+        <Login />
+        <GlobalStyles />
+        <RouterProvider router={router} />
+      </UserProvider>
     </ThemeProvider>
   );
 }
