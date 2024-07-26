@@ -9,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
-    setIsLoggedIn(!token);
+    setIsLoggedIn(!!token);
   }, []);
 
   const home = async () => {
