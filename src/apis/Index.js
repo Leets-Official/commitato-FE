@@ -10,7 +10,7 @@ export const httpClientForCredentials = axios.create({
 export const setAuthToken = token => {
   if (token) {
     httpClientForCredentials.defaults.headers.common['Authorization'] =
-      `Bearer ${'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3b25lZWVlZSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MjE3MDE4NjN9.PcCmSLHgW7TCT8K2yvnruLe3kfNn9KGMNL4ruTL0hV8QlAXzJNSb9SszePuVgxB9ZkatnXa-oweg_-zSdr9CiA'}`;
+      `Bearer ${token}`;
   } else {
     delete httpClientForCredentials.defaults.headers.common['Authorization'];
   }

@@ -10,8 +10,11 @@ import ceo_potato from '../../assets/ceo_potato.png';
 import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
+import Question from '../../assets/Question.png';
 import XpBar from '../../components/XpBar';
+import IntroduceModal from './components/IntroduceModal';
 import { StyledButton } from '../../components/Button';
+import { sync } from 'framer-motion';
 
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -31,7 +34,7 @@ function GitHubChart({ githubId }) {
         <GitHubCalendar
           username={githubId}
           blockSize={20}
-          blockMargin={10}
+          blockMargin={15}
           blockRadius={5}
           theme={explicitTheme}
           style={{
@@ -74,12 +77,40 @@ const MyPage = ({
       img: ceo_potato,
     },
   ];
+  const [showModal, setShowModal] = useState(false);
 
   const selectedCharacterId = 0;
 
   const selectedCharacter = character.find(
     char => char.id === selectedCharacterId,
   );
+
+  const displayCreateAt = createdAt => {
+    const date = new Date(createdAt);
+    const now = Date.now();
+    const milliSeconds = now - date;
+
+    const seconds = milliSeconds / 1000;
+    const minutes = seconds / 60;
+    const hours = minutes / 60;
+    const days = hours / 24;
+    const months = days / 30;
+    const years = months / 12;
+
+    if (seconds < 60) {
+      return '방금 전';
+    } else if (minutes < 60) {
+      return `${Math.floor(minutes)}분 전`;
+    } else if (hours < 24) {
+      return `${Math.floor(hours)}시간 전`;
+    } else if (days < 30) {
+      return `${Math.floor(days)}일 전`;
+    } else if (months < 12) {
+      return `${Math.floor(months)}달 전`;
+    } else {
+      return `${Math.floor(years)}년 전`;
+    }
+  };
 
   return (
     <>
@@ -98,14 +129,21 @@ const MyPage = ({
               <div>
                 <StyledUpdate>
                   <StyledName>MyGitHubID{githubId}</StyledName>
-                  <StyledUpdateButton>UPDATE</StyledUpdateButton>
+                  <StyledUpdateDate>
+                    <StyledUpdateButton>UPDATE</StyledUpdateButton>
+                  </StyledUpdateDate>
                 </StyledUpdate>
                 <StyledThree>
                   <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
                   <StyledLevel>level {selectedCharacter.title} </StyledLevel>
                   <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
+                  <StyledDate>최근 업데이트 : {displayCreateAt}</StyledDate>
                 </StyledThree>
-                <XpBar />
+                <StyledXpBar>
+                  <XpBar />
+                  <IntroduceModal />
+                </StyledXpBar>
+
                 <StyledTwo>
                   <StyledNum>0점</StyledNum>
                   <StyledNum>50점</StyledNum>
@@ -144,11 +182,24 @@ const MyPage = ({
 
 export default MyPage;
 
+const StyledUpdateDate = styled.div``;
+
+const StyledDate = styled.div`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
+  font-size: 17px;
+  color: ${({ theme }) => theme.COLORS.gray[200]};
+  margin-left: 50%;
+`;
+
 const StyledUpdate = styled.div`
   display: flex;
   width: 981px;
   justify-content: space-between;
   margin-left: 2.5%;
+`;
+
+const StyledXpBar = styled.div`
+  display: flex;
 `;
 
 const StyledUpdateButton = styled.button`
@@ -264,11 +315,11 @@ const StyledThree = styled.div`
   display: flex;
   margin-left: 5%;
   margin-top: 1.5%;
-  width: 372px;
+  width: 930px;
   height: 22px;
   object-fit: cover;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
-  justify-content: space-between;
+  // justify-content: space-between;
 `;
 const StyledName = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[400]};
@@ -277,11 +328,17 @@ const StyledName = styled.div`
   // margin-top: 5%;
 `;
 
-const StyledRanking = styled.div``;
+const StyledRanking = styled.div`
+  margin-right: 2%;
+`;
 
-const StyledLevel = styled.div``;
+const StyledLevel = styled.div`
+  margin-right: 2%;
+`;
 
-const StyledCont = styled.div``;
+const StyledCont = styled.div`
+  margin-right: 2%;
+`;
 
 const StyledArr3 = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
@@ -310,6 +367,6 @@ const StyledTwo = styled.div`
 `;
 
 const StyledNum = styled.div`
-  width: 981px;
+  width: 900px;
   justifycontent: space-between;
 `;
