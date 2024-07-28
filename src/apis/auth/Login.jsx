@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../UserContext';
 
-const useLogInSuccess = () => {
+const Login = () => {
   const { setUserData, setError, setAllUserData } = useContext(UserContext);
 
   useEffect(() => {
@@ -11,22 +11,22 @@ const useLogInSuccess = () => {
       'Environment variable - VITE_REACT_APP_ACCESS_TOKEN:',
       accessToken,
     );
+
     if (!accessToken) {
       setError('Access token is missing');
       return;
     }
 
     localStorage.setItem('accessToken', accessToken);
+    console.log('accessToken : ', accessToken);
 
     const headers = {
       Authorization: `Bearer ${accessToken}`,
     };
+    console.log(headers);
 
     axios
-      .get(
-        'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080/login/github',
-        { headers },
-      )
+      .get('/api/login/github', { headers }) // '/api' 경로로 변경
       .then(response => {
         if (response.data.code === 200) {
           setUserData(response.data.data);
@@ -38,6 +38,8 @@ const useLogInSuccess = () => {
         setError('An error occurred while fetching the data');
       });
   }, [setUserData, setError, setAllUserData]);
+
+  return null;
 };
 
-export default useLogInSuccess;
+export default Login;
