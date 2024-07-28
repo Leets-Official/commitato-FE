@@ -6,7 +6,15 @@ const MainFooter = () => {
     <Wrapper>
       <LogoDiv>
         COMMITATO
-        <Img src={footer} />
+        <Img
+          src={footer}
+          onClick={() => {
+            window.open(
+              'https://github.com/Leets-Official/commitato-FE',
+              '_blank',
+            );
+          }}
+        />
       </LogoDiv>
 
       <ContentWrapper>
@@ -69,8 +77,5 @@ const LogoDiv = styled.div`
 const Img = styled.img`
   width: 35px;
   height: 35px;
-`;
-
-const StyledPre = styled.div`
-  // margin-bottom: 5%;
+  cursor: pointer;
 `;
