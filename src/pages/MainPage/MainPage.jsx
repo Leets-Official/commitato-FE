@@ -189,9 +189,8 @@ const MainPage = () => {
         <TextDiv>
           <p>COMMITATO와 함께하는 1일 1커밋,</p>
           <p>지금 시작하세요.</p>
-
-          <MainFooter />
         </TextDiv>
+        <MainFooter />
       </StyledContainer>
     </>
   );
@@ -202,7 +201,7 @@ export default MainPage;
 const StyledContainer = styled(motion.div)`
   background-color: ${({ theme }) => theme.COLORS.yellow[100]};
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 288px);
 `;
 
 const MainDiv = styled.div`
@@ -301,9 +300,10 @@ const TextDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 50px;
   position: relative;
   top: 6000px;
+  margin-bottom: 400px;
 `;
 
 const CenterDiv = styled.div`

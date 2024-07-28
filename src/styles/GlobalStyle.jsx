@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
         background-color: ${({ theme }) => theme.COLORS.yellow[100]};
         overflow-x: hidden;
         overflow-y: auto;
+        height: 100%;
     }
     @font-face {
         font-family:"Staatliches-Regular" ;

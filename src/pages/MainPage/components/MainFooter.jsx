@@ -39,12 +39,12 @@ export default MainFooter;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 130px;
+  height: 300px;
   background-color: ${({ theme }) => theme.COLORS.black};
   justify-content: center;
   text-align: center;
   position: relative;
-  top: 200px;
+  top: 5600px;
 `;
 
 const ContentWrapper = styled.div`
@@ -75,7 +75,8 @@ const LogoDiv = styled.div`
 `;
 
 const Img = styled.img`
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
+
   cursor: pointer;
 `;
