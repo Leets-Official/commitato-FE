@@ -1,10 +1,13 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 // import { ScrollAnimationContainer } from '../../components/ScrollAnimationContainer';
 import comment1 from '../../assets/comment1.png';
 import comment2 from '../../assets/comment2.png';
 import comment3 from '../../assets/comment3.png';
 import comment4 from '../../assets/comment4.png';
-
+import stupid_potato_comment from '../../assets/stupid_potato_comment.png';
+import talking_potato_comment from '../../assets/talking_potato_comment.png';
+import developer_potato_comment from '../../assets/developer_potato_comment.png';
+import ceo_potato_comment from '../../assets/ceo_potato_comment.png';
 import stupid_potato from '../../assets/stupid_potato.png';
 import talking_potato from '../../assets/talking_potato.png';
 import developer_potato from '../../assets/developer_potato.png';
@@ -14,8 +17,7 @@ import { ParallaxText } from './components/ParallaxText';
 import Button from '../../components/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { HowDiv1, HowDiv2, HowDiv3 } from '../MainPage/components/AnimatedText';
 import MainFooter from './components/MainFooter';
 
@@ -48,6 +50,16 @@ const textSlideUp = keyframes`
 
   `;
 
+const fadeIn = keyframes`
+            from {
+              opacity: 0;
+              transform: scale(0.9);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          `;
 const textVariants = {
   offscreen: {
     y: 500,
@@ -64,8 +76,13 @@ const textVariants = {
 };
 
 const MainPage = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
   const onClickToGithub = () => {
     window.open('https://github.com/login');
+  };
+
+  const onClickToBalloon = index => {
+    setActiveIndex(index === activeIndex ? null : index);
   };
 
   const divRefs = useRef([
@@ -174,19 +191,55 @@ const MainPage = () => {
           {/*bg: black*/}
           <BgDiv>
             <div>
-              <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
+              <PotatoDiv1
+                src={stupid_potato}
+                alt="stupid_potato"
+                onClick={() => onClickToBalloon(0)}
+              />
+              <BalloonImg
+                src={stupid_potato_comment}
+                alt="balloon"
+                active={activeIndex === 0}
+              />
             </div>
 
             <div>
-              <PotatoDiv2 src={talking_potato} alt="talking_potato" />
+              <PotatoDiv2
+                src={talking_potato}
+                alt="talking_potato"
+                onClick={() => onClickToBalloon(1)}
+              />
+              <BalloonImg
+                src={talking_potato_comment}
+                alt="balloon"
+                active={activeIndex === 1}
+              />
             </div>
 
             <div>
-              <PotatoDiv3 src={developer_potato} alt="developer_potato" />
+              <PotatoDiv3
+                src={developer_potato}
+                alt="developer_potato"
+                onClick={() => onClickToBalloon(2)}
+              />
+              <BalloonImg
+                src={developer_potato_comment}
+                alt="balloon"
+                active={activeIndex === 2}
+              />
             </div>
 
             <div>
-              <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+              <PotatoDiv4
+                src={ceo_potato}
+                alt="ceo_potato"
+                onClick={() => onClickToBalloon(3)}
+              />
+              <BalloonImg
+                src={ceo_potato_comment}
+                alt="balloon"
+                active={activeIndex === 3}
+              />
             </div>
           </BgDiv>
           {/*bg: black 에서 yellow로 그라데이션 */}
@@ -288,6 +341,7 @@ const BgDiv = styled.div`
   background-color: #000000;
   position: relative;
 `;
+
 const PotatoDiv1 = styled.img``;
 
 const PotatoDiv2 = styled.img`
@@ -304,6 +358,15 @@ const PotatoDiv4 = styled.img`
   /* position: relative;
   top: 4000px;
   right: 30px; */
+`;
+
+const BalloonImg = styled.img`
+  display: ${({ active }) => (active ? 'block' : 'none')};
+  animation: ${({ active }) =>
+    active &&
+    css`
+      ${fadeIn} 0.3s ease-in-out
+    `};
 `;
 
 const TextDiv = styled.div`
