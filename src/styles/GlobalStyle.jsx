@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
 
     ::-webkit-scrollbar {
         width: 15px;
-        height: 30px;
+        height: 12px;
     }
 
     ::-webkit-scrollbar-track {
