@@ -1,63 +1,147 @@
-import Modal from 'react-modal';
 import styled from 'styled-components';
+import stupid_potato from '../../../assets/stupid_potato.png';
+import talking_potato from '../../../assets/talking_potato.png';
+import developer_potato from '../../../assets/developer_potato.png';
+import ceo_potato from '../../../assets/ceo_potato.png';
+import Button from '../../../components/Button';
 import close from '../../../assets/close.png';
-import { useEffect, useRef, useState } from 'react';
+import yellowButton from '../../../assets/yellowButton.png';
+import { useState, useRef } from 'react';
 
 const CongratsModal = ({ githubId }) => {
+  const character = [
+    {
+      id: 0,
+      title: '바보 감자',
+      img: stupid_potato,
+    },
+    {
+      id: 1,
+      title: '말하는 감자',
+      img: talking_potato,
+    },
+    {
+      id: 2,
+      title: '개발자 감자',
+      img: developer_potato,
+    },
+    {
+      id: 3,
+      title: 'CEO 감자',
+      img: ceo_potato,
+    },
+  ];
+
+  const selectedCharacterId = 0;
+
+  const selectedCharacter = character.find(
+    char => char.id === selectedCharacterId,
+  );
+
   const [modalOpen, setModalOpen] = useState(false);
   const modalBackground = useRef();
 
   return (
-    <div>
-      <StyledButton onClick={() => setModalOpen(true)}>모달열기</StyledButton>
-      <StyledDiv>
-        {modalOpen && (
-          <StyledModal
-            ref={modalBackground}
-            onClick={e => {
-              if (e.target === modalBackground.current) {
-                setModalOpen(false);
-              }
-            }}
-          >
-            <StyledContent>
-              <StyledClose onClick={() => setModalOpen(false)} src={close} />
-              <StyledComment>
-                <br />
-                <br />
-                <br />
-                <br />
-                {githubId}githubId님, Commitato에 오신 걸 환영해요! <br />
-                <br />
-                앞으로 Commitato와 함께 1일 1커밋을 실천하며 꾸준히 성장해봐요!
-                <br />
-              </StyledComment>
-            </StyledContent>
-          </StyledModal>
-        )}
-      </StyledDiv>
-    </div>
+    <>
+      <div>
+        <StyledDiv>
+          {modalOpen && (
+            <StyledModal
+              ref={modalBackground}
+              onClick={e => {
+                if (e.target === modalBackground.current) {
+                  setModalOpen(false);
+                }
+              }}
+            >
+              <StyledContent>
+                <StyledClose onClick={() => setModalOpen(false)} src={close} />
+                <StyledComment>
+                  <br />
+                  축하드려요 {githubId}githubId님, 당신의 감자가 성장했어요!{' '}
+                  <br />
+                  <br />
+                </StyledComment>
+                <StyledChar>
+                  {selectedCharacter && (
+                    <div key={selectedCharacter.id}>
+                      <Styledimg src={selectedCharacter.img} />
+                      <StyledTitle>{selectedCharacter.title}</StyledTitle>
+                    </div>
+                  )}
+                  <StyledyellowButton src={yellowButton} />
+                  {selectedCharacter && (
+                    <div key={selectedCharacter.id}>
+                      <Styledimg src={selectedCharacter.img} />
+                      <StyledTitle>{selectedCharacter.title}</StyledTitle>
+                    </div>
+                  )}
+                </StyledChar>
+                <StyledOkay>
+                  <Button onClick={() => setModalOpen(false)} label="확인" />
+                </StyledOkay>
+              </StyledContent>
+            </StyledModal>
+          )}
+        </StyledDiv>
+      </div>
+    </>
   );
 };
 
 export default CongratsModal;
 
-const StyledDiv = styled.div``;
-
 const StyledButton = styled.button``;
+
+const StyledContent = styled.div``;
+
+const StyledTitle = styled.div`
+  margin-top: 4%;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  color: ${({ theme }) => theme.COLORS.gray[200]};
+`;
+
+const StyledOkay = styled.div`
+  margin-top: 8%;
+`;
+
+const StyledyellowButton = styled.img`
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 25%;
+  width: 29px;
+  height: 30px;
+`;
+
+const StyledChar = styled.div`
+  justify-content: center;
+  display: flex;
+`;
+
+const Styledimg = styled.img`
+  width: 174px;
+  height: 209px;
+  object-fit: cover;
+`;
 
 const StyledModal = styled.div`
   position: fixed;
-  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 704px;
-  height: 263px;
+  height: 461px;
+  display: flex;
   text-align: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.COLORS.white};
   border-radius: 30px 30px;
 `;
 
-const StyledContent = styled.div``;
+const StyledDiv = styled.div`
+  width: 100%;
+`;
 
 const StyledComment = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
@@ -65,7 +149,8 @@ const StyledComment = styled.div`
 `;
 
 const StyledClose = styled.img`
-  justify-content: flex-end;
+  margin-top: 7%;
+  margin-left: 125%;
   width: 34px;
   height: 34px;
 `;
