@@ -19,7 +19,17 @@ const MainFooter = () => {
 
       <ContentWrapper>
         <StyledDiv>
-          <div>대표 | 가천대학교 Leets 동아리 내 commitato 팀</div>
+          <div>
+            대표 | 가천대학교
+            <LinkDiv
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.leets.land/"
+            >
+              Leets
+            </LinkDiv>
+            동아리 내 commitato 팀
+          </div>
           <div>사이트명 | Commitato </div>
         </StyledDiv>
         <div>
@@ -79,4 +89,15 @@ const Img = styled.img`
   height: 40px;
 
   cursor: pointer;
+`;
+
+const LinkDiv = styled.a`
+  text-decoration: none;
+  color: ${({ theme }) => theme.COLORS.gray[200]};
+
+  &:hover {
+    color: ${({ theme }) => theme.COLORS.gray[100]};
+    text-decoration: underline;
+  }
+  padding: 5px;
 `;
