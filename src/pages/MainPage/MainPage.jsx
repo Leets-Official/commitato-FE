@@ -35,7 +35,7 @@ const TranslateAnimation = keyframes`
     }
   `;
 
-const textSlideUp = keyframes`
+const SlideUp = keyframes`
     0%{
       opacity: 0;
       transform: translateY(100%);
@@ -62,20 +62,6 @@ const fadeIn = keyframes`
               transform: scale(1);
             }
           `;
-// const textVariants = {
-//   offscreen: {
-//     y: 500,
-//   },
-//   onscreen: {
-//     y: 200,
-//     rotate: 0,
-//     transition: {
-//       type: 'spring',
-//       bounce: 0.5,
-//       duration: 0.9,
-//     },
-//   },
-// };
 
 const MainPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -256,17 +242,19 @@ const MainPage = () => {
               <Comment3Img src={comment3} alt="comment3" />
             </AnimatedDiv>
             <AnimatedImg>
-              <img src={commitgrass} alt="commitgrass" />
+              <CommitGrassImg src={commitgrass} alt="commitgrass" />
             </AnimatedImg>
           </Comment3ImgWrapper>
 
           {/*bg: yellow */}
-          <AnimatedDiv ref={divRefs.current[3]}>
-            <Comment4Img src={comment4} alt="comment4" />
-          </AnimatedDiv>
-          <AnimatedImg>
-            <img src={ranking_img} alt="ranking_img" />
-          </AnimatedImg>
+          <Comment4ImgWrapper>
+            <AnimatedDiv ref={divRefs.current[3]}>
+              <Comment4Img src={comment4} alt="comment4" />
+            </AnimatedDiv>
+            <AnimatedImg>
+              <RankingImg src={ranking_img} alt="ranking_img" />
+            </AnimatedImg>
+          </Comment4ImgWrapper>
         </FlexContainer>
 
         <TextDiv>
@@ -317,7 +305,9 @@ const Comment2ImgWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: flex-end;
+  margin-top: 300px;
+  padding-right: 100px;
 `;
 const Comment3ImgWrapper = styled.div`
   background-image: linear-gradient(
@@ -327,17 +317,23 @@ const Comment3ImgWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+`;
+
+const Comment4ImgWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: flex-end;
 `;
 const Comment3Img = styled.img`
   position: relative;
-  left: 100px;
+  margin-left: 100px;
   top: 1300px;
 `;
 const Comment4Img = styled.img`
   position: relative;
-  left: 840px;
-  top: 2000px;
+  padding-right: 100px;
+  top: 1700px;
 `;
 
 const AnimatedDiv = styled.div`
@@ -376,8 +372,7 @@ const PotatoDiv4 = styled.img`
 
 const FlexBox = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  align-items: center;
   gap: 20px;
   margin-left: 100px;
   margin-right: 100px;
@@ -425,12 +420,15 @@ const TextDiv = styled.div`
 `;
 
 const SlideUpText = styled.div`
-  animation: ${textSlideUp} 2s infinite;
+  animation: ${SlideUp} 2s infinite;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 50px;
+`;
+const AnimatedImg = styled.div`
+  animation: ${SlideUp} 2s 1s infinite;
 `;
 const CenterDiv = styled.div`
   display: flex;
@@ -440,10 +438,16 @@ const CenterDiv = styled.div`
   gap: 100px;
 `;
 
-const AnimatedImg = styled.div`
-  animation: ${textSlideUp} 2s infinite;
-  width: 500px;
+const CommitGrassImg = styled.img`
+  width: 1316px;
   height: 343px;
+  margin-left: 160px;
   position: relative;
   top: 1500px;
+`;
+
+const RankingImg = styled.img`
+  position: relative;
+  top: 1800px;
+  padding-right: 160px;
 `;

@@ -69,4 +69,5 @@ export const HowDiv2 = styled(HowDiv1)`
 export const HowDiv3 = styled(HowDiv1)`
   color: ${({ theme }) => theme.COLORS.yellow[200]};
   margin-left: 1200px;
+  margin-bottom: 300px;
 `;
