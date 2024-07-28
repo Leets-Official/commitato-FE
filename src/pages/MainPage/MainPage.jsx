@@ -20,6 +20,8 @@ import Header from '../../components/Header';
 import React, { useEffect, useRef, useState } from 'react';
 import { HowDiv1, HowDiv2, HowDiv3 } from '../MainPage/components/AnimatedText';
 import MainFooter from './components/MainFooter';
+import ranking_img from '../../assets/ranking_img.png';
+import commitgrass from '../../assets/commitgrass.png';
 
 const TranslateAnimation = keyframes`
     0%{
@@ -276,12 +278,18 @@ const MainPage = () => {
             <AnimatedDiv ref={divRefs.current[2]}>
               <Comment3Img src={comment3} alt="comment3" />
             </AnimatedDiv>
+            <AnimatedImg>
+              <img src={commitgrass} alt="commitgrass" />
+            </AnimatedImg>
           </Comment3ImgWrapper>
 
           {/*bg: yellow */}
           <AnimatedDiv ref={divRefs.current[3]}>
             <Comment4Img src={comment4} alt="comment4" />
           </AnimatedDiv>
+          <AnimatedImg>
+            <img src={ranking_img} alt="ranking_img" />
+          </AnimatedImg>
         </FlexContainer>
 
         <TextDiv>
@@ -335,6 +343,9 @@ const Comment2ImgWrapper = styled.div`
     ${({ theme }) => theme.COLORS.black}
   );
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 const Comment3ImgWrapper = styled.div`
   background-image: linear-gradient(
@@ -342,6 +353,9 @@ const Comment3ImgWrapper = styled.div`
     ${({ theme }) => theme.COLORS.yellow[100]}
   );
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 const Comment3Img = styled.img`
   position: relative;
@@ -452,4 +466,12 @@ const CenterDiv = styled.div`
   justify-content: center;
   align-items: center;
   gap: 100px;
+`;
+
+const AnimatedImg = styled.div`
+  animation: ${textSlideUp} 2s infinite;
+  width: 500px;
+  height: 343px;
+  position: relative;
+  top: 1500px;
 `;
