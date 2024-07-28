@@ -13,7 +13,7 @@ import talking_potato from '../../assets/talking_potato.png';
 import developer_potato from '../../assets/developer_potato.png';
 import ceo_potato from '../../assets/ceo_potato.png';
 import { ParallaxText } from './components/ParallaxText';
-// import AnimatedText from './components/AnimatedText';
+import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from '../../components/Header';
@@ -62,20 +62,20 @@ const fadeIn = keyframes`
               transform: scale(1);
             }
           `;
-const textVariants = {
-  offscreen: {
-    y: 500,
-  },
-  onscreen: {
-    y: 200,
-    rotate: 0,
-    transition: {
-      type: 'spring',
-      bounce: 0.5,
-      duration: 0.9,
-    },
-  },
-};
+// const textVariants = {
+//   offscreen: {
+//     y: 500,
+//   },
+//   onscreen: {
+//     y: 200,
+//     rotate: 0,
+//     transition: {
+//       type: 'spring',
+//       bounce: 0.5,
+//       duration: 0.9,
+//     },
+//   },
+// };
 
 const MainPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -159,30 +159,7 @@ const MainPage = () => {
           <AnimatedDiv ref={divRefs.current[0]}>
             <Comment1Img src={comment1} alt="comment1" />
           </AnimatedDiv>
-          <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={textVariants}
-            exit={{ opacity: 0 }}
-          >
-            <HowDiv1>HOW?</HowDiv1>
-          </motion.div>
-          <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={textVariants}
-            exit={{ opacity: 0 }}
-          >
-            <HowDiv2>HOW?</HowDiv2>
-          </motion.div>
-          <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            variants={textVariants}
-            exit={{ opacity: 0 }}
-          >
-            <HowDiv3>HOW?</HowDiv3>
-          </motion.div>
+          <AnimatedText />
 
           <Comment2ImgWrapper>
             <AnimatedDiv ref={divRefs.current[1]}>
@@ -293,10 +270,10 @@ const MainPage = () => {
         </FlexContainer>
 
         <TextDiv>
-          <AnimatedText>
+          <SlideUpText>
             <p>COMMITATO와 함께하는 1일 1커밋,</p>
             <p>지금 시작하세요.</p>
-          </AnimatedText>
+          </SlideUpText>
         </TextDiv>
         <MainFooter />
       </StyledContainer>
@@ -330,12 +307,7 @@ const FlexContainer = styled.div`
 const Comment1Img = styled.img`
   padding-left: 50px;
 `;
-const Comment2Img = styled.img`
-  position: relative;
-  left: 830px;
-  top: 1000px;
-  /* padding-bottom: 100px; */
-`;
+const Comment2Img = styled.img``;
 
 const Comment2ImgWrapper = styled.div`
   background-image: linear-gradient(
@@ -452,7 +424,7 @@ const TextDiv = styled.div`
   margin-bottom: 400px;
 `;
 
-const AnimatedText = styled.div`
+const SlideUpText = styled.div`
   animation: ${textSlideUp} 2s infinite;
   display: flex;
   flex-direction: column;

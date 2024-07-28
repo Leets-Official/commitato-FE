@@ -9,7 +9,7 @@ const textVariants = {
     rotate: 0,
     transition: {
       type: 'spring',
-      bounce: 0.5,
+      bounce: 0.4,
       duration: 0.9,
     },
   },
@@ -17,7 +17,7 @@ const textVariants = {
 
 const AnimatedText = () => {
   return (
-    <>
+    <Container>
       <motion.div
         initial="offscreen"
         whileInView="onscreen"
@@ -42,28 +42,31 @@ const AnimatedText = () => {
       >
         <HowDiv3>HOW?</HowDiv3>
       </motion.div>
-    </>
+    </Container>
   );
 };
 
 export default AnimatedText;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 500px;
+  margin-left: 300px;
+`;
+
 export const HowDiv1 = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   font-size: 148px;
   color: ${({ theme }) => theme.COLORS.black};
-  position: relative;
-  top: 50px;
-  left: 500px;
 `;
 
 export const HowDiv2 = styled(HowDiv1)`
   color: ${({ theme }) => theme.COLORS.brown[200]};
-  top: 350px;
-  left: 900px;
+  margin-left: 600px;
 `;
 export const HowDiv3 = styled(HowDiv1)`
   color: ${({ theme }) => theme.COLORS.yellow[200]};
-  top: 550px;
-  left: 1400px;
+  margin-left: 1200px;
 `;
