@@ -190,57 +190,85 @@ const MainPage = () => {
 
           {/*bg: black*/}
           <BgDiv>
-            <div>
-              <PotatoDiv1
-                src={stupid_potato}
-                alt="stupid_potato"
-                onClick={() => onClickToBalloon(0)}
-              />
-              <BalloonImg
-                src={stupid_potato_comment}
-                alt="balloon"
-                active={activeIndex === 0}
-              />
-            </div>
+            <PotatoWrapper>
+              <FlexBox>
+                <PotatoDiv1
+                  src={stupid_potato}
+                  alt="stupid_potato"
+                  onClick={() => onClickToBalloon(0)}
+                />
+                <BalloonImg
+                  src={stupid_potato_comment}
+                  alt="balloon"
+                  active={activeIndex === 0}
+                />
+              </FlexBox>
+              <StyledText>
+                바보 감자는 초보 단계의 감자에요. 아직은 많은 것을 배우고 익혀야
+                하는 단계입니다. (포인트 범위: 0-99 포인트)
+              </StyledText>
+            </PotatoWrapper>
 
-            <div>
-              <PotatoDiv2
-                src={talking_potato}
-                alt="talking_potato"
-                onClick={() => onClickToBalloon(1)}
-              />
-              <BalloonImg
-                src={talking_potato_comment}
-                alt="balloon"
-                active={activeIndex === 1}
-              />
-            </div>
+            <PotatoWrapper>
+              <FlexBox>
+                <BalloonImg
+                  src={talking_potato_comment}
+                  alt="balloon"
+                  active={activeIndex === 1}
+                />
+                <PotatoDiv2
+                  src={talking_potato}
+                  alt="talking_potato"
+                  onClick={() => onClickToBalloon(1)}
+                />
+              </FlexBox>
+              <StyledText>
+                말하는 감자는 어느 정도 경험을 쌓은 감자에요. 이제 기본적인
+                대화를 할 수 있으며, 프로젝트에 대한 이해도가 조금 더
+                높아졌습니다. (포인트 범위: 100-499 포인트)
+              </StyledText>
+            </PotatoWrapper>
 
-            <div>
-              <PotatoDiv3
-                src={developer_potato}
-                alt="developer_potato"
-                onClick={() => onClickToBalloon(2)}
-              />
-              <BalloonImg
-                src={developer_potato_comment}
-                alt="balloon"
-                active={activeIndex === 2}
-              />
-            </div>
+            <PotatoWrapper>
+              <FlexBox>
+                <PotatoDiv3
+                  src={developer_potato}
+                  alt="developer_potato"
+                  onClick={() => onClickToBalloon(2)}
+                />
+                <BalloonImg
+                  src={developer_potato_comment}
+                  alt="balloon"
+                  active={activeIndex === 2}
+                />
+              </FlexBox>
+              <StyledText>
+                개발자 감자는 충분한 경험을 통해 개발에 익숙해진 감자입니다.
+                다양한 기술과 도구를 능숙하게 다룰 수 있습니다. (포인트 범위:
+                500-999 포인트)
+              </StyledText>
+            </PotatoWrapper>
 
-            <div>
-              <PotatoDiv4
-                src={ceo_potato}
-                alt="ceo_potato"
-                onClick={() => onClickToBalloon(3)}
-              />
-              <BalloonImg
-                src={ceo_potato_comment}
-                alt="balloon"
-                active={activeIndex === 3}
-              />
-            </div>
+            <PotatoWrapper>
+              <FlexBox>
+                <BalloonImg
+                  src={ceo_potato_comment}
+                  alt="balloon"
+                  active={activeIndex === 3}
+                />
+                <PotatoDiv4
+                  src={ceo_potato}
+                  alt="ceo_potato"
+                  onClick={() => onClickToBalloon(3)}
+                />
+              </FlexBox>
+              <StyledText>
+                CEO 감자는 커밋테이토의 최정상 단계의 감자입니다. 이제
+                프로젝트를 이끌고, 팀을 관리하는 능력을 갖추었습니다. 다른
+                감자들에게 영감을 주는 리더입니다. (포인트 범위: 1000 포인트
+                이상)
+              </StyledText>
+            </PotatoWrapper>
           </BgDiv>
           {/*bg: black 에서 yellow로 그라데이션 */}
 
@@ -360,6 +388,21 @@ const PotatoDiv4 = styled.img`
   right: 30px; */
 `;
 
+const FlexBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  cursor: pointer;
+`;
+
+const StyledText = styled.p`
+  color: ${({ theme }) => theme.COLORS.gray[200]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
+`;
 const BalloonImg = styled.img`
   display: ${({ active }) => (active ? 'block' : 'none')};
   animation: ${({ active }) =>
@@ -369,6 +412,14 @@ const BalloonImg = styled.img`
     `};
 `;
 
+const PotatoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+`;
 const TextDiv = styled.div`
   background-image: linear-gradient(
     ${({ theme }) => theme.COLORS.yellow[100]},
