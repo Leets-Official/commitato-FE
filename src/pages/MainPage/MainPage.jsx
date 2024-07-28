@@ -31,6 +31,23 @@ const TranslateAnimation = keyframes`
     }
   `;
 
+const textSlideUp = keyframes`
+    0%{
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+
+  `;
+
 const textVariants = {
   offscreen: {
     y: 500,
@@ -187,8 +204,10 @@ const MainPage = () => {
         </FlexContainer>
 
         <TextDiv>
-          <p>COMMITATO와 함께하는 1일 1커밋,</p>
-          <p>지금 시작하세요.</p>
+          <AnimatedText>
+            <p>COMMITATO와 함께하는 1일 1커밋,</p>
+            <p>지금 시작하세요.</p>
+          </AnimatedText>
         </TextDiv>
         <MainFooter />
       </StyledContainer>
@@ -300,12 +319,19 @@ const TextDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
   position: relative;
   top: 6000px;
   margin-bottom: 400px;
 `;
 
+const AnimatedText = styled.div`
+  animation: ${textSlideUp} 2s infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+`;
 const CenterDiv = styled.div`
   display: flex;
   flex-direction: column;
