@@ -1,5 +1,5 @@
 import GitHubCalendar from 'react-github-calendar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { styled } from 'styled-components';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -10,13 +10,15 @@ import ceo_potato from '../../assets/ceo_potato.png';
 import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
-import Question from '../../assets/Question.png';
 import XpBar from '../../components/XpBar';
 import IntroduceModal from './components/IntroduceModal';
+import { UserContext } from '../../apis/UserContext';
 import { StyledButton } from '../../components/Button';
-import { sync } from 'framer-motion';
+import User from './User';
 
 function GitHubChart({ githubId }) {
+  const { userData, error } = useContext(UserContext);
+
   const [isMounted, setIsMounted] = useState(false);
 
   const explicitTheme = {
@@ -49,12 +51,21 @@ function GitHubChart({ githubId }) {
 }
 
 const MyPage = ({
-  githubId,
   MyGitHubRanking,
   MyGitHubCont,
   todayCommit,
   totalCommit,
 }) => {
+  const { userData, error } = useContext(UserContext);
+  console.log(userData); // userData가 어떻게 생겼는지 확인하는 로그
+
+  if (error) {
+    return <div>에러 발생: {error}</div>;
+  }
+  if (!userData) {
+    return <div>로딩중...</div>;
+  }
+
   const character = [
     {
       id: 0,
@@ -77,7 +88,6 @@ const MyPage = ({
       img: ceo_potato,
     },
   ];
-  const [showModal, setShowModal] = useState(false);
 
   const selectedCharacterId = 0;
 
@@ -128,7 +138,7 @@ const MyPage = ({
               )}
               <div>
                 <StyledUpdate>
-                  <StyledName>MyGitHubID{githubId}</StyledName>
+                  <StyledName>{userData.userId}</StyledName>
                   <StyledUpdateDate>
                     <StyledUpdateButton>UPDATE</StyledUpdateButton>
                   </StyledUpdateDate>
@@ -153,7 +163,7 @@ const MyPage = ({
             <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
             <StyledImg2 src={line} />
             <StyledDiv>
-              <GitHubChart githubId={githubId} />
+              <GitHubChart githubId={userData.userId} />
               <StyledCommit>
                 <StyledConnect>
                   <StyledArr>TODAY COMMIT</StyledArr>
@@ -168,7 +178,7 @@ const MyPage = ({
                 <StyledGit>
                   <StyledImg4 src={githubChar} />
                   <StyledArr2>GITHUB</StyledArr2>
-                  <StyledArr4>{githubId}MyGitHubID</StyledArr4>
+                  <StyledArr4>{userData.userId}</StyledArr4>
                 </StyledGit>
               </StyledCommit>
             </StyledDiv>
