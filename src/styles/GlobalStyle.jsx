@@ -8,7 +8,9 @@ const GlobalStyles = createGlobalStyle`
         background-color: ${({ theme }) => theme.COLORS.yellow[100]};
         overflow-x: hidden;
         overflow-y: auto;
-        height: 100%;
+        height: 100vh;
+        width: 100%;
+
     }
 
     ::-webkit-scrollbar {

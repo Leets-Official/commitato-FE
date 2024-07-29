@@ -7,6 +7,10 @@ import { potatoes } from '../../utils/constants';
 import { ParallaxText } from './components/ParallaxText';
 import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
+<<<<<<< HEAD
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+=======
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from '../../components/Header';
 import React, { useEffect, useRef, useState } from 'react';
@@ -54,6 +58,7 @@ const fadeIn = keyframes`
               transform: scale(1);
             }
           `;
+>>>>>>> f92c3a333f9951f2d753eb2cda5ce545ce479d76
 
 const MainPage = () => {
   const [activeIndexes, setActiveIndexes] = useState([]);
@@ -104,11 +109,18 @@ const MainPage = () => {
 
   return (
     <>
+<<<<<<< HEAD
+      <StyledContainer>
+        <CenterDiv>
+          <MainDiv>COMMITATO</MainDiv>
+          <Button onClick={onCLickToGithub} label="Login with Github" />
+=======
       <Header />
       <StyledContainer>
         <CenterDiv>
           <MainDiv>COMMITATO</MainDiv>
           <Button onClick={onClickToGithub} label="Login with Github" />
+>>>>>>> f92c3a333f9951f2d753eb2cda5ce545ce479d76
         </CenterDiv>
 
         <ParallaxText baseVelocity={-7}>
@@ -137,6 +149,27 @@ const MainPage = () => {
           &nbsp; &nbsp;ABOUT &nbsp; &nbsp; COMMITATO
         </ParallaxText>
 
+<<<<<<< HEAD
+        <div>
+          <img src={comment1} alt="comment1" />
+          <AnimatedText />
+        </div>
+
+        <CommentImg src={comment2} alt="comment2" />
+
+        <PotatoDiv1 src={stupid_potato} alt="stupid_potato" />
+        <PotatoDiv2 src={talking_potato} alt="talking_potato" />
+        <PotatoDiv3 src={developer_potato} alt="developer_potato" />
+        <PotatoDiv4 src={ceo_potato} alt="ceo_potato" />
+
+        <TextDiv>
+          <p>COMMITATO와 함께하는 1일 1커밋,</p>
+          <p>지금 시작하세요.</p>
+        </TextDiv>
+
+        <Comment3Img src={comment3} alt="comment3" />
+        <Comment4Img src={comment4} alt="comment4" />
+=======
         <FlexContainer>
           <AnimatedDiv ref={divRefs.current[0]}>
             <Comment1Img src={comment1} alt="comment1" />
@@ -215,6 +248,7 @@ const MainPage = () => {
           </SlideUpText>
         </TextDiv>
         <MainFooter />
+>>>>>>> f92c3a333f9951f2d753eb2cda5ce545ce479d76
       </StyledContainer>
     </>
   );
