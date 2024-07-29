@@ -57,13 +57,17 @@ const fadeIn = keyframes`
           `;
 
 const MainPage = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndexes, setActiveIndexes] = useState([]);
   const onClickToGithub = () => {
     window.open('https://github.com/login');
   };
 
   const onClickToBalloon = index => {
-    setActiveIndex(index === activeIndex ? null : index);
+    setActiveIndexes(prevIndexes =>
+      prevIndexes.includes(index)
+        ? prevIndexes.filter(i => i !== index)
+        : [...prevIndexes, index],
+    );
   };
 
   const divRefs = useRef([
@@ -158,92 +162,13 @@ const MainPage = () => {
                   />
                   <BalloonImg
                     src={potato.comment}
-                    alt="balloon"
-                    active={activeIndex}
+                    alt={`balloon_${potato.id}`}
+                    active={activeIndexes.includes(index)}
                   />
                 </FlexBox>
                 <StyledText>{potato.text}</StyledText>
               </PotatoWrapper>
             ))}
-            {/* <PotatoWrapper>
-              <FlexBox>
-                <PotatoDiv1
-                  src={stupid_potato}
-                  alt="stupid_potato"
-                  onClick={() => onClickToBalloon(0)}
-                />
-                <BalloonImg
-                  src={stupid_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 0}
-                />
-              </FlexBox>
-              <StyledText>
-                바보 감자는 초보 단계의 감자에요. 아직은 많은 것을 배우고 익혀야
-                하는 단계입니다. (포인트 범위: 0-99 포인트)
-              </StyledText>
-            </PotatoWrapper>
-
-            <PotatoWrapper>
-              <FlexBox>
-                <BalloonImg
-                  src={talking_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 1}
-                />
-                <PotatoDiv2
-                  src={talking_potato}
-                  alt="talking_potato"
-                  onClick={() => onClickToBalloon(1)}
-                />
-              </FlexBox>
-              <StyledText>
-                말하는 감자는 어느 정도 경험을 쌓은 감자에요. 이제 기본적인
-                대화를 할 수 있으며, 프로젝트에 대한 이해도가 조금 더
-                높아졌습니다. (포인트 범위: 100-499 포인트)
-              </StyledText>
-            </PotatoWrapper>
-
-            <PotatoWrapper>
-              <FlexBox>
-                <PotatoDiv3
-                  src={developer_potato}
-                  alt="developer_potato"
-                  onClick={() => onClickToBalloon(2)}
-                />
-                <BalloonImg
-                  src={developer_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 2}
-                />
-              </FlexBox>
-              <StyledText>
-                개발자 감자는 충분한 경험을 통해 개발에 익숙해진 감자입니다.
-                다양한 기술과 도구를 능숙하게 다룰 수 있습니다. (포인트 범위:
-                500-999 포인트)
-              </StyledText>
-            </PotatoWrapper>
-
-            <PotatoWrapper>
-              <FlexBox>
-                <BalloonImg
-                  src={ceo_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 3}
-                />
-                <PotatoDiv4
-                  src={ceo_potato}
-                  alt="ceo_potato"
-                  onClick={() => onClickToBalloon(3)}
-                />
-              </FlexBox>
-              <StyledText>
-                CEO 감자는 커밋테이토의 최정상 단계의 감자입니다. 이제
-                프로젝트를 이끌고, 팀을 관리하는 능력을 갖추었습니다. 다른
-                감자들에게 영감을 주는 리더입니다. (포인트 범위: 1000 포인트
-                이상)
-              </StyledText>
-            </PotatoWrapper> */}
           </BgDiv>
           {/*bg: black 에서 yellow로 그라데이션 */}
 
@@ -347,9 +272,6 @@ const Comment4Img = styled.img`
 `;
 
 const AnimatedDiv = styled.div`
-  /* opacity: 0;
-  transform: translateX(-100%);
-  will-change: transform, opacity; */
   &.animate {
     animation: ${TranslateAnimation} 2s forwards;
   }
@@ -358,26 +280,8 @@ const AnimatedDiv = styled.div`
 `;
 
 const BgDiv = styled.div`
-  background-color: #000000;
+  background-color: ${({ theme }) => theme.COLORS.black};
   position: relative;
-`;
-
-const PotatoDiv1 = styled.img``;
-
-const PotatoDiv2 = styled.img`
-  /* position: relative;
-  top: 2200px;
-  left: 480px; */
-`;
-const PotatoDiv3 = styled.img`
-  /* position: relative;
-  top: 3200px;
-  right: 1250px; */
-`;
-const PotatoDiv4 = styled.img`
-  /* position: relative;
-  top: 4000px;
-  right: 30px; */
 `;
 
 const FlexBox = styled.div`
