@@ -1,17 +1,9 @@
 import styled, { css, keyframes } from 'styled-components';
-// import { ScrollAnimationContainer } from '../../components/ScrollAnimationContainer';
 import comment1 from '../../assets/comment1.png';
 import comment2 from '../../assets/comment2.png';
 import comment3 from '../../assets/comment3.png';
 import comment4 from '../../assets/comment4.png';
-import stupid_potato_comment from '../../assets/stupid_potato_comment.png';
-import talking_potato_comment from '../../assets/talking_potato_comment.png';
-import developer_potato_comment from '../../assets/developer_potato_comment.png';
-import ceo_potato_comment from '../../assets/ceo_potato_comment.png';
-import stupid_potato from '../../assets/stupid_potato.png';
-import talking_potato from '../../assets/talking_potato.png';
-import developer_potato from '../../assets/developer_potato.png';
-import ceo_potato from '../../assets/ceo_potato.png';
+import { potatoes } from '../../utils/constants';
 import { ParallaxText } from './components/ParallaxText';
 import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
@@ -64,13 +56,17 @@ const fadeIn = keyframes`
           `;
 
 const MainPage = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndexes, setActiveIndexes] = useState([]);
   const onClickToGithub = () => {
     window.open('https://github.com/login');
   };
 
   const onClickToBalloon = index => {
-    setActiveIndex(index === activeIndex ? null : index);
+    setActiveIndexes(prevIndexes =>
+      prevIndexes.includes(index)
+        ? prevIndexes.filter(i => i !== index)
+        : [...prevIndexes, index],
+    );
   };
 
   const divRefs = useRef([
@@ -155,85 +151,23 @@ const MainPage = () => {
 
           {/*bg: black*/}
           <BgDiv>
-            <PotatoWrapper>
-              <FlexBox>
-                <PotatoDiv1
-                  src={stupid_potato}
-                  alt="stupid_potato"
-                  onClick={() => onClickToBalloon(0)}
-                />
-                <BalloonImg
-                  src={stupid_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 0}
-                />
-              </FlexBox>
-              <StyledText>
-                바보 감자는 초보 단계의 감자에요. 아직은 많은 것을 배우고 익혀야
-                하는 단계입니다. (포인트 범위: 0-99 포인트)
-              </StyledText>
-            </PotatoWrapper>
-
-            <PotatoWrapper>
-              <FlexBox>
-                <BalloonImg
-                  src={talking_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 1}
-                />
-                <PotatoDiv2
-                  src={talking_potato}
-                  alt="talking_potato"
-                  onClick={() => onClickToBalloon(1)}
-                />
-              </FlexBox>
-              <StyledText>
-                말하는 감자는 어느 정도 경험을 쌓은 감자에요. 이제 기본적인
-                대화를 할 수 있으며, 프로젝트에 대한 이해도가 조금 더
-                높아졌습니다. (포인트 범위: 100-499 포인트)
-              </StyledText>
-            </PotatoWrapper>
-
-            <PotatoWrapper>
-              <FlexBox>
-                <PotatoDiv3
-                  src={developer_potato}
-                  alt="developer_potato"
-                  onClick={() => onClickToBalloon(2)}
-                />
-                <BalloonImg
-                  src={developer_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 2}
-                />
-              </FlexBox>
-              <StyledText>
-                개발자 감자는 충분한 경험을 통해 개발에 익숙해진 감자입니다.
-                다양한 기술과 도구를 능숙하게 다룰 수 있습니다. (포인트 범위:
-                500-999 포인트)
-              </StyledText>
-            </PotatoWrapper>
-
-            <PotatoWrapper>
-              <FlexBox>
-                <BalloonImg
-                  src={ceo_potato_comment}
-                  alt="balloon"
-                  active={activeIndex === 3}
-                />
-                <PotatoDiv4
-                  src={ceo_potato}
-                  alt="ceo_potato"
-                  onClick={() => onClickToBalloon(3)}
-                />
-              </FlexBox>
-              <StyledText>
-                CEO 감자는 커밋테이토의 최정상 단계의 감자입니다. 이제
-                프로젝트를 이끌고, 팀을 관리하는 능력을 갖추었습니다. 다른
-                감자들에게 영감을 주는 리더입니다. (포인트 범위: 1000 포인트
-                이상)
-              </StyledText>
-            </PotatoWrapper>
+            {potatoes.map((potato, index) => (
+              <PotatoWrapper key={potato.id}>
+                <FlexBox>
+                  <img
+                    src={potato.img}
+                    alt={potato.img}
+                    onClick={() => onClickToBalloon(index)}
+                  />
+                  <BalloonImg
+                    src={potato.comment}
+                    alt={`balloon_${potato.id}`}
+                    active={activeIndexes.includes(index)}
+                  />
+                </FlexBox>
+                <StyledText>{potato.text}</StyledText>
+              </PotatoWrapper>
+            ))}
           </BgDiv>
           {/*bg: black 에서 yellow로 그라데이션 */}
 
@@ -241,8 +175,14 @@ const MainPage = () => {
             <AnimatedDiv ref={divRefs.current[2]}>
               <Comment3Img src={comment3} alt="comment3" />
             </AnimatedDiv>
+
             <AnimatedImg>
               <CommitGrassImg src={commitgrass} alt="commitgrass" />
+              <StyledComment>
+                마이 페이지에서 나의 커밋 현황을 확인할 수 있는 달력 기능을
+                해요. 꾸준한 커밋으로 당신의 커밋 농장을 황금색 감자로 가득
+                채워보세요!
+              </StyledComment>
             </AnimatedImg>
           </Comment3ImgWrapper>
 
@@ -253,6 +193,17 @@ const MainPage = () => {
             </AnimatedDiv>
             <AnimatedImg>
               <RankingImg src={ranking_img} alt="ranking_img" />
+              <StyledComment2>
+                <div>
+                  랭킹에서 다른 유저와 자신의 순위, 티어, 연속 커밋 횟수, 획득
+                  경험치 등을 확인할 수 있어요.
+                </div>
+                <div>
+                  만약 특정 유저의 정보가 궁금하다면, 깃허브 아이디를 검색하여
+                  확인할 수 있어요.
+                </div>
+                <div>친구와 함께 순위를 겨루며 커밋테이토를 즐기세요!</div>
+              </StyledComment2>
             </AnimatedImg>
           </Comment4ImgWrapper>
         </FlexContainer>
@@ -337,9 +288,6 @@ const Comment4Img = styled.img`
 `;
 
 const AnimatedDiv = styled.div`
-  /* opacity: 0;
-  transform: translateX(-100%);
-  will-change: transform, opacity; */
   &.animate {
     animation: ${TranslateAnimation} 2s forwards;
   }
@@ -348,26 +296,8 @@ const AnimatedDiv = styled.div`
 `;
 
 const BgDiv = styled.div`
-  background-color: #000000;
+  background-color: ${({ theme }) => theme.COLORS.black};
   position: relative;
-`;
-
-const PotatoDiv1 = styled.img``;
-
-const PotatoDiv2 = styled.img`
-  /* position: relative;
-  top: 2200px;
-  left: 480px; */
-`;
-const PotatoDiv3 = styled.img`
-  /* position: relative;
-  top: 3200px;
-  right: 1250px; */
-`;
-const PotatoDiv4 = styled.img`
-  /* position: relative;
-  top: 4000px;
-  right: 30px; */
 `;
 
 const FlexBox = styled.div`
@@ -393,6 +323,8 @@ const BalloonImg = styled.img`
     `};
 `;
 
+const PotatoImg1 = styled.img``;
+
 const PotatoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -406,9 +338,9 @@ const TextDiv = styled.div`
     ${({ theme }) => theme.COLORS.yellow[100]},
     ${({ theme }) => theme.COLORS.black} 70%
   );
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   height: 100vh;
   color: ${({ theme }) => theme.COLORS.white};
-  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   font-size: 48px;
   display: flex;
   flex-direction: column;
@@ -444,10 +376,30 @@ const CommitGrassImg = styled.img`
   margin-left: 160px;
   position: relative;
   top: 1500px;
+  cursor: pointer;
 `;
 
 const RankingImg = styled.img`
   position: relative;
   top: 1800px;
   padding-right: 160px;
+  cursor: pointer;
+`;
+
+const StyledComment = styled.div`
+  color: ${({ theme }) => theme.COLORS.brown[200]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
+  position: relative;
+  top: 1520px;
+  left: 160px;
+`;
+
+const StyledComment2 = styled(StyledComment)`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+  top: 1850px;
+  margin-right: 330px;
 `;
