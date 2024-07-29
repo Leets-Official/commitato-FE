@@ -1,5 +1,4 @@
 import styled, { css, keyframes } from 'styled-components';
-// import { ScrollAnimationContainer } from '../../components/ScrollAnimationContainer';
 import comment1 from '../../assets/comment1.png';
 import comment2 from '../../assets/comment2.png';
 import comment3 from '../../assets/comment3.png';
@@ -176,8 +175,14 @@ const MainPage = () => {
             <AnimatedDiv ref={divRefs.current[2]}>
               <Comment3Img src={comment3} alt="comment3" />
             </AnimatedDiv>
+
             <AnimatedImg>
               <CommitGrassImg src={commitgrass} alt="commitgrass" />
+              <StyledComment>
+                마이 페이지에서 나의 커밋 현황을 확인할 수 있는 달력 기능을
+                해요. 꾸준한 커밋으로 당신의 커밋 농장을 황금색 감자로 가득
+                채워보세요!
+              </StyledComment>
             </AnimatedImg>
           </Comment3ImgWrapper>
 
@@ -188,6 +193,17 @@ const MainPage = () => {
             </AnimatedDiv>
             <AnimatedImg>
               <RankingImg src={ranking_img} alt="ranking_img" />
+              <StyledComment2>
+                <div>
+                  랭킹에서 다른 유저와 자신의 순위, 티어, 연속 커밋 횟수, 획득
+                  경험치 등을 확인할 수 있어요.
+                </div>
+                <div>
+                  만약 특정 유저의 정보가 궁금하다면, 깃허브 아이디를 검색하여
+                  확인할 수 있어요.
+                </div>
+                <div>친구와 함께 순위를 겨루며 커밋테이토를 즐기세요!</div>
+              </StyledComment2>
             </AnimatedImg>
           </Comment4ImgWrapper>
         </FlexContainer>
@@ -307,6 +323,8 @@ const BalloonImg = styled.img`
     `};
 `;
 
+const PotatoImg1 = styled.img``;
+
 const PotatoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -320,9 +338,9 @@ const TextDiv = styled.div`
     ${({ theme }) => theme.COLORS.yellow[100]},
     ${({ theme }) => theme.COLORS.black} 70%
   );
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   height: 100vh;
   color: ${({ theme }) => theme.COLORS.white};
-  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   font-size: 48px;
   display: flex;
   flex-direction: column;
@@ -358,10 +376,30 @@ const CommitGrassImg = styled.img`
   margin-left: 160px;
   position: relative;
   top: 1500px;
+  cursor: pointer;
 `;
 
 const RankingImg = styled.img`
   position: relative;
   top: 1800px;
   padding-right: 160px;
+  cursor: pointer;
+`;
+
+const StyledComment = styled.div`
+  color: ${({ theme }) => theme.COLORS.brown[200]};
+  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
+  position: relative;
+  top: 1520px;
+  left: 160px;
+`;
+
+const StyledComment2 = styled(StyledComment)`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+  top: 1850px;
+  margin-right: 330px;
 `;
