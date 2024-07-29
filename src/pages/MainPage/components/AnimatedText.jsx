@@ -58,16 +58,16 @@ const Container = styled.div`
 
 export const HowDiv1 = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
-  font-size: 148px;
+  font-size: 124px;
   color: ${({ theme }) => theme.COLORS.black};
 `;
 
 export const HowDiv2 = styled(HowDiv1)`
   color: ${({ theme }) => theme.COLORS.brown[200]};
-  margin-left: 600px;
+  margin-left: 400px;
 `;
 export const HowDiv3 = styled(HowDiv1)`
   color: ${({ theme }) => theme.COLORS.yellow[200]};
-  margin-left: 1200px;
+  margin-left: 900px;
   margin-bottom: 300px;
 `;

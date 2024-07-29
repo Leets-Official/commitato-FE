@@ -26,15 +26,20 @@ const Login = () => {
     console.log(headers);
 
     axios
-      .get('/api/login/github', { headers }) // '/api' 경로로 변경
+      .get(
+        'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080/login/test',
+        { headers },
+      )
       .then(response => {
-        if (response.data.code === 200) {
-          setUserData(response.data.data);
+        if (response.data.isSuccess) {
+          // isSuccess로 응답 상태 확인
+          setUserData(response.data.result); // 데이터 저장
         } else {
-          setError(response.data.message);
+          setError(response.data.message); // 오류 메시지 설정
         }
       })
       .catch(err => {
+        console.error('Error fetching data:', err);
         setError('An error occurred while fetching the data');
       });
   }, [setUserData, setError, setAllUserData]);

@@ -113,8 +113,8 @@ const MainPage = () => {
 
         <ParallaxText baseVelocity={-7}>
           <svg
-            width="150"
-            height="48"
+            width="130"
+            height="28"
             viewBox="0 0 178 52"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +154,7 @@ const MainPage = () => {
             {potatoes.map((potato, index) => (
               <PotatoWrapper key={potato.id}>
                 <FlexBox>
-                  <img
+                  <PotatoImg
                     src={potato.img}
                     alt={potato.img}
                     onClick={() => onClickToBalloon(index)}
@@ -231,11 +231,11 @@ const StyledContainer = styled(motion.div)`
 const MainDiv = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   color: ${({ theme }) => theme.COLORS.black};
-  font-size: 240px;
+  font-size: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 320px;
+  padding-top: 280px;
 `;
 
 const FlexContainer = styled.div`
@@ -245,8 +245,11 @@ const FlexContainer = styled.div`
 `;
 const Comment1Img = styled.img`
   padding-left: 50px;
+  width: 900px;
 `;
-const Comment2Img = styled.img``;
+const Comment2Img = styled.img`
+  width: 900px;
+`;
 
 const Comment2ImgWrapper = styled.div`
   background-image: linear-gradient(
@@ -280,18 +283,19 @@ const Comment3Img = styled.img`
   position: relative;
   margin-left: 100px;
   top: 1300px;
+  width: 900px;
 `;
 const Comment4Img = styled.img`
   position: relative;
   padding-right: 100px;
   top: 1700px;
+  width: 900px;
 `;
 
 const AnimatedDiv = styled.div`
   &.animate {
     animation: ${TranslateAnimation} 2s forwards;
   }
-
   margin: 50px 0;
 `;
 
@@ -311,10 +315,13 @@ const FlexBox = styled.div`
 
 const StyledText = styled.p`
   color: ${({ theme }) => theme.COLORS.gray[200]};
-  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  font-size: 14px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
 `;
+
 const BalloonImg = styled.img`
+  width: 700px;
+  height: 250px;
   display: ${({ active }) => (active ? 'block' : 'none')};
   animation: ${({ active }) =>
     active &&
@@ -323,7 +330,9 @@ const BalloonImg = styled.img`
     `};
 `;
 
-const PotatoImg1 = styled.img``;
+const PotatoImg = styled.img`
+  width: 230px;
+`;
 
 const PotatoWrapper = styled.div`
   display: flex;
@@ -341,7 +350,7 @@ const TextDiv = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   height: 100vh;
   color: ${({ theme }) => theme.COLORS.white};
-  font-size: 48px;
+  font-size: 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -371,17 +380,19 @@ const CenterDiv = styled.div`
 `;
 
 const CommitGrassImg = styled.img`
-  width: 1316px;
-  height: 343px;
+  width: 1100px;
+  height: 280px;
   margin-left: 160px;
   position: relative;
-  top: 1500px;
+  top: 1400px;
   cursor: pointer;
 `;
 
 const RankingImg = styled.img`
+  width: 1100px;
+  height: 300px;
   position: relative;
-  top: 1800px;
+  top: 1700px;
   padding-right: 160px;
   cursor: pointer;
 `;
@@ -391,8 +402,8 @@ const StyledComment = styled.div`
   font-size: ${({ theme }) => theme.FONT_SIZE.small};
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   position: relative;
-  top: 1520px;
-  left: 160px;
+  top: 1430px;
+  left: 169px;
 `;
 
 const StyledComment2 = styled(StyledComment)`
@@ -400,6 +411,6 @@ const StyledComment2 = styled(StyledComment)`
   flex-direction: column;
   gap: 15px;
   align-items: flex-end;
-  top: 1850px;
+  top: 1750px;
   margin-right: 330px;
 `;
