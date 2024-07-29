@@ -8,10 +8,6 @@ const router = createBrowserRouter([
     path: '',
     element: <MainPage />,
   },
-<<<<<<< HEAD
-
-=======
->>>>>>> f92c3a333f9951f2d753eb2cda5ce545ce479d76
   {
     path: '/ranking',
     element: <RankingPage />,
