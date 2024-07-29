@@ -1,11 +1,11 @@
-import stupid_potato from '../../assets/stupid_potato.png';
-import talking_potato from '../../assets/talking_potato.png';
-import developer_potato from '../../assets/developer_potato.png';
-import ceo_potato from '../../assets/ceo_potato.png';
-import stupid_potato_comment from '../../assets/stupid_potato_comment.png';
-import talking_potato_comment from '../../assets/talking_potato_comment.png';
-import developer_potato_comment from '../../assets/developer_potato_comment.png';
-import ceo_potato_comment from '../../assets/ceo_potato_comment.png';
+import stupid_potato from '../assets/stupid_potato.png';
+import talking_potato from '../assets/talking_potato.png';
+import developer_potato from '../assets/developer_potato.png';
+import ceo_potato from '../assets/ceo_potato.png';
+import stupid_potato_comment from '../assets/stupid_potato_comment.png';
+import talking_potato_comment from '../assets/talking_potato_comment.png';
+import developer_potato_comment from '../assets/developer_potato_comment.png';
+import ceo_potato_comment from '../assets/ceo_potato_comment.png';
 
 export const potatoes = [
   {

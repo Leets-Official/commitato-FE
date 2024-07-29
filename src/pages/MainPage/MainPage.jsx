@@ -4,14 +4,7 @@ import comment1 from '../../assets/comment1.png';
 import comment2 from '../../assets/comment2.png';
 import comment3 from '../../assets/comment3.png';
 import comment4 from '../../assets/comment4.png';
-import stupid_potato_comment from '../../assets/stupid_potato_comment.png';
-import talking_potato_comment from '../../assets/talking_potato_comment.png';
-import developer_potato_comment from '../../assets/developer_potato_comment.png';
-import ceo_potato_comment from '../../assets/ceo_potato_comment.png';
-import stupid_potato from '../../assets/stupid_potato.png';
-import talking_potato from '../../assets/talking_potato.png';
-import developer_potato from '../../assets/developer_potato.png';
-import ceo_potato from '../../assets/ceo_potato.png';
+import { potatoes } from '../../utils/constants';
 import { ParallaxText } from './components/ParallaxText';
 import AnimatedText from './components/AnimatedText';
 import Button from '../../components/Button';
@@ -155,7 +148,24 @@ const MainPage = () => {
 
           {/*bg: black*/}
           <BgDiv>
-            <PotatoWrapper>
+            {potatoes.map((potato, index) => (
+              <PotatoWrapper key={potato.id}>
+                <FlexBox>
+                  <img
+                    src={potato.img}
+                    alt={potato.img}
+                    onClick={() => onClickToBalloon(index)}
+                  />
+                  <BalloonImg
+                    src={potato.comment}
+                    alt="balloon"
+                    active={activeIndex}
+                  />
+                </FlexBox>
+                <StyledText>{potato.text}</StyledText>
+              </PotatoWrapper>
+            ))}
+            {/* <PotatoWrapper>
               <FlexBox>
                 <PotatoDiv1
                   src={stupid_potato}
@@ -233,7 +243,7 @@ const MainPage = () => {
                 감자들에게 영감을 주는 리더입니다. (포인트 범위: 1000 포인트
                 이상)
               </StyledText>
-            </PotatoWrapper>
+            </PotatoWrapper> */}
           </BgDiv>
           {/*bg: black 에서 yellow로 그라데이션 */}
 
