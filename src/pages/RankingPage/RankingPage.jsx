@@ -3,8 +3,10 @@ import Footer from '../../components/Footer';
 import { StyledBlack, StyledWhite } from '../MyPage/MyPage';
 import styled from 'styled-components';
 import RankingList from './components/RankingList';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
+//mockdata
 const rankingItems = [
   {
     id: 1,
@@ -87,8 +89,28 @@ const rankingItems = [
     exp: 20,
   },
 ];
+
 const RankingPage = () => {
-  const [datas, setDatas] = useState(rankingItems);
+  const [datas, setDatas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    try {
+      //성공
+      axios.get('').then(response => {
+        setDatas(response.data);
+      });
+    } catch (e) {
+      // 실패
+      setError(e);
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) return <p>Loading ... </p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <>
       <Header />
