@@ -87,7 +87,6 @@ const LogoDiv = styled.div`
 const Img = styled.img`
   width: 40px;
   height: 40px;
-
   cursor: pointer;
 `;
 
