@@ -98,9 +98,12 @@ const RankingPage = () => {
   useEffect(() => {
     try {
       //성공
-      axios.get('').then(response => {
-        setDatas(response.data);
-      });
+      axios
+        .get('https://codingapple1.github.io/shop/data2.json')
+        .then(response => {
+          console.log(response.data);
+          setDatas(response.data);
+        });
     } catch (e) {
       // 실패
       setError(e);
