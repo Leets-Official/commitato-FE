@@ -50,19 +50,29 @@ function GitHubChart({ githubId }) {
   );
 }
 
-const MyPage = ({
-  MyGitHubRanking,
-  MyGitHubCont,
-  todayCommit,
-  totalCommit,
-}) => {
-  const { userData, error } = useContext(UserContext);
+const MyPage = () => {
+  const {
+    userData,
+    userExp,
+    userTierName,
+    userConsecutiveCommitDays,
+    userTotalCommitCount,
+    userTodayCommitCount,
+    error,
+  } = useContext(UserContext);
   console.log(userData); // userData가 어떻게 생겼는지 확인하는 로그
 
   if (error) {
     return <div>에러 발생: {error}</div>;
   }
-  if (!userData) {
+  if (
+    !userData ||
+    userExp === null ||
+    userTierName === null ||
+    userConsecutiveCommitDays === null ||
+    userTotalCommitCount === null ||
+    userTodayCommitCount === null
+  ) {
     return <div>로딩중...</div>;
   }
 
@@ -144,9 +154,11 @@ const MyPage = ({
                   </StyledUpdateDate>
                 </StyledUpdate>
                 <StyledThree>
-                  <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
+                  <StyledRanking>Ranking {userExp}위 </StyledRanking>
                   <StyledLevel>level {selectedCharacter.title} </StyledLevel>
-                  <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
+                  <StyledCont>
+                    연속 커밋 {userConsecutiveCommitDays}일차{' '}
+                  </StyledCont>
                   <StyledDate>최근 업데이트 : {displayCreateAt}</StyledDate>
                 </StyledThree>
                 <StyledXpBar>
@@ -167,12 +179,12 @@ const MyPage = ({
               <StyledCommit>
                 <StyledConnect>
                   <StyledArr>TODAY COMMIT</StyledArr>
-                  <StyledArr3>{todayCommit}5</StyledArr3>
+                  <StyledArr3>{userTodayCommitCount}</StyledArr3>
                 </StyledConnect>
                 <StyledImg3 src={circle} />
                 <StyledConnect>
                   <StyledArr>TOTAL COMMIT</StyledArr>
-                  <StyledArr3>{totalCommit}5</StyledArr3>
+                  <StyledArr3>{userTotalCommitCount}</StyledArr3>
                 </StyledConnect>
                 <StyledImg3 src={circle} />
                 <StyledGit>

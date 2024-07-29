@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 import footer from '../assets/footer.png';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const nav = useNavigate();
+
+  const github = async () => {
+    nav('https://github.com/');
+  };
   return (
     <StyledDiv>
       <StyledHeader>
         <LogoDiv>COMMITATO</LogoDiv>
-        <StyleImg src={footer} />
+        <StyleImg src={footer} onClick={github} />
       </StyledHeader>
       {/* <StyledHeader2>
           <StyledPre>대표 | 가천대학교 Leets 동아리 내 commitato 팀</StyledPre>
