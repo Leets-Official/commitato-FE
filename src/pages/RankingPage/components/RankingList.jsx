@@ -54,7 +54,7 @@ export default RankingList;
 
 const InputDiv = styled.div`
   position: relative;
-  width: 1100px;
+  width: 900px;
 `;
 
 const Input = styled.input`
@@ -78,7 +78,7 @@ const InputImg = styled.img`
   position: absolute;
   width: 40px;
   top: 48px;
-  left: 1150px;
+  left: 950px;
 `;
 
 const ListContainer = styled.div`
@@ -88,6 +88,6 @@ const ListContainer = styled.div`
   gap: 100px;
 
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
-  font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+  font-size: ${({ theme }) => theme.FONT_SIZE.small};
   color: ${({ theme }) => theme.COLORS.gray[200]};
 `;

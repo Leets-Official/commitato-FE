@@ -106,8 +106,8 @@ export default RankingPage;
 
 const RankingContainer = styled(StyledWhite)`
   border-radius: 30px;
-  width: 1316px;
-  height: 939px;
+  width: 1100px;
+  height: 750px;
   background: ${({ theme }) => theme.COLORS.white};
   margin: auto auto;
 `;
