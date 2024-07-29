@@ -16,7 +16,7 @@ export const ParallaxText = ({ children, baseVelocity = 100 }) => {
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
     damping: 50,
-    stiffness: 400,
+    stiffness: 500,
   });
 
   const velocityFactor = useTransform(smoothVelocity, [0, 100], [0, 5], {
@@ -61,7 +61,7 @@ const ParallaxContainer = styled.div`
   letter-spacing: -2px;
   line-height: 0.8;
   margin-top: 330px;
-  margin-bottom: 120px;
+  margin-bottom: 200px;
   white-space: nowrap;
   display: flex;
   flex-wrap: nowrap;

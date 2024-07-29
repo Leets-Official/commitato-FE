@@ -1,6 +1,8 @@
 import GitHubCalendar from 'react-github-calendar';
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import stupid_potato from '../../assets/stupid_potato.png';
 import talking_potato from '../../assets/talking_potato.png';
 import developer_potato from '../../assets/developer_potato.png';
@@ -8,12 +10,19 @@ import ceo_potato from '../../assets/ceo_potato.png';
 import line from '../../assets/line.png';
 import circle from '../../assets/circle.png';
 import githubChar from '../../assets/githubChar.png';
+import Question from '../../assets/Question.png';
 import XpBar from '../../components/XpBar';
-
-import CongratsModal from './components/CongratsModal';
+import IntroduceModal from './components/IntroduceModal';
+import { StyledButton } from '../../components/Button';
+import { sync } from 'framer-motion';
 
 function GitHubChart({ githubId }) {
   const [isMounted, setIsMounted] = useState(false);
+
+  const explicitTheme = {
+    light: ['#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55', '#FFBA07'],
+    dark: ['#D9D9D9', '#FFEBB7', '#FFDF8D', '#ffcf55', '#FFBA07'],
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -24,11 +33,12 @@ function GitHubChart({ githubId }) {
       {isMounted && (
         <GitHubCalendar
           username={githubId}
-          stroke="#FFCF55"
-          showWeekdayLabels
-          blockSize={18}
+          blockSize={20}
+          blockMargin={15}
+          blockRadius={5}
+          theme={explicitTheme}
           style={{
-            height: '15rem',
+            height: '17rem',
             width: '50rem',
             marginLeft: '3.5rem',
           }}
@@ -67,6 +77,7 @@ const MyPage = ({
       img: ceo_potato,
     },
   ];
+  const [showModal, setShowModal] = useState(false);
 
   const selectedCharacterId = 0;
 
@@ -74,71 +85,139 @@ const MyPage = ({
     char => char.id === selectedCharacterId,
   );
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const showModal = () => {
-    setModalOpen(true);
+  const displayCreateAt = createdAt => {
+    const date = new Date(createdAt);
+    const now = Date.now();
+    const milliSeconds = now - date;
+
+    const seconds = milliSeconds / 1000;
+    const minutes = seconds / 60;
+    const hours = minutes / 60;
+    const days = hours / 24;
+    const months = days / 30;
+    const years = months / 12;
+
+    if (seconds < 60) {
+      return '방금 전';
+    } else if (minutes < 60) {
+      return `${Math.floor(minutes)}분 전`;
+    } else if (hours < 24) {
+      return `${Math.floor(hours)}시간 전`;
+    } else if (days < 30) {
+      return `${Math.floor(days)}일 전`;
+    } else if (months < 12) {
+      return `${Math.floor(months)}달 전`;
+    } else {
+      return `${Math.floor(years)}년 전`;
+    }
   };
 
   return (
-    <StyledBlack>
-      <StyledWhite>
-        <div>
-          <StyledTitle>MY PAGE</StyledTitle>
-          <StyledImg src={line} />
-          <Wrapper>
-            {selectedCharacter && (
-              <div key={selectedCharacter.id}>
-                <Styledimg src={selectedCharacter.img} />
+    <>
+      <Header />
+      <StyledBlack>
+        <StyledWhite>
+          <div>
+            <StyledTitle>MY PAGE</StyledTitle>
+            <StyledImg src={line} />
+            <Wrapper>
+              {selectedCharacter && (
+                <div key={selectedCharacter.id}>
+                  <Styledimg src={selectedCharacter.img} />
+                </div>
+              )}
+              <div>
+                <StyledUpdate>
+                  <StyledName>MyGitHubID{githubId}</StyledName>
+                  <StyledUpdateDate>
+                    <StyledUpdateButton>UPDATE</StyledUpdateButton>
+                  </StyledUpdateDate>
+                </StyledUpdate>
+                <StyledThree>
+                  <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
+                  <StyledLevel>level {selectedCharacter.title} </StyledLevel>
+                  <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
+                  <StyledDate>최근 업데이트 : {displayCreateAt}</StyledDate>
+                </StyledThree>
+                <StyledXpBar>
+                  <XpBar />
+                  <IntroduceModal />
+                </StyledXpBar>
+
+                <StyledTwo>
+                  <StyledNum>0점</StyledNum>
+                  <StyledNum>50점</StyledNum>
+                </StyledTwo>
               </div>
-            )}
-            <div>
-              <StyledName>MyGitHubID{githubId}</StyledName>
-              <StyledThree>
-                <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
-                <StyledLevel>level {selectedCharacter.title} </StyledLevel>
-                <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
-              </StyledThree>
-              <XpBar />
-              <StyledTwo>
-                <StyledNum>0점</StyledNum>
-                <StyledNum>50점</StyledNum>
-              </StyledTwo>
-            </div>
-          </Wrapper>
-          <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
-          <StyledImg2 src={line} />
-          <StyledDiv>
-            <GitHubChart githubId={githubId} />
-            <StyledCommit>
-              <StyledConnect>
-                <StyledArr>TODAY COMMIT</StyledArr>
-                <StyledArr3>{todayCommit}5</StyledArr3>
-              </StyledConnect>
-              <StyledImg3 src={circle} />
-              <StyledConnect>
-                <StyledArr>TOTAL COMMIT</StyledArr>
-                <StyledArr3>{totalCommit}5</StyledArr3>
-              </StyledConnect>
-              <StyledImg3 src={circle} />
-              <StyledGit>
-                <StyledImg4 src={githubChar} />
-                <StyledArr2>GITHUB</StyledArr2>
-                <StyledArr4>{githubId}MyGitHubID</StyledArr4>
-              </StyledGit>
-            </StyledCommit>
-            <CongratsModal />
-            {/* <button onClick={showModal}>Open Modal</button>
-            {modalOpen && <CongratsModal setModalOpen={setModalOpen} />} */}
-          </StyledDiv>
-        </div>
-      </StyledWhite>
-    </StyledBlack>
+            </Wrapper>
+            <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
+            <StyledImg2 src={line} />
+            <StyledDiv>
+              <GitHubChart githubId={githubId} />
+              <StyledCommit>
+                <StyledConnect>
+                  <StyledArr>TODAY COMMIT</StyledArr>
+                  <StyledArr3>{todayCommit}5</StyledArr3>
+                </StyledConnect>
+                <StyledImg3 src={circle} />
+                <StyledConnect>
+                  <StyledArr>TOTAL COMMIT</StyledArr>
+                  <StyledArr3>{totalCommit}5</StyledArr3>
+                </StyledConnect>
+                <StyledImg3 src={circle} />
+                <StyledGit>
+                  <StyledImg4 src={githubChar} />
+                  <StyledArr2>GITHUB</StyledArr2>
+                  <StyledArr4>{githubId}MyGitHubID</StyledArr4>
+                </StyledGit>
+              </StyledCommit>
+            </StyledDiv>
+          </div>
+        </StyledWhite>
+      </StyledBlack>
+      <Footer />
+    </>
   );
 };
 
 export default MyPage;
 
-const StyledBlack = styled.div`
+const StyledUpdateDate = styled.div``;
+
+const StyledDate = styled.div`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
+  font-size: 17px;
+  color: ${({ theme }) => theme.COLORS.gray[200]};
+  margin-left: 50%;
+`;
+
+const StyledUpdate = styled.div`
+  display: flex;
+  width: 981px;
+  justify-content: space-between;
+  margin-left: 2.5%;
+`;
+
+const StyledXpBar = styled.div`
+  display: flex;
+`;
+
+const StyledUpdateButton = styled.button`
+  width: 135px;
+  height: 45px;
+  background-color: ${({ theme }) => theme.COLORS.black};
+  border-radius: 10px 10px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
+  font-size: ${({ theme }) => theme.FONT_SIZE.medium};
+  color: ${({ theme }) => theme.COLORS.white};
+  margin-right: 2%;
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.gray[100]};
+    border: ${({ theme }) => theme.COLORS.gray[100]};
+  }
+`;
+
+export const StyledBlack = styled.div`
   display: flex;
   padding-top: 38px;
   width: 100%;
@@ -146,22 +225,22 @@ const StyledBlack = styled.div`
   background: #000000;
 `;
 
-const StyledWhite = styled.div`
+export const StyledWhite = styled.div`
   border-radius: 30px;
   width: 1316px;
-  height: 735px;
+  height: 752px;
   background: #ffffff;
   margin: auto auto;
 `;
 
-const StyledTitle = styled.div`
+export const StyledTitle = styled.div`
   margin-left: 4.5%;
   margin-top: 3.5%;
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   font-size: 48px;
 `;
 
-const StyledImg = styled.img`
+export const StyledImg = styled.img`
   margin-left: 4%;
   width: 90%;
 `;
@@ -236,11 +315,11 @@ const StyledThree = styled.div`
   display: flex;
   margin-left: 5%;
   margin-top: 1.5%;
-  width: 372px;
+  width: 930px;
   height: 22px;
   object-fit: cover;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
-  justify-content: space-between;
+  // justify-content: space-between;
 `;
 const StyledName = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[400]};
@@ -249,11 +328,17 @@ const StyledName = styled.div`
   // margin-top: 5%;
 `;
 
-const StyledRanking = styled.div``;
+const StyledRanking = styled.div`
+  margin-right: 2%;
+`;
 
-const StyledLevel = styled.div``;
+const StyledLevel = styled.div`
+  margin-right: 2%;
+`;
 
-const StyledCont = styled.div``;
+const StyledCont = styled.div`
+  margin-right: 2%;
+`;
 
 const StyledArr3 = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
@@ -282,6 +367,6 @@ const StyledTwo = styled.div`
 `;
 
 const StyledNum = styled.div`
-  width: 981px;
+  width: 900px;
   justifycontent: space-between;
 `;
