@@ -25,7 +25,7 @@ const ItemDiv = styled.div`
   justify-content: space-between;
   padding: 15px 80px;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
-  font-size: ${({ theme }) => theme.FONT_SIZE.small};
+  font-size: 14px;
 `;
 
 const UserItem = styled.span`
