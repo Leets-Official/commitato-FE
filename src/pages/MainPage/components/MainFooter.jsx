@@ -1,21 +1,41 @@
 import styled from 'styled-components';
 import footer from '../../../assets/footer.png';
+import line from '../../../assets/line.png';
 
 const MainFooter = () => {
   return (
     <Wrapper>
-      <LogoDiv>
-        COMMITATO
-        <Img
-          src={footer}
-          onClick={() => {
-            window.open(
-              'https://github.com/Leets-Official/commitato-FE',
-              '_blank',
-            );
-          }}
-        />
-      </LogoDiv>
+      <Flex>
+        <LogoDiv>COMMITATO</LogoDiv>
+        <LineImg src={line} alt="line" />
+      </Flex>
+
+      <GithubImg>
+        <Flex>
+          <Img
+            src={footer}
+            onClick={() => {
+              window.open(
+                'https://github.com/Leets-Official/commitato-FE',
+                '_blank',
+              );
+            }}
+          />
+          <Text>FE</Text>
+        </Flex>
+        <Flex>
+          <Img
+            src={footer}
+            onClick={() => {
+              window.open(
+                'https://github.com/Leets-Official/commitato-BE',
+                '_blank',
+              );
+            }}
+          />
+          <Text>BE</Text>
+        </Flex>
+      </GithubImg>
 
       <ContentWrapper>
         <StyledDiv>
@@ -49,7 +69,7 @@ export default MainFooter;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 200px;
+  height: 250px;
   background-color: ${({ theme }) => theme.COLORS.black};
   justify-content: center;
   text-align: center;
@@ -78,10 +98,6 @@ const LogoDiv = styled.div`
   color: ${({ theme }) => theme.COLORS.white};
   font-size: 24px;
   margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
 `;
 
 const Img = styled.img`
@@ -90,6 +106,19 @@ const Img = styled.img`
   cursor: pointer;
 `;
 
+const LineImg = styled.img`
+  width: 100px;
+  height: 0.5px;
+  margin-bottom: 10px;
+`;
+
+const Flex = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
 const LinkDiv = styled.a`
   text-decoration: none;
   color: ${({ theme }) => theme.COLORS.gray[200]};
@@ -99,4 +128,18 @@ const LinkDiv = styled.a`
     text-decoration: underline;
   }
   padding: 5px;
+`;
+
+const Text = styled.p`
+  font-family: ${({ theme }) => theme.FONT_FAMILY.main};
+  color: ${({ theme }) => theme.COLORS.white};
+  font-size: 12px;
+`;
+
+const GithubImg = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 `;
