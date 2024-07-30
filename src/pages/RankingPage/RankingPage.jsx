@@ -99,7 +99,9 @@ const RankingPage = () => {
     try {
       //성공
       axios
-        .get('https://codingapple1.github.io/shop/data2.json')
+        .get(
+          'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080/user/ranking',
+        )
         .then(response => {
           console.log(response.data);
           setDatas(response.data);
@@ -111,8 +113,8 @@ const RankingPage = () => {
     }
   }, []);
 
-  if (loading) return <p>Loading ... </p>;
-  if (error) return <p>Error: {error.message}</p>;
+  // if (loading) return <p>Loading ... </p>;
+  // if (error) return <p>Error: {error.message}</p>;
 
   return (
     <>
