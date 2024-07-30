@@ -1,24 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const RankingItem = ({
-  ranking,
-  githubId,
-  tierName,
-  consecutiveCommitDays,
-  exp,
-}) => {
+const RankingItem = ({ id, name, username, email, phone }) => {
   const nav = useNavigate();
   const onClickToMyPage = () => {
-    nav('/my/${githubId}');
+    nav('/my');
   };
   return (
     <ItemDiv>
-      <span>{ranking}</span>
-      <UserItem onClick={onClickToMyPage}>{githubId}</UserItem>
-      <span>{tierName}</span>
-      <span>{consecutiveCommitDays}</span>
-      <span>{exp}</span>
+      <span>{id}</span>
+      <UserItem onClick={onClickToMyPage}>{name}</UserItem>
+      <span>{username}</span>
+      <span>{email}</span>
+      <span>{phone}</span>
     </ItemDiv>
   );
 };

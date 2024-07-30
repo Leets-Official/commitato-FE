@@ -91,16 +91,16 @@ import axios from 'axios';
 // ];
 
 const RankingPage = () => {
-  const [datas, setDatas] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     try {
       //성공
-      axios.get('/api/user/ranking').then(response => {
+      axios.get('https://jsonplaceholder.typicode.com/users').then(response => {
         console.log(response.data);
-        setDatas(response.data);
+        setData(response.data);
       });
     } catch (e) {
       // 실패
@@ -112,12 +112,13 @@ const RankingPage = () => {
   // if (loading) return <p>Loading ... </p>;
   // if (error) return <p>Error: {error.message}</p>;
 
+  console.log(data);
   return (
     <>
       <Header />
       <StyledBlack>
         <RankingContainer>
-          <RankingList datas={datas} />
+          <RankingList data={data} />
         </RankingContainer>
       </StyledBlack>
       <Footer />
