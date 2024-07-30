@@ -10,7 +10,6 @@ import Button from '../../components/Button';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from '../../components/Header';
 import React, { useEffect, useRef, useState } from 'react';
-import { HowDiv1, HowDiv2, HowDiv3 } from '../MainPage/components/AnimatedText';
 import MainFooter from './components/MainFooter';
 import ranking_img from '../../assets/ranking_img.png';
 import commitgrass from '../../assets/commitgrass.png';
@@ -47,11 +46,11 @@ const SlideUp = keyframes`
 const fadeIn = keyframes`
             from {
               opacity: 0;
-              transform: scale(0.9);
+              transform: scaleX(0.5)
             }
             to {
               opacity: 1;
-              transform: scale(1);
+              transform: scaleX(1)
             }
           `;
 
@@ -81,8 +80,7 @@ const MainPage = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate');
-        } else {
-          entry.target.classList.remove('animate');
+          observer.unobserve(entry.target);
         }
       });
     });
@@ -154,16 +152,33 @@ const MainPage = () => {
             {potatoes.map((potato, index) => (
               <PotatoWrapper key={potato.id}>
                 <FlexBox>
-                  <PotatoImg
-                    src={potato.img}
-                    alt={potato.img}
-                    onClick={() => onClickToBalloon(index)}
-                  />
-                  <BalloonImg
-                    src={potato.comment}
-                    alt={`balloon_${potato.id}`}
-                    active={activeIndexes.includes(index)}
-                  />
+                  {potato.id === 1 || potato.id === 3 ? (
+                    <>
+                      <PotatoImg
+                        src={potato.img}
+                        alt={potato.img}
+                        onClick={() => onClickToBalloon(index)}
+                      />
+                      <BalloonImg
+                        src={potato.comment}
+                        alt={`balloon_${potato.id}`}
+                        active={activeIndexes.includes(index)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <BalloonImg
+                        src={potato.comment}
+                        alt={`balloon_${potato.id}`}
+                        active={activeIndexes.includes(index)}
+                      />
+                      <PotatoImg
+                        src={potato.img}
+                        alt={potato.img}
+                        onClick={() => onClickToBalloon(index)}
+                      />
+                    </>
+                  )}
                 </FlexBox>
                 <StyledText>{potato.text}</StyledText>
               </PotatoWrapper>
@@ -175,7 +190,6 @@ const MainPage = () => {
             <AnimatedDiv ref={divRefs.current[2]}>
               <Comment3Img src={comment3} alt="comment3" />
             </AnimatedDiv>
-
             <AnimatedImg>
               <CommitGrassImg src={commitgrass} alt="commitgrass" />
               <StyledComment>
@@ -225,7 +239,7 @@ export default MainPage;
 const StyledContainer = styled(motion.div)`
   background-color: ${({ theme }) => theme.COLORS.yellow[100]};
   width: 100%;
-  min-height: calc(100vh - 288px);
+  /* min-height: calc(100vh - 288px); */
 `;
 
 const MainDiv = styled.div`
@@ -310,7 +324,7 @@ const FlexBox = styled.div`
   gap: 20px;
   margin-left: 100px;
   margin-right: 100px;
-  cursor: pointer;
+  /* cursor: pointer; */
 `;
 
 const StyledText = styled.p`
@@ -326,12 +340,13 @@ const BalloonImg = styled.img`
   animation: ${({ active }) =>
     active &&
     css`
-      ${fadeIn} 0.3s ease-in-out
+      ${fadeIn} 0.5s
     `};
 `;
 
 const PotatoImg = styled.img`
   width: 230px;
+  cursor: pointer;
 `;
 
 const PotatoWrapper = styled.div`
@@ -369,7 +384,7 @@ const SlideUpText = styled.div`
   gap: 50px;
 `;
 const AnimatedImg = styled.div`
-  animation: ${SlideUp} 2s 1s infinite;
+  animation: ${SlideUp} 2s infinite;
 `;
 const CenterDiv = styled.div`
   display: flex;
