@@ -329,7 +329,6 @@ const FlexBox = styled.div`
   gap: 20px;
   margin-left: 100px;
   margin-right: 100px;
-  /* cursor: pointer; */
 `;
 
 const StyledText = styled.p`
