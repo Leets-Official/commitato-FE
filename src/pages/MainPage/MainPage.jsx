@@ -53,6 +53,11 @@ const fadeIn = keyframes`
               transform: scaleX(1)
             }
           `;
+const pulseGrow = keyframes`
+  to {
+    transform: scale(1.1);
+  }
+  `;
 
 const MainPage = () => {
   const [activeIndexes, setActiveIndexes] = useState([]);
@@ -347,6 +352,13 @@ const BalloonImg = styled.img`
 const PotatoImg = styled.img`
   width: 230px;
   cursor: pointer;
+  &:hover {
+    animation-name: ${pulseGrow};
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
 `;
 
 const PotatoWrapper = styled.div`
