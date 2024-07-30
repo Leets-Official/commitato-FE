@@ -1,33 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes/Route';
 import GlobalStyles from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/ThemeStyle';
-<<<<<<< HEAD
-import Header from './components/Header';
-import Footer from './components/Footer';
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-
-      <RouterProvider router={router} />
-=======
+import User from './pages/MyPage/User';
 import Login from './apis/auth/Login';
-import { UserProvider } from './apis/UserContext';
+import MyPage from './pages/MyPage/MyPage';
+import { UserProvider, UserContext } from './apis/UserContext';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <UserProvider>
-        <Login />
+    <UserProvider>
+      <ThemeProvider theme={theme}>
+        <Main />
         <GlobalStyles />
         <RouterProvider router={router} />
-      </UserProvider>
->>>>>>> f92c3a333f9951f2d753eb2cda5ce545ce479d76
-    </ThemeProvider>
+      </ThemeProvider>
+    </UserProvider>
   );
 }
+
+const Main = () => {
+  const { userId } = useContext(UserContext);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    if (userId) {
+      setReady(true);
+    }
+  }, [userId]);
+
+  return (
+    <>
+      <Login />
+      {ready && (
+        <>
+          <User />
+          <MyPage />
+        </>
+      )}
+    </>
+  );
+};
 
 export default App;

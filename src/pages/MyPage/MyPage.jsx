@@ -52,7 +52,8 @@ function GitHubChart({ githubId }) {
 
 const MyPage = () => {
   const {
-    userData,
+    userId,
+    userName,
     userExp,
     userTierName,
     userConsecutiveCommitDays,
@@ -60,14 +61,34 @@ const MyPage = () => {
     userTodayCommitCount,
     error,
   } = useContext(UserContext);
-  console.log(userData); // userData가 어떻게 생겼는지 확인하는 로그
+
+  useEffect(() => {
+    console.log('Current state: ', {
+      userId,
+      userName,
+      userExp,
+      userTierName,
+      userConsecutiveCommitDays,
+      userTotalCommitCount,
+      userTodayCommitCount,
+    });
+  }, [
+    userId,
+    userName,
+    userExp,
+    userTierName,
+    userConsecutiveCommitDays,
+    userTotalCommitCount,
+    userTodayCommitCount,
+  ]);
 
   if (error) {
     return <div>에러 발생: {error}</div>;
   }
   if (
-    !userData ||
+    !userId ||
     userExp === null ||
+    userName === null ||
     userTierName === null ||
     userConsecutiveCommitDays === null ||
     userTotalCommitCount === null ||
@@ -148,14 +169,14 @@ const MyPage = () => {
               )}
               <div>
                 <StyledUpdate>
-                  <StyledName>{userData.userId}</StyledName>
+                  <StyledName>{userName}</StyledName>
                   <StyledUpdateDate>
                     <StyledUpdateButton>UPDATE</StyledUpdateButton>
                   </StyledUpdateDate>
                 </StyledUpdate>
                 <StyledThree>
-                  <StyledRanking>Ranking {userExp}위 </StyledRanking>
-                  <StyledLevel>level {selectedCharacter.title} </StyledLevel>
+                  <StyledRanking>Ranking {userTierName}위 </StyledRanking>
+                  <StyledLevel>level {userTierName} </StyledLevel>
                   <StyledCont>
                     연속 커밋 {userConsecutiveCommitDays}일차{' '}
                   </StyledCont>
@@ -175,7 +196,7 @@ const MyPage = () => {
             <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
             <StyledImg2 src={line} />
             <StyledDiv>
-              <GitHubChart githubId={userData.userId} />
+              <GitHubChart githubId={userName} />
               <StyledCommit>
                 <StyledConnect>
                   <StyledArr>TODAY COMMIT</StyledArr>
@@ -190,7 +211,7 @@ const MyPage = () => {
                 <StyledGit>
                   <StyledImg4 src={githubChar} />
                   <StyledArr2>GITHUB</StyledArr2>
-                  <StyledArr4>{userData.userId}</StyledArr4>
+                  <StyledArr4>{userName}</StyledArr4>
                 </StyledGit>
               </StyledCommit>
             </StyledDiv>

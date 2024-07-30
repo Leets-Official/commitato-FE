@@ -6,12 +6,11 @@ export default defineConfig({
   plugins: [react(), svgr()],
   server: {
     proxy: {
-      '/login/github': {
+      '/api': {
         target:
-          'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080', // 백엔드 서버 주소
+          'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080',
         changeOrigin: true,
-        secure: false,
-        rewrite: path => path.replace(/^\/login\/github/, ''),
+        rewrite: path => path.replace(/^\/api/, ''),
       },
     },
   },

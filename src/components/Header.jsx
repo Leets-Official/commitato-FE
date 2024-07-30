@@ -76,7 +76,7 @@ const StyledLogOutButton = styled.h1`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
   font-size: ${({ theme }) => theme.FONT_SIZE.small};
   color: ${({ theme }) => theme.COLORS.gray[200]};
-  margin-left: 74%;
+  margin-left: 68%;
   margin-top: 10px;
   cursor: pointer;
   &:hover {

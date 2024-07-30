@@ -4,53 +4,58 @@ import { UserContext } from '../../apis/UserContext';
 
 const User = () => {
   const {
+    userId,
+    setUserId,
+    setUserName,
     setUserExp,
     setUserTierName,
+    setCharacterUrl,
     setUserConsecutiveCommitDays,
     setUserTotalCommitCount,
     setUserTodayCommitCount,
-    setUserId,
     error,
     setError,
   } = useContext(UserContext);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await axios.get(
-          'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080/login/test',
-        );
-        const data = response.data;
-        if (data.isSuccess) {
-          setUserId(data.result.userId);
-        } else {
-          setError(data.message);
-        }
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, [setUserId, setError]);
-
-  useEffect(() => {
     const fetchUserData = async () => {
+      if (!userId) {
+        console.log('No user ID, skipping fetchUserData');
+        return;
+      }
+      const accessToken = localStorage.getItem('accessToken');
+      if (!accessToken) {
+        setError('Access token is missing');
+        return;
+      }
+
+      const headers = {
+        Authorization: `Bearer ${accessToken}`,
+      };
+
       setLoading(true);
       setError(null);
+
       try {
+        console.log('Fetching commit data for user ID:', userId);
+        await axios.post('/api/commit/update', { headers });
+
+        console.log('Fetching user data for ID:', userId);
+
         const response = await axios.get(
-          'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080/user/search?githubId=woneeeee',
+          `/api/user/search?githubId=${userId}`,
+          { headers },
         );
+
         const data = response.data;
+        console.log('User data response:', data); // 응답 데이터 확인
         if (data.isSuccess) {
+          setUserName(data.result.username);
           setUserExp(data.result.userExp);
           setUserTierName(data.result.userTierName);
+          setCharacterUrl(data.result.userCharacterUrl);
           setUserConsecutiveCommitDays(data.result.userConsecutiveCommitDays);
           setUserTodayCommitCount(data.result.userTodayCommitCount);
           setUserTotalCommitCount(data.result.userTotalCommitCount);
@@ -58,6 +63,7 @@ const User = () => {
           setError(`Server error: ${data.message}`);
         }
       } catch (e) {
+        console.error('Error fetching user data:', e.message); // 에러 메시지 확인
         setError(`Error fetching user data: ${e.message}`);
       } finally {
         setLoading(false);
@@ -66,15 +72,18 @@ const User = () => {
 
     fetchUserData();
   }, [
+    userId,
+    setUserName,
     setUserExp,
     setUserTierName,
+    setCharacterUrl,
     setUserConsecutiveCommitDays,
     setUserTodayCommitCount,
     setUserTotalCommitCount,
     setError,
   ]);
 
-  if (loading) return <div>로딩중</div>;
+  if (loading) return <div>로딩중...</div>;
   if (error) return <div>에러 발생: {error}</div>;
   return null;
 };
