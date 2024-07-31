@@ -8,6 +8,7 @@ const router = createBrowserRouter([
     path: '',
     element: <MainPage />,
   },
+
   {
     path: '/ranking',
     element: <RankingPage />,

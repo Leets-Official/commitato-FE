@@ -56,10 +56,12 @@ const MyPage = () => {
     userName,
     userExp,
     userTierName,
+    userCharacterUrl,
     userConsecutiveCommitDays,
     userTotalCommitCount,
     userTodayCommitCount,
     error,
+    loading,
   } = useContext(UserContext);
 
   useEffect(() => {
@@ -68,6 +70,7 @@ const MyPage = () => {
       userName,
       userExp,
       userTierName,
+      userCharacterUrl,
       userConsecutiveCommitDays,
       userTotalCommitCount,
       userTodayCommitCount,
@@ -77,25 +80,30 @@ const MyPage = () => {
     userName,
     userExp,
     userTierName,
+    userCharacterUrl,
     userConsecutiveCommitDays,
     userTotalCommitCount,
     userTodayCommitCount,
   ]);
 
+  if (loading) {
+    return <div>로딩중...</div>; // 데이터를 불러오는 동안 로딩 화면을 보여줌
+  }
+
   if (error) {
     return <div>에러 발생: {error}</div>;
   }
-  if (
-    !userId ||
-    userExp === null ||
-    userName === null ||
-    userTierName === null ||
-    userConsecutiveCommitDays === null ||
-    userTotalCommitCount === null ||
-    userTodayCommitCount === null
-  ) {
-    return <div>로딩중...</div>;
-  }
+  // if (
+  //   !userId ||
+  //   userExp === null ||
+  //   userName === null ||
+  //   userTierName === null ||
+  //   userConsecutiveCommitDays === null ||
+  //   userTotalCommitCount === null ||
+  //   userTodayCommitCount === null
+  // ) {
+  //   return <div>로딩중...</div>;
+  // }
 
   const character = [
     {
@@ -152,7 +160,6 @@ const MyPage = () => {
       return `${Math.floor(years)}년 전`;
     }
   };
-
   return (
     <>
       <Header />

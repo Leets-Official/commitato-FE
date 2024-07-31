@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, lazy } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../apis/UserContext';
 
@@ -9,45 +9,48 @@ const User = () => {
     setUserName,
     setUserExp,
     setUserTierName,
-    setCharacterUrl,
+    setUserCharacterUrl,
     setUserConsecutiveCommitDays,
     setUserTotalCommitCount,
     setUserTodayCommitCount,
     error,
     setError,
+    setLoading,
   } = useContext(UserContext);
-
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
       if (!userId) {
         console.log('No user ID, skipping fetchUserData');
+        setLoading(false);
         return;
       }
       const accessToken = localStorage.getItem('accessToken');
       if (!accessToken) {
         setError('Access token is missing');
+        setLoading(false);
         return;
       }
 
       const headers = {
         Authorization: `Bearer ${accessToken}`,
       };
-
       setLoading(true);
       setError(null);
 
       try {
         console.log('Fetching commit data for user ID:', userId);
-        await axios.post('http://localhost:8080/commit/update', { headers });
+        const postResponse = await axios.post(
+          '/api/commit/update',
+          {},
+          { headers },
+        );
+
+        console.log('Post response: ', postResponse.data);
 
         console.log('Fetching user data for ID:', userId);
 
-        const response = await axios.get(
-          'http://localhost:8080/user/' + userId,
-          { headers },
-        );
+        const response = await axios.get('/api/user/' + userId, { headers });
 
         const data = response.data;
         console.log('User data response:', data); // 응답 데이터 확인
@@ -55,10 +58,21 @@ const User = () => {
           setUserName(data.result.username);
           setUserExp(data.result.userExp);
           setUserTierName(data.result.userTierName);
-          setCharacterUrl(data.result.userCharacterUrl);
+          setUserCharacterUrl(data.result.userCharacterUrl);
           setUserConsecutiveCommitDays(data.result.userConsecutiveCommitDays);
           setUserTodayCommitCount(data.result.userTodayCommitCount);
           setUserTotalCommitCount(data.result.userTotalCommitCount);
+
+          console.log(
+            'Updated values:',
+            data.result.githubId,
+            data.result.exp,
+            data.result.tierName,
+            data.result.characterUrl,
+            data.result.consecutiveCommitDays,
+            data.result.todayCommitCount,
+            data.result.totalCommitCount,
+          );
         } else {
           setError(`Server error: ${data.message}`);
         }
@@ -73,18 +87,19 @@ const User = () => {
     fetchUserData();
   }, [
     userId,
+    setUserId,
     setUserName,
     setUserExp,
     setUserTierName,
-    setCharacterUrl,
+    setUserCharacterUrl,
     setUserConsecutiveCommitDays,
     setUserTodayCommitCount,
     setUserTotalCommitCount,
+    error,
     setError,
+    setLoading,
   ]);
 
-  if (loading) return <div>로딩중...</div>;
-  if (error) return <div>에러 발생: {error}</div>;
   return null;
 };
 
