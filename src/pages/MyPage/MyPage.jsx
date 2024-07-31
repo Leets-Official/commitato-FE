@@ -50,21 +50,60 @@ function GitHubChart({ githubId }) {
   );
 }
 
-const MyPage = ({
-  MyGitHubRanking,
-  MyGitHubCont,
-  todayCommit,
-  totalCommit,
-}) => {
-  const { userData, error } = useContext(UserContext);
-  console.log(userData); // userData가 어떻게 생겼는지 확인하는 로그
+const MyPage = () => {
+  const {
+    userId,
+    userName,
+    userExp,
+    userTierName,
+    userCharacterUrl,
+    userConsecutiveCommitDays,
+    userTotalCommitCount,
+    userTodayCommitCount,
+    error,
+    loading,
+  } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log('Current state: ', {
+      userId,
+      userName,
+      userExp,
+      userTierName,
+      userCharacterUrl,
+      userConsecutiveCommitDays,
+      userTotalCommitCount,
+      userTodayCommitCount,
+    });
+  }, [
+    userId,
+    userName,
+    userExp,
+    userTierName,
+    userCharacterUrl,
+    userConsecutiveCommitDays,
+    userTotalCommitCount,
+    userTodayCommitCount,
+  ]);
+
+  if (loading) {
+    return <div>로딩중...</div>; // 데이터를 불러오는 동안 로딩 화면을 보여줌
+  }
 
   if (error) {
     return <div>에러 발생: {error}</div>;
   }
-  if (!userData) {
-    return <div>로딩중...</div>;
-  }
+  // if (
+  //   !userId ||
+  //   userExp === null ||
+  //   userName === null ||
+  //   userTierName === null ||
+  //   userConsecutiveCommitDays === null ||
+  //   userTotalCommitCount === null ||
+  //   userTodayCommitCount === null
+  // ) {
+  //   return <div>로딩중...</div>;
+  // }
 
   const character = [
     {
@@ -121,7 +160,6 @@ const MyPage = ({
       return `${Math.floor(years)}년 전`;
     }
   };
-
   return (
     <>
       <Header />
@@ -138,15 +176,17 @@ const MyPage = ({
               )}
               <div>
                 <StyledUpdate>
-                  <StyledName>{userData.userId}</StyledName>
+                  <StyledName>{userName}</StyledName>
                   <StyledUpdateDate>
                     <StyledUpdateButton>UPDATE</StyledUpdateButton>
                   </StyledUpdateDate>
                 </StyledUpdate>
                 <StyledThree>
-                  <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
-                  <StyledLevel>level {selectedCharacter.title} </StyledLevel>
-                  <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
+                  <StyledRanking>Ranking {userTierName}위 </StyledRanking>
+                  <StyledLevel>level {userTierName} </StyledLevel>
+                  <StyledCont>
+                    연속 커밋 {userConsecutiveCommitDays}일차{' '}
+                  </StyledCont>
                   <StyledDate>최근 업데이트 : {displayCreateAt}</StyledDate>
                 </StyledThree>
                 <StyledXpBar>
@@ -163,22 +203,22 @@ const MyPage = ({
             <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
             <StyledImg2 src={line} />
             <StyledDiv>
-              <GitHubChart githubId={userData.userId} />
+              <GitHubChart githubId={userName} />
               <StyledCommit>
                 <StyledConnect>
                   <StyledArr>TODAY COMMIT</StyledArr>
-                  <StyledArr3>{todayCommit}5</StyledArr3>
+                  <StyledArr3>{userTodayCommitCount}</StyledArr3>
                 </StyledConnect>
                 <StyledImg3 src={circle} />
                 <StyledConnect>
                   <StyledArr>TOTAL COMMIT</StyledArr>
-                  <StyledArr3>{totalCommit}5</StyledArr3>
+                  <StyledArr3>{userTotalCommitCount}</StyledArr3>
                 </StyledConnect>
                 <StyledImg3 src={circle} />
                 <StyledGit>
                   <StyledImg4 src={githubChar} />
                   <StyledArr2>GITHUB</StyledArr2>
-                  <StyledArr4>{userData.userId}</StyledArr4>
+                  <StyledArr4>{userName}</StyledArr4>
                 </StyledGit>
               </StyledCommit>
             </StyledDiv>
