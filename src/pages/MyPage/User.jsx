@@ -13,6 +13,7 @@ const User = () => {
     setUserConsecutiveCommitDays,
     setUserTotalCommitCount,
     setUserTodayCommitCount,
+    setUserRanking,
     error,
     setError,
     setLoading,
@@ -62,6 +63,7 @@ const User = () => {
           setUserConsecutiveCommitDays(data.result.userConsecutiveCommitDays);
           setUserTodayCommitCount(data.result.userTodayCommitCount);
           setUserTotalCommitCount(data.result.userTotalCommitCount);
+          setUserRanking(data.result.userRanking);
 
           console.log(
             'Updated values:',
@@ -95,6 +97,7 @@ const User = () => {
     setUserConsecutiveCommitDays,
     setUserTodayCommitCount,
     setUserTotalCommitCount,
+    setUserRanking,
     error,
     setError,
     setLoading,

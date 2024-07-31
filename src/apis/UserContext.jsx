@@ -8,11 +8,13 @@ export const UserProvider = ({ children }) => {
   const [allUserData, setAllUserData] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userExp, setUserExp] = useState(0);
+  const [userUpdatedAt, setUserUpdatedAt] = useState(null);
   const [userTierName, setUserTierName] = useState('');
   const [userCharacterUrl, setUserCharacterUrl] = useState('');
   const [userConsecutiveCommitDays, setUserConsecutiveCommitDays] = useState(0);
   const [userTotalCommitCount, setUserTotalCommitCount] = useState(0);
   const [userTodayCommitCount, setUserTodayCommitCount] = useState(0);
+  const [userRanking, setUserRanking] = useState(0);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +30,8 @@ export const UserProvider = ({ children }) => {
         userName,
         setUserName,
         userExp,
+        userUpdatedAt,
+        setUserUpdatedAt,
         setUserExp,
         userTierName,
         setUserTierName,
@@ -39,6 +43,8 @@ export const UserProvider = ({ children }) => {
         setUserTotalCommitCount,
         userTodayCommitCount,
         setUserTodayCommitCount,
+        userRanking,
+        setUserRanking,
         error,
         setError,
         loading,
