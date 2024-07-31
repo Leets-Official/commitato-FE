@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { postAuthLogout } from '../apis/auth/Logout';
 
 const Header = () => {
   const nav = useNavigate();
@@ -22,10 +23,18 @@ const Header = () => {
     nav('/ranking');
   };
 
-  const logout = () => {
-    localStorage.removeItem('accessToken'); // 로그아웃 시 토큰 삭제
-    setIsLoggedIn(false);
-    nav('/'); // 로그인 페이지로 리디렉션
+  const logout = async () => {
+    const res = await postAuthLogout();
+    console.log(res); // Detail: 로그아웃 res 응답 확인해보세요.
+    if (res.data.isSuccess) {
+      // Detail: api 성공 시 되어지는 코드들
+      alert('로그아웃이 성공하였습니다.');
+      localStorage.removeItem('accessToken'); // 로그아웃 시 토큰 삭제
+      setIsLoggedIn(false);
+      nav('/'); // 로그인 페이지로 리디렉션
+      return;
+    }
+    // Detail: 오류나면 apis 폴더의 Logout.js 에서 try/catch의 catch문에서 처리되어짐.
   };
 
   return (

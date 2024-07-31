@@ -15,6 +15,7 @@ import IntroduceModal from './components/IntroduceModal';
 import { UserContext } from '../../apis/UserContext';
 import { StyledButton } from '../../components/Button';
 import User from './User';
+import { updateCommit } from '../../apis/commit/commit';
 
 function GitHubChart({ githubId }) {
   const { userData, error } = useContext(UserContext);
@@ -56,35 +57,58 @@ const MyPage = () => {
     userName,
     userExp,
     userTierName,
+    userUpdatedAt,
     userCharacterUrl,
     userConsecutiveCommitDays,
     userTotalCommitCount,
     userTodayCommitCount,
     error,
     loading,
+
+    setUserName,
+    setUserTierName,
+    setUserConsecutiveCommitDays,
+    setUserUpdatedAt,
+    setUserTodayCommitCount,
+    setUserTotalCommitCount,
+    setUserCharacterUrl,
+    setUserExp,
   } = useContext(UserContext);
 
   useEffect(() => {
-    console.log('Current state: ', {
-      userId,
-      userName,
-      userExp,
-      userTierName,
-      userCharacterUrl,
-      userConsecutiveCommitDays,
-      userTotalCommitCount,
-      userTodayCommitCount,
+    updateCommit().then(data => {
+      setUserName(data.githubId);
+      setUserTierName(data.tierName);
+      setUserConsecutiveCommitDays(data.consecutiveCommitDays);
+      setUserUpdatedAt(data.updatedAt);
+      setUserTodayCommitCount(data.todayCommitCount);
+      setUserTotalCommitCount(data.totalCommitCount);
+      setUserCharacterUrl(data.characterUrl);
+      setUserExp(data.exp);
     });
-  }, [
-    userId,
-    userName,
-    userExp,
-    userTierName,
-    userCharacterUrl,
-    userConsecutiveCommitDays,
-    userTotalCommitCount,
-    userTodayCommitCount,
-  ]);
+  }, []);
+
+  // useEffect(() => {
+  //   console.log('Current state: ', {
+  //     userId,
+  //     userName,
+  //     userExp,
+  //     userTierName,
+  //     userCharacterUrl,
+  //     userConsecutiveCommitDays,
+  //     userTotalCommitCount,
+  //     userTodayCommitCount,
+  //   });
+  // }, [
+  //   userId,
+  //   userName,
+  //   userExp,
+  //   userTierName,
+  //   userCharacterUrl,
+  //   userConsecutiveCommitDays,
+  //   userTotalCommitCount,
+  //   userTodayCommitCount,
+  // ]);
 
   if (loading) {
     return <div>로딩중...</div>; // 데이터를 불러오는 동안 로딩 화면을 보여줌
@@ -187,10 +211,12 @@ const MyPage = () => {
                   <StyledCont>
                     연속 커밋 {userConsecutiveCommitDays}일차{' '}
                   </StyledCont>
-                  <StyledDate>최근 업데이트 : {displayCreateAt}</StyledDate>
+                  <StyledDate>
+                    최근 업데이트 : {displayCreateAt(userUpdatedAt)}
+                  </StyledDate>
                 </StyledThree>
                 <StyledXpBar>
-                  <XpBar />
+                  <XpBar exp={userExp} />
                   <IntroduceModal />
                 </StyledXpBar>
 

@@ -8,6 +8,7 @@ export const UserProvider = ({ children }) => {
   const [allUserData, setAllUserData] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userExp, setUserExp] = useState(0);
+  const [userUpdatedAt, setUserUpdatedAt] = useState(null);
   const [userTierName, setUserTierName] = useState('');
   const [userCharacterUrl, setUserCharacterUrl] = useState('');
   const [userConsecutiveCommitDays, setUserConsecutiveCommitDays] = useState(0);
@@ -28,6 +29,8 @@ export const UserProvider = ({ children }) => {
         userName,
         setUserName,
         userExp,
+        userUpdatedAt,
+        setUserUpdatedAt,
         setUserExp,
         userTierName,
         setUserTierName,
