@@ -1,9 +1,11 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { postAuthLogout } from '../apis/auth/Logout';
+import { UserContext } from '../apis/UserContext';
 
 const Header = () => {
+  const { setError } = useContext(UserContext);
   const nav = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +36,7 @@ const Header = () => {
       nav('/'); // 로그인 페이지로 리디렉션
       return;
     }
-    // Detail: 오류나면 apis 폴더의 Logout.js 에서 try/catch의 catch문에서 처리되어짐.
+    setError('로그아웃 중 오류가 발생하였습니다.');
   };
 
   return (
