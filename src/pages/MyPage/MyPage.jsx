@@ -15,6 +15,7 @@ import IntroduceModal from './components/IntroduceModal';
 import { UserContext } from '../../apis/UserContext';
 import { StyledButton } from '../../components/Button';
 import User from './User';
+import { updateCommit } from '../../apis/commit/commit';
 
 function GitHubChart({ githubId }) {
   const { userData, error } = useContext(UserContext);
@@ -50,21 +51,64 @@ function GitHubChart({ githubId }) {
   );
 }
 
-const MyPage = ({
-  MyGitHubRanking,
-  MyGitHubCont,
-  todayCommit,
-  totalCommit,
-}) => {
-  const { userData, error } = useContext(UserContext);
-  console.log(userData); // userData가 어떻게 생겼는지 확인하는 로그
+const MyPage = () => {
+  const {
+    userId,
+    userName,
+    userExp,
+    userTierName,
+    userUpdatedAt,
+    userCharacterUrl,
+    userConsecutiveCommitDays,
+    userTotalCommitCount,
+    userTodayCommitCount,
+    userRanking,
+    error,
+    loading,
+
+    setUserName,
+    setUserTierName,
+    setUserConsecutiveCommitDays,
+    setUserUpdatedAt,
+    setUserTodayCommitCount,
+    setUserTotalCommitCount,
+    setUserRanking,
+    setUserCharacterUrl,
+    setUserExp,
+  } = useContext(UserContext);
+
+  useEffect(() => {
+    updateCommit().then(data => {
+      setUserName(data.githubId);
+      setUserTierName(data.tierName);
+      setUserConsecutiveCommitDays(data.consecutiveCommitDays);
+      setUserUpdatedAt(data.updatedAt);
+      setUserTodayCommitCount(data.todayCommitCount);
+      setUserTotalCommitCount(data.totalCommitCount);
+      setUserCharacterUrl(data.characterUrl);
+      setUserExp(data.exp);
+      setUserRanking(data.ranking);
+    });
+  }, []);
+
+  if (loading) {
+    return <div>로딩중...</div>;
+  }
 
   if (error) {
     return <div>에러 발생: {error}</div>;
   }
-  if (!userData) {
-    return <div>로딩중...</div>;
-  }
+  // if (
+  //   !userId ||
+  //   userExp === null ||
+  //   userName === null ||
+  //   userTierName === null ||
+  //   userConsecutiveCommitDays === null ||
+  //   userTotalCommitCount === null ||
+  //   userTodayCommitCount === null
+  // ) {
+  //   return <div>로딩중...</div>;
+  // }
 
   const character = [
     {
@@ -121,7 +165,6 @@ const MyPage = ({
       return `${Math.floor(years)}년 전`;
     }
   };
-
   return (
     <>
       <Header />
@@ -133,24 +176,28 @@ const MyPage = ({
             <Wrapper>
               {selectedCharacter && (
                 <div key={selectedCharacter.id}>
-                  <Styledimg src={selectedCharacter.img} />
+                  <Styledimg src={userCharacterUrl} />
                 </div>
               )}
               <div>
                 <StyledUpdate>
-                  <StyledName>{userData.userId}</StyledName>
+                  <StyledName>{userName}</StyledName>
                   <StyledUpdateDate>
                     <StyledUpdateButton>UPDATE</StyledUpdateButton>
                   </StyledUpdateDate>
                 </StyledUpdate>
                 <StyledThree>
-                  <StyledRanking>Ranking {MyGitHubRanking}위 </StyledRanking>
-                  <StyledLevel>level {selectedCharacter.title} </StyledLevel>
-                  <StyledCont>연속 커밋 {MyGitHubCont}일차 </StyledCont>
-                  <StyledDate>최근 업데이트 : {displayCreateAt}</StyledDate>
+                  <StyledRanking>Ranking {userRanking}위 </StyledRanking>
+                  <StyledLevel>level {userTierName} </StyledLevel>
+                  <StyledCont>
+                    연속 커밋 {userConsecutiveCommitDays}일차{' '}
+                  </StyledCont>
+                  <StyledDate>
+                    최근 업데이트 : {displayCreateAt(userUpdatedAt)}
+                  </StyledDate>
                 </StyledThree>
                 <StyledXpBar>
-                  <XpBar />
+                  <XpBar ratio={userExp} />
                   <IntroduceModal />
                 </StyledXpBar>
 
@@ -163,22 +210,22 @@ const MyPage = ({
             <StyledSubTitle>나의 커밋 농장</StyledSubTitle>
             <StyledImg2 src={line} />
             <StyledDiv>
-              <GitHubChart githubId={userData.userId} />
+              <GitHubChart githubId={userName} />
               <StyledCommit>
                 <StyledConnect>
                   <StyledArr>TODAY COMMIT</StyledArr>
-                  <StyledArr3>{todayCommit}5</StyledArr3>
+                  <StyledArr3>{userTodayCommitCount}</StyledArr3>
                 </StyledConnect>
                 <StyledImg3 src={circle} />
                 <StyledConnect>
                   <StyledArr>TOTAL COMMIT</StyledArr>
-                  <StyledArr3>{totalCommit}5</StyledArr3>
+                  <StyledArr3>{userTotalCommitCount}</StyledArr3>
                 </StyledConnect>
                 <StyledImg3 src={circle} />
                 <StyledGit>
                   <StyledImg4 src={githubChar} />
                   <StyledArr2>GITHUB</StyledArr2>
-                  <StyledArr4>{userData.userId}</StyledArr4>
+                  <StyledArr4>{userName}</StyledArr4>
                 </StyledGit>
               </StyledCommit>
             </StyledDiv>
@@ -196,9 +243,9 @@ const StyledUpdateDate = styled.div``;
 
 const StyledDate = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
-  font-size: 17px;
+  font-size: 16px;
   color: ${({ theme }) => theme.COLORS.gray[200]};
-  margin-left: 50%;
+  margin-left: 45%;
 `;
 
 const StyledUpdate = styled.div`
@@ -285,7 +332,7 @@ const StyledGit = styled.div`
 
 const StyledImg4 = styled.img`
   margin-top: 2%;
-  margin-left: 10%;
+  margin-left: 7%;
   width: 37px;
   height: 37px;
   object-fit: cover;
@@ -299,7 +346,7 @@ const Styledimg = styled.img`
 `;
 
 const StyledArr = styled.div`
-  margin-left: 10%;
+  margin-left: 5%;
   margin-top: 6%;
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   font-size: ${({ theme }) => theme.FONT_SIZE.medium};
@@ -323,37 +370,38 @@ const StyledCommit = styled.div`
 
 const StyledThree = styled.div`
   display: flex;
-  margin-left: 5%;
-  margin-top: 1.5%;
-  width: 930px;
+  margin-left: 4%;
+  margin-top: 1%;
+  width: 960px;
   height: 22px;
   object-fit: cover;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
-  // justify-content: space-between;
+  justify-content: space-between;
 `;
 const StyledName = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[400]};
   font-size: ${({ theme }) => theme.FONT_SIZE.large};
-  margin-left: 5%;
+  margin-left: 4.5%;
   // margin-top: 5%;
 `;
 
 const StyledRanking = styled.div`
-  margin-right: 2%;
+  margin-left: 2%;
+  margin-right: 1%;
 `;
 
 const StyledLevel = styled.div`
-  margin-right: 2%;
+  margin-right: 1%;
 `;
 
 const StyledCont = styled.div`
-  margin-right: 2%;
+  margin-right: 1%;
 `;
 
 const StyledArr3 = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   font-size: 50px;
-  margin-left: 20%;
+  margin-left: 14%;
   margin-top: 2%;
 `;
 

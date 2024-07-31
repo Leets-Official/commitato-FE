@@ -1,8 +1,11 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { postAuthLogout } from '../apis/auth/Logout';
+import { UserContext } from '../apis/UserContext';
 
 const Header = () => {
+  const { setError } = useContext(UserContext);
   const nav = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -22,10 +25,18 @@ const Header = () => {
     nav('/ranking');
   };
 
-  const logout = () => {
-    localStorage.removeItem('accessToken'); // 로그아웃 시 토큰 삭제
-    setIsLoggedIn(false);
-    nav('/'); // 로그인 페이지로 리디렉션
+  const logout = async () => {
+    const res = await postAuthLogout();
+    console.log(res); // Detail: 로그아웃 res 응답 확인해보세요.
+    if (res.data.isSuccess) {
+      // Detail: api 성공 시 되어지는 코드들
+      alert('로그아웃이 성공하였습니다.');
+      localStorage.removeItem('accessToken'); // 로그아웃 시 토큰 삭제
+      setIsLoggedIn(false);
+      nav('/'); // 로그인 페이지로 리디렉션
+      return;
+    }
+    setError('로그아웃 중 오류가 발생하였습니다.');
   };
 
   return (
@@ -76,7 +87,7 @@ const StyledLogOutButton = styled.h1`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
   font-size: ${({ theme }) => theme.FONT_SIZE.small};
   color: ${({ theme }) => theme.COLORS.gray[200]};
-  margin-left: 74%;
+  margin-left: 68%;
   margin-top: 10px;
   cursor: pointer;
   &:hover {

@@ -3,7 +3,8 @@ import axios from 'axios';
 import { UserContext } from '../UserContext';
 
 const Login = () => {
-  const { setUserData, setError, setAllUserData } = useContext(UserContext);
+  const { setUserData, setError, setAllUserData, setUserId } =
+    useContext(UserContext);
 
   useEffect(() => {
     const accessToken = import.meta.env.VITE_REACT_APP_ACCESS_TOKEN;
@@ -26,14 +27,13 @@ const Login = () => {
     console.log(headers);
 
     axios
-      .get(
-        'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080/login/test',
-        { headers },
-      )
+      .get('api/login/test', { headers })
       .then(response => {
+        console.log('Login response:', response.data);
         if (response.data.isSuccess) {
           // isSuccess로 응답 상태 확인
           setUserData(response.data.result); // 데이터 저장
+          setUserId(response.data.result.userId);
         } else {
           setError(response.data.message); // 오류 메시지 설정
         }
@@ -42,7 +42,7 @@ const Login = () => {
         console.error('Error fetching data:', err);
         setError('An error occurred while fetching the data');
       });
-  }, [setUserData, setError, setAllUserData]);
+  }, [setUserData, setError, setAllUserData, setUserId]);
 
   return null;
 };
