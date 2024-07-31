@@ -62,6 +62,7 @@ const MyPage = () => {
     userConsecutiveCommitDays,
     userTotalCommitCount,
     userTodayCommitCount,
+    userRanking,
     error,
     loading,
 
@@ -71,6 +72,7 @@ const MyPage = () => {
     setUserUpdatedAt,
     setUserTodayCommitCount,
     setUserTotalCommitCount,
+    setUserRanking,
     setUserCharacterUrl,
     setUserExp,
   } = useContext(UserContext);
@@ -85,33 +87,12 @@ const MyPage = () => {
       setUserTotalCommitCount(data.totalCommitCount);
       setUserCharacterUrl(data.characterUrl);
       setUserExp(data.exp);
+      setUserRanking(data.ranking);
     });
   }, []);
 
-  // useEffect(() => {
-  //   console.log('Current state: ', {
-  //     userId,
-  //     userName,
-  //     userExp,
-  //     userTierName,
-  //     userCharacterUrl,
-  //     userConsecutiveCommitDays,
-  //     userTotalCommitCount,
-  //     userTodayCommitCount,
-  //   });
-  // }, [
-  //   userId,
-  //   userName,
-  //   userExp,
-  //   userTierName,
-  //   userCharacterUrl,
-  //   userConsecutiveCommitDays,
-  //   userTotalCommitCount,
-  //   userTodayCommitCount,
-  // ]);
-
   if (loading) {
-    return <div>로딩중...</div>; // 데이터를 불러오는 동안 로딩 화면을 보여줌
+    return <div>로딩중...</div>;
   }
 
   if (error) {
@@ -195,7 +176,7 @@ const MyPage = () => {
             <Wrapper>
               {selectedCharacter && (
                 <div key={selectedCharacter.id}>
-                  <Styledimg src={selectedCharacter.img} />
+                  <Styledimg src={userCharacterUrl} />
                 </div>
               )}
               <div>
@@ -206,7 +187,7 @@ const MyPage = () => {
                   </StyledUpdateDate>
                 </StyledUpdate>
                 <StyledThree>
-                  <StyledRanking>Ranking {userTierName}위 </StyledRanking>
+                  <StyledRanking>Ranking {userRanking}위 </StyledRanking>
                   <StyledLevel>level {userTierName} </StyledLevel>
                   <StyledCont>
                     연속 커밋 {userConsecutiveCommitDays}일차{' '}
@@ -262,9 +243,9 @@ const StyledUpdateDate = styled.div``;
 
 const StyledDate = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
-  font-size: 17px;
+  font-size: 16px;
   color: ${({ theme }) => theme.COLORS.gray[200]};
-  margin-left: 50%;
+  margin-left: 45%;
 `;
 
 const StyledUpdate = styled.div`
@@ -351,7 +332,7 @@ const StyledGit = styled.div`
 
 const StyledImg4 = styled.img`
   margin-top: 2%;
-  margin-left: 10%;
+  margin-left: 7%;
   width: 37px;
   height: 37px;
   object-fit: cover;
@@ -365,7 +346,7 @@ const Styledimg = styled.img`
 `;
 
 const StyledArr = styled.div`
-  margin-left: 10%;
+  margin-left: 5%;
   margin-top: 6%;
   font-family: ${({ theme }) => theme.FONT_FAMILY.main};
   font-size: ${({ theme }) => theme.FONT_SIZE.medium};
@@ -389,37 +370,38 @@ const StyledCommit = styled.div`
 
 const StyledThree = styled.div`
   display: flex;
-  margin-left: 5%;
-  margin-top: 1.5%;
-  width: 930px;
+  margin-left: 4%;
+  margin-top: 1%;
+  width: 960px;
   height: 22px;
   object-fit: cover;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
-  // justify-content: space-between;
+  justify-content: space-between;
 `;
 const StyledName = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[400]};
   font-size: ${({ theme }) => theme.FONT_SIZE.large};
-  margin-left: 5%;
+  margin-left: 4.5%;
   // margin-top: 5%;
 `;
 
 const StyledRanking = styled.div`
-  margin-right: 2%;
+  margin-left: 2%;
+  margin-right: 1%;
 `;
 
 const StyledLevel = styled.div`
-  margin-right: 2%;
+  margin-right: 1%;
 `;
 
 const StyledCont = styled.div`
-  margin-right: 2%;
+  margin-right: 1%;
 `;
 
 const StyledArr3 = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[300]};
   font-size: 50px;
-  margin-left: 20%;
+  margin-left: 14%;
   margin-top: 2%;
 `;
 

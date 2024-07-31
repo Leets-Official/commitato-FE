@@ -14,4 +14,12 @@ export default defineConfig({
       },
     },
   },
+  proxy: {
+    '/api': {
+      target:
+        'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080',
+      changeOrigin: true,
+      rewrite: path => path.replace(/^\/api/, ''),
+    },
+  },
 });

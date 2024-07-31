@@ -8,5 +8,7 @@ export const postAuthLogout = async () => {
   try {
     const data = await axios.post('api/auth/logout', {}, { headers });
     return data;
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 };
