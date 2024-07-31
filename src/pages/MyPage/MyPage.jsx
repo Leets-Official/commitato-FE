@@ -197,7 +197,7 @@ const MyPage = () => {
                   </StyledDate>
                 </StyledThree>
                 <StyledXpBar>
-                  <XpBar ratio={userExp} />
+                  <XpBar exp={userExp} />
                   <IntroduceModal />
                 </StyledXpBar>
 
