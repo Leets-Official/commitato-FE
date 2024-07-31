@@ -14,6 +14,7 @@ export const potatoes = [
     comment: stupid_potato_comment,
     text: '바보 감자는 초보 단계의 감자에요. 아직은 많은 것을 배우고 익혀야 하는 단계입니다. (포인트 범위: 0-99 포인트)',
   },
+
   {
     id: 2,
     img: talking_potato,

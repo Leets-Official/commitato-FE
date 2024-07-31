@@ -40,12 +40,12 @@ const User = () => {
 
       try {
         console.log('Fetching commit data for user ID:', userId);
-        await axios.post('/api/commit/update', { headers });
+        await axios.post('http://localhost:8080/commit/update', { headers });
 
         console.log('Fetching user data for ID:', userId);
 
         const response = await axios.get(
-          `/api/user/search?githubId=${userId}`,
+          'http://localhost:8080/user/' + userId,
           { headers },
         );
 

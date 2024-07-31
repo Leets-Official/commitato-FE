@@ -60,8 +60,8 @@ const ParallaxContainer = styled.div`
   overflow: hidden;
   letter-spacing: -2px;
   line-height: 0.8;
-  margin-top: 330px;
-  margin-bottom: 200px;
+  margin-top: 210px;
+  margin-bottom: 150px;
   white-space: nowrap;
   display: flex;
   flex-wrap: nowrap;
@@ -69,7 +69,7 @@ const ParallaxContainer = styled.div`
 const Scroller = styled(motion.div)`
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 64px;
+  font-size: 48px;
   display: flex;
   white-space: nowrap;
   display: flex;
