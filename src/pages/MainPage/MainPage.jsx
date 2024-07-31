@@ -15,6 +15,8 @@ import MainFooter from './components/MainFooter';
 import ranking_img from '../../assets/ranking_img.png';
 import commitgrass from '../../assets/commitgrass.png';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import axios from 'axios';
+import { githubLogin } from '../../apis/auth/Login';
 
 const TranslateAnimation = keyframes`
     0%{
@@ -64,7 +66,7 @@ const pulseGrow = keyframes`
 const MainPage = () => {
   const [activeIndexes, setActiveIndexes] = useState([]);
   const onClickToGithub = () => {
-    window.open('https://github.com/login');
+    githubLogin();
   };
 
   const onClickToBalloon = index => {
