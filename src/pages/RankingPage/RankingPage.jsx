@@ -96,14 +96,18 @@ const RankingPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const queryParams = { page: 1, size: 1 };
+    const url =
+      'http://ec2-43-201-143-81.ap-northeast-2.compute.amazonaws.com:8080/user/ranking';
     try {
       //성공
-      axios.get('https://jsonplaceholder.typicode.com/users').then(response => {
+      axios.get(url, { params: queryParams }).then(response => {
         console.log(response.data);
         setData(response.data);
       });
     } catch (e) {
       // 실패
+      console.log('요청실패');
       setError(e);
       setLoading(false);
     }
