@@ -13,6 +13,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import MainFooter from './components/MainFooter';
 import ranking_img from '../../assets/ranking_img.png';
 import commitgrass from '../../assets/commitgrass.png';
+import ScrollToTopButton from './components/ScrollToTopButton';
 
 const TranslateAnimation = keyframes`
     0%{
@@ -114,6 +115,7 @@ const MainPage = () => {
           <Button onClick={onClickToGithub} label="Login with Github" />
         </CenterDiv>
 
+        <ScrollToTopButton />
         <ParallaxText baseVelocity={-7}>
           <svg
             width="130"
