@@ -64,7 +64,7 @@ const pulseGrow = keyframes`
 const MainPage = () => {
   const [activeIndexes, setActiveIndexes] = useState([]);
   const onClickToGithub = () => {
-    window.open('https://github.com/login');
+    window.open('https://api.commitato.site/login/github');
   };
 
   const onClickToBalloon = index => {
