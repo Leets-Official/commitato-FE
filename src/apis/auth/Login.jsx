@@ -17,4 +17,5 @@ export const loginCallback = async code => {
   }
 };
 
-export default { githubLogin, loginCallback };
+export { githubLogin };
+export default loginCallback;

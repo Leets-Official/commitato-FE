@@ -6,12 +6,14 @@ import { ThemeProvider } from 'styled-components';
 import theme from './styles/ThemeStyle';
 import { UserProvider } from './apis/UserContext';
 import User from './pages/MyPage/User';
+// import githubLogin from './apis/auth/Login';
 import MyPage from './pages/MyPage/MyPage';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <UserProvider>
+        {/* <githubLogin /> */}
         <User />
         <GlobalStyles />
         <RouterProvider router={router} />
