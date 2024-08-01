@@ -3,9 +3,9 @@ import axios from 'axios';
 const githubLogin = () => {
   const clientId = import.meta.env.VITE_REACT_APP_CLIENT_ID;
   const redirectUrl = import.meta.env.VITE_REACT_APP_REDIRECT_URL;
-  const authorizeUrl =
-    'https://github.com/login/oauth/authorize?client_id=Iv23liJDHSa72tWCP7LX&redirect_uri=https://commitato.site/login/callback&scope=user';
-  // const authorizeUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=user`;
+  // const authorizeUrl =
+  //   'https://github.com/login/oauth/authorize?client_id=Iv23liJDHSa72tWCP7LX&redirect_uri=https://commitato.site/login/callback&scope=user';
+  const authorizeUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=user`;
   window.location.href = authorizeUrl;
 };
 
