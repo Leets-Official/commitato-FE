@@ -9,7 +9,7 @@ const githubLogin = () => {
 
 export const loginCallback = async code => {
   const res = await axios.get(
-    `https://api.commitato.site/login/callback?code=${code}`,
+    `https://commitato.site/login/callback?code=${code}`,
   );
   if (res.data.isSuccess) {
     const token = res.data.result.accessToken;

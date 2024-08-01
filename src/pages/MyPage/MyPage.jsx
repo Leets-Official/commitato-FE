@@ -62,6 +62,8 @@ const MyPage = () => {
     userConsecutiveCommitDays,
     userTotalCommitCount,
     userTodayCommitCount,
+    lastCommitUpdateTime,
+    ranking,
     error,
     loading,
 
@@ -71,6 +73,8 @@ const MyPage = () => {
     setUserUpdatedAt,
     setUserTodayCommitCount,
     setUserTotalCommitCount,
+    setLastCommitUpdateTime,
+    setRanking,
     setUserCharacterUrl,
     setUserExp,
   } = useContext(UserContext);
@@ -85,6 +89,8 @@ const MyPage = () => {
       setUserTotalCommitCount(data.totalCommitCount);
       setUserCharacterUrl(data.characterUrl);
       setUserExp(data.exp);
+      setLastCommitUpdateTime(data.lastCommitUpdateTime);
+      setRanking(data.ranking);
     });
   }, []);
 
@@ -195,7 +201,7 @@ const MyPage = () => {
             <Wrapper>
               {selectedCharacter && (
                 <div key={selectedCharacter.id}>
-                  <Styledimg src={selectedCharacter.img} />
+                  <Styledimg src={userCharacterUrl} />
                 </div>
               )}
               <div>
@@ -206,13 +212,13 @@ const MyPage = () => {
                   </StyledUpdateDate>
                 </StyledUpdate>
                 <StyledThree>
-                  <StyledRanking>Ranking {userTierName}위 </StyledRanking>
+                  <StyledRanking>Ranking {ranking}위 </StyledRanking>
                   <StyledLevel>level {userTierName} </StyledLevel>
                   <StyledCont>
                     연속 커밋 {userConsecutiveCommitDays}일차{' '}
                   </StyledCont>
                   <StyledDate>
-                    최근 업데이트 : {displayCreateAt(userUpdatedAt)}
+                    최근 업데이트 : {displayCreateAt(lastCommitUpdateTime)}
                   </StyledDate>
                 </StyledThree>
                 <StyledXpBar>
@@ -264,7 +270,8 @@ const StyledDate = styled.div`
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[100]};
   font-size: 17px;
   color: ${({ theme }) => theme.COLORS.gray[200]};
-  margin-left: 50%;
+  margin-left: 47%;
+  margin-bottom: 10%;
 `;
 
 const StyledUpdate = styled.div`
@@ -391,7 +398,7 @@ const StyledThree = styled.div`
   display: flex;
   margin-left: 5%;
   margin-top: 1.5%;
-  width: 930px;
+  width: 950px;
   height: 22px;
   object-fit: cover;
   font-family: ${({ theme }) => theme.FONT_FAMILY.pretendard[200]};
@@ -405,15 +412,15 @@ const StyledName = styled.div`
 `;
 
 const StyledRanking = styled.div`
-  margin-right: 2%;
+  margin-right: 1%;
 `;
 
 const StyledLevel = styled.div`
-  margin-right: 2%;
+  margin-right: 1%;
 `;
 
 const StyledCont = styled.div`
-  margin-right: 2%;
+  margin-right: 1%;
 `;
 
 const StyledArr3 = styled.div`

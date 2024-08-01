@@ -16,6 +16,8 @@ export const UserProvider = ({ children }) => {
   const [userTodayCommitCount, setUserTodayCommitCount] = useState(0);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastCommitUpdateTime, setLastCommitUpdateTime] = useState('');
+  const [ranking, setRanking] = useState('');
 
   return (
     <UserContext.Provider
@@ -42,6 +44,10 @@ export const UserProvider = ({ children }) => {
         setUserTotalCommitCount,
         userTodayCommitCount,
         setUserTodayCommitCount,
+        lastCommitUpdateTime,
+        setLastCommitUpdateTime,
+        ranking,
+        setRanking,
         error,
         setError,
         loading,
