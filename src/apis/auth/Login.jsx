@@ -13,6 +13,7 @@ export const loginCallback = async code => {
   );
   if (res.data.isSuccess) {
     const token = res.data.result.accessToken;
+    console.log(token);
     return token;
   }
 };
