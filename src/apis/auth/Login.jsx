@@ -7,8 +7,10 @@ const githubLogin = () => {
   window.location.href = authorizeUrl;
 };
 
-const loginCallback = async code => {
-  const res = await axios.get(`/login/callback?code=${code}`);
+export const loginCallback = async code => {
+  const res = await axios.get(
+    `https://commitato.site/login/callback?code=${code}`,
+  );
   if (res.data.isSuccess) {
     const token = res.data.result.accessToken;
     return token;
