@@ -8,7 +8,7 @@ const ScrollToTopButton = () => {
   const onClickToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth ',
+      behavior: 'smooth',
     });
   };
 
@@ -23,17 +23,11 @@ const ScrollToTopButton = () => {
     };
   }, []);
   return (
-    // showButton && (
-    //   <Button onClick={onClickToTop}>
-    //     <img src={TopButton} alt="Top_button" />
-    //   </Button>
-    <>
-      {showButton && (
-        <div>
-          <Button onClick={onClickToTop}>Top</Button>
-        </div>
-      )}
-    </>
+    showButton && (
+      <Button onClick={onClickToTop}>
+        <img src={TopButton} alt="Top_button" />
+      </Button>
+    )
   );
 };
 
