@@ -16,7 +16,7 @@ import ranking_img from '../../assets/ranking_img.png';
 import commitgrass from '../../assets/commitgrass.png';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import axios from 'axios';
-import { githubLogin } from '../../apis/auth/Login';
+import githubLogin from '../../apis/auth/Login';
 
 const TranslateAnimation = keyframes`
     0%{

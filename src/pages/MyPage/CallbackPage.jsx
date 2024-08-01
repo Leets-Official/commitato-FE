@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { loginCallback } from '../../apis/auth/Login';
+import loginCallback from '../../apis/auth/Login';
+
 const CallbackPage = () => {
   const urlParams = new URLSearchParams(window.location.search);
 

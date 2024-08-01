@@ -5,7 +5,7 @@ import { UserContext } from '../UserContext';
 export const updateCommit = async () => {
   // const accessToken = localStorage.getItem('accessToken');
   const accessToken =
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5ZWNoYW4ta2ltIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTcyMjQ1MTMwMX0.uRqdzFihvqUMqrH4xN2MinFEEVCq6wr3IsDAnpUFY87p6dIitbGLMjAAmGVCo0XEDuTlR6MY5zFgdQLr4DAYWA';
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3b25lZWVlZSIsImF1dGgiOiJST0xFX1VTRVIiLCJleHAiOjE3MjI0ODgwNDJ9.kKjmdT2lJdzH_NwfBPi42ogiE1azGJM6Hu1VQmaXF48jns6r4NgEA3ovHF7E86PAhrevXdwxgr--a7A8FKkixg';
   const headers = {
     Authorization: `Bearer ${accessToken}`,
   };

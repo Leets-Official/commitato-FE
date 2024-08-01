@@ -4,6 +4,7 @@ import RankingPage from '../pages/RankingPage/RankingPage';
 import MyPage from '../pages/MyPage/MyPage';
 import CallbackPage from '../pages/MyPage/CallbackPage';
 
+
 const router = createBrowserRouter([
   {
     path: '',
