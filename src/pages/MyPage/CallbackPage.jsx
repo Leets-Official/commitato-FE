@@ -9,7 +9,14 @@ import {
 import axios from 'axios';
 import githubLogin from '../../apis/auth/Login';
 
-const Home = () => <githubLogin />;
+const Home = () => {
+  // 함수 호출로 변경합니다.
+  useEffect(() => {
+    githubLogin();
+  }, []);
+
+  return <div>Redirecting to GitHub...</div>;
+};
 
 // import loginCallback from '../../apis/auth/Login';
 
