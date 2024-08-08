@@ -25,5 +25,5 @@ const githubLogin = () => {
 //   }
 // };
 
-export { githubLogin };
+export default githubLogin;
 // export default loginCallback;

@@ -7,7 +7,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import axios from 'axios';
-import { githubLogin } from '../../apis/auth/Login';
+import githubLogin from '../../apis/auth/Login';
 
 const Home = () => <githubLogin />;
 
