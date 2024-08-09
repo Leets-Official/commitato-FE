@@ -63,11 +63,10 @@ const pulseGrow = keyframes`
   }
   `;
 
-const clientId = 'Iv23lil2Miq3YxcLJLER';
-const redirectUrl = 'https://www.commitato.site/login';
-const githubURL = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}`;
-
 const GithubButton = () => {
+  const clientId = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+  const redirectUrl = import.meta.env.VITE_REACT_APP_REDIRECT_URL;
+  const githubURL = `https://github.com/login/oauth/authorize?client_id=${clientId}`;
   const handleLogin = () => {
     window.location.href = githubURL;
   };
