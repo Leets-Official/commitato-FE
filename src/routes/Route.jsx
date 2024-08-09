@@ -3,7 +3,7 @@ import MainPage from '../pages/MainPage/MainPage';
 import RankingPage from '../pages/RankingPage/RankingPage';
 import MyPage from '../pages/MyPage/MyPage';
 import CallbackPage from '../pages/MyPage/CallbackPage';
-
+import Login from '../apis/auth/Login';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/login/callback',
     element: <CallbackPage />,
+  },
+  {
+    path: '/',
+    element: <Login />,
   },
 ]);
 export default router;

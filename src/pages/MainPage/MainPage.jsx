@@ -66,7 +66,7 @@ const pulseGrow = keyframes`
 const GithubButton = () => {
   const clientId = import.meta.env.VITE_REACT_APP_CLIENT_ID;
   const redirectUrl = import.meta.env.VITE_REACT_APP_REDIRECT_URL;
-  const githubURL = `https://github.com/login/oauth/authorize?client_id=${clientId}`;
+  const githubURL = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}`;
   const handleLogin = () => {
     window.location.href = githubURL;
   };

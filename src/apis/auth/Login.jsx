@@ -109,7 +109,7 @@ const Callback = () => {
   );
 };
 
-const App = () => (
+const Login = () => (
   <Router>
     <Routes>
       <Route path="/" element={<Home />} />
@@ -118,4 +118,4 @@ const App = () => (
   </Router>
 );
 
-export default App;
+export default Login;
